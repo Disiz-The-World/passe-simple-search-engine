@@ -42,7 +42,9 @@ testem.log
 Thumbs.db
 
 # Nix
+shell.nix
 
+# Environnement
 .direnv
 .envrc
-shell.nix
+.env
