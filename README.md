@@ -25,6 +25,20 @@ For a complete list of available schematics (such as `components`, `directives`,
 ```bash
 ng generate --help
 ```
+## Running linting
+
+To run linting on your project, use the following command:
+
+```bash
+ng lint
+```
+## Running prettier
+
+To run prettier on your project, use the following command:
+
+```bash
+npm run format
+```
 
 ## Building
 
