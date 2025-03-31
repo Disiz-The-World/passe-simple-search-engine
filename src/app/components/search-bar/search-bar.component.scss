@@ -1,47 +1,23 @@
-.search-bar {
+.pill-search {
   width: 100%;
   max-width: 500px;
-  height: 50px;
-  border-radius: 25px;
-  background-color: #e9e5e1;
 
-  .mat-form-field-wrapper {
-    padding: 0;
+  --mdc-filled-text-field-focus-active-indicator-color: transparent;
+  --mdc-filled-text-field-hover-active-indicator-color: transparent;
+  --mdc-filled-text-field-disabled-container-color: #e9e5e1;
+  --mdc-filled-text-field-container-color: #e9e5e1;
+  --mdc-filled-text-field-active-indicator-height: 0px;
+
+  .mat-mdc-text-field-wrapper,
+  .mdc-text-field {
+    border-radius: 28px !important;
   }
 
-  .mat-form-field-flex {
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    border-radius: 25px;
-  }
-
-  input[matInput] {
-    background: transparent;
+  input.mat-mdc-input-element {
+    font-weight: 400;
     font-size: 16px;
-    flex: 1;
-    border: none;
-    outline: none;
-  }
-
-  .mat-form-field-underline,
-  .mat-form-field-ripple {
-    display: none !important;
-    border: none !important;
-    height: 0 !important;
-  }
-
-  // 🔥 Supprime toute bordure potentielle
-  .mat-form-field-outline,
-  .mat-form-field-outline-start,
-  .mat-form-field-outline-end,
-  .mat-form-field-outline-gap {
-    display: none !important;
-    border: none !important;
-  }
-
-  // Supprime les padding parasites
-  .mat-form-field-wrapper {
-    padding: 0 !important;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    top: 0;
   }
 }
