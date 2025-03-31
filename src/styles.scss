@@ -18,11 +18,48 @@ html {
 
 html,
 body {
-  height: 100%;
-}
-body {
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background-color: #f9fdf6;
+}
+.app-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+.main-layout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  display: flex;
+
+  .search-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em 1em;
+    width: 100%;
+  }
+
+  app-search-bar {
+    flex: 1;
+    margin-right: 16px;
+  }
+
+  .avatar-container {
+    display: flex;
+    right: 0;
+    margin-left: auto;
+  }
+}
+
+.main-content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
 }
 
 @import './css/light.css';
