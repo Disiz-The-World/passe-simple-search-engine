@@ -1,35 +1,18 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav mode="side" opened class="sidenav">
-    <mat-nav-list class="nav-vertical">
-      <ng-container *ngFor="let item of navItems">
-        <a
-          mat-list-item
-          disableRipple
-          [routerLink]="item.route"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-        >
-          <div class="icon-wrapper">
-            <mat-icon>{{ item.icon }}</mat-icon>
-          </div>
-          <span class="label">{{ item.name }}</span>
-        </a>
-      </ng-container>
-      <ng-container *ngFor="let item of bottomItems; let i = index">
-        <a
-          mat-list-item
-          disableRipple
-          [routerLink]="item.route"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }"
-          [ngClass]="{ 'bottom-item': i === 0 }"
-        >
-          <div class="icon-wrapper">
-            <mat-icon>{{ item.icon }}</mat-icon>
-          </div>
-          <span class="label">{{ item.name }}</span>
-        </a>
-      </ng-container>
-    </mat-nav-list>
-  </mat-sidenav>
-</mat-sidenav-container>
+<mat-nav-rail>
+  <mat-nav-rail-item
+    *ngFor="let item of navItems"
+    [routerLink]="item.route"
+    routerLinkActive="active"
+  >
+    <mat-icon>{{ item.icon }}</mat-icon>
+    <span>{{ item.name }}</span>
+  </mat-nav-rail-item>
+  <mat-nav-rail-item
+    *ngFor="let item of bottomItems"
+    [routerLink]="item.route"
+    routerLinkActive="active"
+  >
+    <mat-icon>{{ item.icon }}</mat-icon>
+    <span>{{ item.name }}</span>
+  </mat-nav-rail-item>
+</mat-nav-rail>
