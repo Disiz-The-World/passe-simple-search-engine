@@ -11,11 +11,9 @@
   }
 
   .nav-vertical {
-    padding: 12px 0;
     height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
 
     a.bottom-item {
       margin-top: auto;
@@ -32,7 +30,7 @@
     text-decoration: none;
     color: #333;
     font-weight: 500;
-    padding: 12px 0;
+    border-radius: 0;
 
     .icon-wrapper {
       width: 100%;
@@ -47,10 +45,6 @@
         transition: color 0.3s;
         width: 100%;
         text-align: center;
-
-        &:hover {
-          color: #2a3e1b;
-        }
       }
     }
 
