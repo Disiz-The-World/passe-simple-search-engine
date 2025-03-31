@@ -6,7 +6,6 @@
   .sidenav {
     width: 100px;
     background-color: #fff;
-    border-right: 1px solid #eee;
     display: flex;
     flex-direction: column;
   }
@@ -45,6 +44,13 @@
       mat-icon {
         font-size: 24px;
         color: #3d5926;
+        transition: color 0.3s;
+        width: 100%;
+        text-align: center;
+
+        &:hover {
+          color: #2a3e1b;
+        }
       }
     }
 
@@ -55,6 +61,7 @@
       letter-spacing: 0.1px;
       color: #181d18;
       margin-top: 6px;
+      white-space: break-spaces;
       text-align: center;
     }
   }
