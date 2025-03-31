@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatSidenav, MatSidenavContainer, MatSidenavContent } from '@angular/material/sidenav';
+import {
+  MatSidenav,
+  MatSidenavContainer,
+  MatSidenavContent,
+} from '@angular/material/sidenav';
 import { MatListItem, MatNavList } from '@angular/material/list';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { MatLine } from '@angular/material/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,14 +18,12 @@ import { MatLine } from '@angular/material/core';
     MatNavList,
     MatIcon,
     RouterLink,
-    MatSidenavContent,
-    RouterOutlet,
     MatSidenavContainer,
     MatListItem,
-    MatLine,
     RouterLinkActive,
   ],
   styleUrls: ['./sidebar.component.scss'],
+  standalone: true,
 })
 export class SidebarComponent {
   navItems = [
