@@ -1,0 +1,9 @@
+<mat-form-field class="search-bar" appearance="outline">
+  <input
+    type="text"
+    matInput
+    [(ngModel)]="searchQuery"
+    placeholder="Rechercher une balade..."
+  />
+  <mat-autocomplete #auto="matAutocomplete"></mat-autocomplete>
+</mat-form-field>
