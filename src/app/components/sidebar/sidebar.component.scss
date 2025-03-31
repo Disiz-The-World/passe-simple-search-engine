@@ -61,7 +61,8 @@
       letter-spacing: 0.1px;
       color: #181d18;
       margin-top: 6px;
-      white-space: break-spaces;
+      word-break: break-word;
+      break-after: auto;
       text-align: center;
     }
   }

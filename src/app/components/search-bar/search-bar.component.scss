@@ -1,0 +1,23 @@
+.pill-search {
+  width: 100%;
+  max-width: 500px;
+
+  --mdc-filled-text-field-focus-active-indicator-color: transparent;
+  --mdc-filled-text-field-hover-active-indicator-color: transparent;
+  --mdc-filled-text-field-disabled-container-color: #e9e5e1;
+  --mdc-filled-text-field-container-color: #e9e5e1;
+  --mdc-filled-text-field-active-indicator-height: 0px;
+
+  .mat-mdc-text-field-wrapper,
+  .mdc-text-field {
+    border-radius: 28px !important;
+  }
+
+  input.mat-mdc-input-element {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.5px;
+    top: 0;
+  }
+}
