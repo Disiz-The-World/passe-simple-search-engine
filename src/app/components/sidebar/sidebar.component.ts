@@ -1,24 +1,36 @@
 import { Component } from '@angular/core';
-import {
-  MatSidenav,
-  MatSidenavContainer,
-  MatSidenavContent,
-} from '@angular/material/sidenav';
-import { MatToolbar } from '@angular/material/toolbar';
+import { CommonModule } from '@angular/common';
+import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
+import { MatListItem, MatNavList } from '@angular/material/list';
 import { MatIcon } from '@angular/material/icon';
-import { MatNavList } from '@angular/material/list';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [
-    MatSidenavContent,
-    MatToolbar,
-    MatIcon,
-    MatNavList,
-    MatSidenav,
-    MatSidenavContainer,
-  ],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss',
+  imports: [
+    CommonModule,
+    MatSidenav,
+    MatNavList,
+    MatIcon,
+    RouterLink,
+    MatSidenavContainer,
+    MatListItem,
+    RouterLinkActive,
+  ],
+  styleUrls: ['./sidebar.component.scss'],
+  standalone: true,
 })
-export class SidebarComponent {}
+export class SidebarComponent {
+  navItems = [
+    { name: 'Accueil', icon: 'home', route: '/home' },
+    { name: 'Recherche', icon: 'search', route: '/about' },
+    { name: 'Favoris', icon: 'bookmark', route: '/favoris' },
+    { name: 'À propos', icon: 'info', route: '/about' },
+  ];
+
+  bottomItems = [
+    { name: 'Mon compte', icon: 'account_circle', route: '/account' },
+    { name: 'Informations légales', icon: 'event_note', route: '/legal' },
+  ];
+}

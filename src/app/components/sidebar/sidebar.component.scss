@@ -1,7 +1,68 @@
-.sidenav-container {
-  height: 100%;
-}
+:host {
+  .sidenav-container {
+    height: 100vh;
+  }
 
-mat-sidenav {
-  width: 250px;
+  .sidenav {
+    width: 100px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-vertical {
+    padding: 12px 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    a.bottom-item {
+      margin-top: auto;
+    }
+  }
+
+  a[mat-list-item] {
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    padding: 12px 0;
+
+    .icon-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+
+      mat-icon {
+        font-size: 24px;
+        color: #3d5926;
+        transition: color 0.3s;
+        width: 100%;
+        text-align: center;
+
+        &:hover {
+          color: #2a3e1b;
+        }
+      }
+    }
+
+    .label {
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 20px;
+      letter-spacing: 0.1px;
+      color: #181d18;
+      margin-top: 6px;
+      white-space: break-spaces;
+      text-align: center;
+    }
+  }
 }
