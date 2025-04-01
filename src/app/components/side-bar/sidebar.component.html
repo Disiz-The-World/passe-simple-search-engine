@@ -1,18 +1,29 @@
 <mat-nav-rail>
-  <mat-nav-rail-item
-    *ngFor="let item of navItems"
-    [routerLink]="item.route"
-    routerLinkActive="active"
-  >
-    <mat-icon>{{ item.icon }}</mat-icon>
-    <span>{{ item.name }}</span>
-  </mat-nav-rail-item>
-  <mat-nav-rail-item
-    *ngFor="let item of bottomItems"
-    [routerLink]="item.route"
-    routerLinkActive="active"
-  >
-    <mat-icon>{{ item.icon }}</mat-icon>
-    <span>{{ item.name }}</span>
-  </mat-nav-rail-item>
+  <div class="nav-items">
+    <div
+      *ngFor="let item of navItems"
+      [routerLink]="item.route"
+      routerLinkActive="active"
+      class="nav-item"
+    >
+      <div class="icon-container">
+        <mat-icon>{{ item.icon }}</mat-icon>
+      </div>
+      <span>{{ item.name }}</span>
+    </div>
+  </div>
+
+  <div class="bottom-items">
+    <div
+      *ngFor="let item of bottomItems"
+      [routerLink]="item.route"
+      routerLinkActive="active"
+      class="nav-item"
+    >
+      <div class="icon-container">
+        <mat-icon>{{ item.icon }}</mat-icon>
+      </div>
+      <span>{{ item.name }}</span>
+    </div>
+  </div>
 </mat-nav-rail>
