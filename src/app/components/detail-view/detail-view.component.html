@@ -1,0 +1,30 @@
+<div *ngIf="balade; else loading">
+  <h1>{{ balade.name }}</h1>
+  <p><strong>{{ balade.catchPhrase }}</strong></p>
+  <p><strong>Durée:</strong> {{ balade.duration }} minutes</p>
+  <p><strong>Lieu:</strong> {{ balade.location }}</p>
+
+  <div class="balade-details">
+    <h3>Informations supplémentaires</h3>
+    <ul>
+      <li *ngFor="let info of balade.infos">
+        <i class="icon" [ngClass]="info.icon"></i> {{ info.name }}: {{ info.description }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="balade-map">
+    <h3>Carte de la balade</h3>
+    <img [src]="balade.map" alt="Carte de la balade" />
+  </div>
+
+  <div class="balade-preview">
+    <h3>Image Preview</h3>
+    <img [src]="balade.previewPath" alt="Image de la balade" />
+  </div>
+
+</div>
+
+<ng-template #loading>
+  <p>Chargement des informations...</p>
+</ng-template>
