@@ -6,6 +6,7 @@ import { AvatarComponent } from './components/avatar/avatar.component';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [
     RouterOutlet,
     SidebarComponent,

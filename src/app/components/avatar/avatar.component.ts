@@ -6,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
   selector: 'app-avatar',
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss'],
+  standalone: true,
   imports: [MatIconModule, MatCardModule],
 })
 export class AvatarComponent {
