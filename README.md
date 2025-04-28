@@ -25,6 +25,7 @@ For a complete list of available schematics (such as `components`, `directives`,
 ```bash
 ng generate --help
 ```
+
 ## Running linting
 
 To run linting on your project, use the following command:
@@ -32,6 +33,7 @@ To run linting on your project, use the following command:
 ```bash
 ng lint
 ```
+
 ## Running prettier
 
 To run prettier on your project, use the following command:
@@ -73,12 +75,12 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 This project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) to standardize commit messages. This allows for automatic versioning and changelog generation.
 
 ```yaml
-    feat:     A new feature
-    fix:      A bug fix
-    chore:    Other changes that don't modify src or test files
-    style:    Changes that do not affect the meaning of the code
-    revert:   Reverts a previous commit
-    docs:     Documentation only changes
+feat: A new feature
+fix: A bug fix
+chore: Other changes that don't modify src or test files
+style: Changes that do not affect the meaning of the code
+revert: Reverts a previous commit
+docs: Documentation only changes
 ```
 
 ## Additional Resources
