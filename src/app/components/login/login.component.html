@@ -1,0 +1,32 @@
+<section class="login">
+  <div class="login-container">
+    <h1>Connexion</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <div>
+          <mat-form-field appearance="fill" class="field">
+            <mat-label>Nom d'utilisateur</mat-label>
+            <input matInput formControlName="username" required />
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="fill" class="field">
+            <mat-label>Mot de passe</mat-label>
+            <input
+              matInput
+              type="password"
+              formControlName="password"
+              required
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-error *ngIf="loginForm.errors?.['invalidLogin']" class="error">
+        Les identifiants saisis sont invalides.
+      </mat-error>
+      <button mat-raised-button color="primary" [disabled]="!loginForm.valid">
+        Se connecter
+      </button>
+    </form>
+  </div>
+</section>

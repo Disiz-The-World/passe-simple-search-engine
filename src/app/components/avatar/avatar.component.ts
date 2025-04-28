@@ -6,6 +6,7 @@ import { NgOptimizedImage } from '@angular/common';
   selector: 'app-avatar',
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss'],
+  standalone: true,
   imports: [MatIconModule, MatCardModule, NgOptimizedImage],
 })
 export class AvatarComponent {
