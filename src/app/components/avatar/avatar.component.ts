@@ -10,5 +10,5 @@ import { NgOptimizedImage } from '@angular/common';
   imports: [MatIconModule, MatCardModule, NgOptimizedImage],
 })
 export class AvatarComponent {
-  avatar: string = 'avatar.jpeg'; // Replace with your avatar image path
+  avatar: string = 'avatar.jpeg';
 }
