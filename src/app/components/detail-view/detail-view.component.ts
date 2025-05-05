@@ -4,13 +4,20 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { PreviewImageComponent } from './preview-image/preview-image.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
+import { UsefulInfoComponent } from './useful-info/useful-info.component';
 
 @Component({
   selector: 'app-detail-view',
   templateUrl: './detail-view.component.html',
   styleUrls: ['./detail-view.component.scss'],
   standalone: true,
-  imports: [CommonModule, RouterModule, PreviewImageComponent, TopBarComponent],
+  imports: [
+    CommonModule,
+    RouterModule,
+    PreviewImageComponent,
+    TopBarComponent,
+    UsefulInfoComponent,
+  ],
 })
 export class DetailViewComponent implements OnInit {
   balade: any;
