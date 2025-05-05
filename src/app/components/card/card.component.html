@@ -1,0 +1,22 @@
+<mat-card class="custom-card">
+  <mat-card-header class="card-header">
+    <button mat-icon-button class="bookmark">
+      <mat-icon color="primary">{{ isBookmarked ? 'bookmark' : 'bookmark_border' }}</mat-icon>
+    </button>
+    <div class="stars">
+      <mat-icon *ngFor="let star of [1,2,3,4,5]">
+        {{ star <= rating ? 'star' : 'star_border' }}
+      </mat-icon>
+    </div>
+  </mat-card-header>
+
+  <img mat-card-image [src]="imageUrl" alt="{{ title }}" />
+
+  <mat-card-content>
+    <h3>{{ title }}</h3>
+    <div class="info">
+      <span><mat-icon inline>schedule</mat-icon> {{ duration }}</span>
+      <span><mat-icon inline>location_on</mat-icon> {{ location }}</span>
+    </div>
+  </mat-card-content>
+</mat-card>
