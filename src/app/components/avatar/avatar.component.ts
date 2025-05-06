@@ -10,7 +10,7 @@ import { LoginComponent } from '../login/login.component';
   standalone: true,
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss'],
-  imports: [MatIconModule, MatCardModule, NgOptimizedImage, MatDialogModule]
+  imports: [MatIconModule, MatCardModule, NgOptimizedImage, MatDialogModule],
 })
 export class AvatarComponent {
   avatar: string = 'assets/avatar.jpeg';
