@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import { CardComponent } from '../card/card.component';
+import { HeroCardComponent } from '../hero-card/hero-card.component';
 
 @Component({
   selector: 'app-home-page',
   imports: [
-    CardComponent,
+    HeroCardComponent,
   ],
   templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.scss'
+  styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent {
-
 
 }
