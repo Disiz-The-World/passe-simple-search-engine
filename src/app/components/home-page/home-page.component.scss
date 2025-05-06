@@ -8,15 +8,13 @@
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  padding: 0 8px;
+  padding: 16px 0;
 }
 
 .carousel-scroll {
   display: flex;
   gap: 16px;
-  overflow-x: auto;
-  padding: 16px 8px;
-  scroll-snap-type: x mandatory;
+  scroll-snap-align: start;
 
   app-featured-walk-card {
     flex: 0 0 auto;
