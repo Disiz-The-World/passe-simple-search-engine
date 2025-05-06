@@ -1,12 +1,14 @@
 mat-nav-rail {
+  width: 6em;
+  height: 100dvh;
+  flex-shrink: 0;
+  overflow: hidden; // important ici
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 6em;
-  height: 100dvh;
-  background-color: #fff;
   padding: 1em 0;
-  align-items: center;
+  background-color: #fff;
 
   .nav-items,
   .bottom-items {
