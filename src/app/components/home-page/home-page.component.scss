@@ -1,0 +1,25 @@
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 16px 0 8px 8px;
+}
+
+.carousel-container {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 8px;
+}
+
+.carousel-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 16px 8px;
+  scroll-snap-type: x mandatory;
+
+  app-featured-walk-card {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+}

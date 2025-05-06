@@ -23,7 +23,30 @@ export class WalkService {
         isBookmarked: true,
         rating: 4.8,
       },
-      // Ajoutez d'autres promenades ici
+      {
+        imageUrl: 'assets/images/walk3.jpg',
+        title: 'Visite de la vieille ville',
+        duration: '3 heures',
+        location: 'Vieille ville de Genève',
+        isBookmarked: false,
+        rating: 4.2,
+      },
+      {
+        imageUrl: 'assets/images/walk4.jpg',
+        title: 'Découverte des vignobles',
+        duration: '4 heures',
+        location: 'Vignobles de Lavaux',
+        isBookmarked: true,
+        rating: 4.7,
+      },
+      {
+        imageUrl: 'assets/images/walk5.jpg',
+        title: 'Balade en forêt',
+        duration: '1 heure',
+        location: 'Forêt de Fontainebleau',
+        isBookmarked: false,
+        rating: 4.0,
+      },
     ];
   }
 }
