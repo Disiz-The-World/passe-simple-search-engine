@@ -1,0 +1,47 @@
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 24px 0 12px 0;
+}
+
+.theme-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.theme-item {
+  background-color: #eceee5;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  .icon {
+    margin-right: 12px;
+  }
+
+  span {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 500;
+    color: #2b2b2b;
+  }
+
+  .arrow {
+    color: #4a4a4a;
+  }
+
+  &.plus {
+    justify-content: center;
+
+    mat-icon {
+      font-size: 24px;
+      color: #2b2b2b;
+      transition: transform 0.2s ease;
+    }
+  }
+}

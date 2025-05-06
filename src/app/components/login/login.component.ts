@@ -12,13 +12,14 @@ import { CommonModule } from '@angular/common';
   selector: 'app-login',
   standalone: true,
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
-    MatButtonModule,
-    CommonModule,
+    MatButtonModule
   ],
+
   templateUrl: './login.component.html',
 })
 export class LoginComponent {

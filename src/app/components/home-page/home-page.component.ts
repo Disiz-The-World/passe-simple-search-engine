@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { ThematicsComponent } from '../thematics/thematics.component';
 
 @Component({
   selector: 'app-home-page',
@@ -16,6 +17,7 @@ import { CommonModule } from '@angular/common';
     MatIconModule,
     MatButtonModule,
     CommonModule,
+    ThematicsComponent,
   ],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
@@ -27,7 +29,7 @@ export class HomePageComponent {
       title: 'Histoire au fil de l’eau - visite du barrage d’Emosson',
       description:
         'Perché à 1 930 mètres d’altitude, le barrage d’Emosson offre un panorama époustouflant sur le massif du Mont-Blanc.',
-      rating: 4,
+      rating: 2,
     },
     {
       image: 'assets/walk-card/morat-see.jpg',
@@ -41,14 +43,14 @@ export class HomePageComponent {
       title: 'Le Creux du Van : un cirque naturel à couper le souffle',
       description:
         'Le Creux du Van est un cirque naturel impressionnant, formé par l’érosion de la roche calcaire.',
-      rating: 5,
+      rating: 1,
     },
     {
       image: 'assets/walk-card/chemin-des-pionniers.jpg',
       title: 'Le chemin des Pionniers : une randonnée historique',
       description:
         'Le chemin des Pionniers est une randonnée qui retrace l’histoire des premiers habitants de la région.',
-      rating: 4,
+      rating: 2,
     },
   ];
 }
