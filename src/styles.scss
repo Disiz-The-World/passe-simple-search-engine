@@ -27,5 +27,23 @@ body {
 .mdc-list {
   padding: 0 !important;
 }
+
+:root {
+  @include mat.chips-overrides(
+    (
+      outline-color: #c1c9be,
+      with-avatar-avatar-shape-radius: 0,
+      with-avatar-avatar-size: 1rem,
+      with-icon-icon-color: #65ef03,
+    )
+  );
+
+  @include mat.icon-overrides(
+    (
+      color: #55624c,
+    )
+  );
+}
+
 @import './css/light.css';
 @import './css/light-mc.css';

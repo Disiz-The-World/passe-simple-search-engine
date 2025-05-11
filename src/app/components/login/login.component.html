@@ -1,12 +1,12 @@
 <section class="login">
   <div class="login-container">
     <h1>Connexion</h1>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" *ngIf="!isLoggedIn">
       <div class="form-group">
         <div>
           <mat-form-field appearance="fill" class="field">
             <mat-label>Nom d'utilisateur</mat-label>
-            <input matInput formControlName="username" required />
+            <input matInput formControlName="username" required (input)="resetFormErrors()"/>
           </mat-form-field>
         </div>
         <div>
@@ -17,6 +17,7 @@
               type="password"
               formControlName="password"
               required
+              (input)="resetFormErrors()"
             />
           </mat-form-field>
         </div>
@@ -28,5 +29,11 @@
         Se connecter
       </button>
     </form>
+    <div *ngIf="isLoggedIn">
+      <p>Vous êtes déjà connecté.</p>
+      <button mat-raised-button color="primary" (click)="logout()">
+        Se déconnecter
+      </button>
+    </div>
   </div>
 </section>

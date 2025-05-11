@@ -4,6 +4,7 @@ import { UserModel } from '../models/user.model';
 import { environment } from '../../environments/environment';
 import { routes } from '../routes/app.routes';
 import { Router } from '@angular/router';
+import { DatabaseService } from './database.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,10 +16,29 @@ export class AuthService {
 
   constructor(
     private httpService: HttpClient,
+    private databaseService: DatabaseService,
     private router: Router
   ) {}
 
   public getCurrentUser(): UserModel | undefined {
+    if (this.currentUser) {
+      return this.currentUser;
+    }
+
+    if (this.getCurrentUserToken() == null) {
+      return undefined;
+    }
+
+    this.databaseService
+      .getUsers({
+        id: this.getCurrentUserToken(),
+      })
+      .subscribe((users) => {
+        if (users.length > 0) {
+          this.currentUser = users[0];
+        }
+      });
+
     return this.currentUser;
   }
 
@@ -32,27 +52,24 @@ export class AuthService {
     return this.getCurrentUserToken() != null;
   }
 
-  public login(username: string, password: string): boolean {
+  public login(username: string, password: string) {
     const user = this.httpService.get<UserModel[]>(
       `${environment.apiUrl}/users?username=${username}&password=${password}`
     );
 
     user.subscribe((data) => {
+      console.log(data.length > 0);
       if (data.length > 0) {
         this.currentUser = data[0];
         sessionStorage.setItem(
           this.SESSION_TOKEN_KEY,
           this.currentUser.id.toString()
         );
+      } else {
+        this.currentUser = undefined;
+        sessionStorage.removeItem(this.SESSION_TOKEN_KEY);
       }
     });
-
-    if (this.isLoggedIn()) {
-      this.router.navigate(['/']);
-      return true;
-    }
-
-    return false;
   }
 
   public logout(): Promise<void> {
