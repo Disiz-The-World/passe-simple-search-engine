@@ -1,0 +1,39 @@
+@for (item of balades; track item) {
+  <a href="/balades/id" class="balade">
+        <mat-card appearance="raised">
+      <mat-card-header>
+        <mat-card-title>{{ item.name }}</mat-card-title>
+        <ul class="infos">
+          <li class="info">
+            <mat-icon
+              aria-hidden="false"
+              title="Durée"
+              fontIcon="schedule"
+            ></mat-icon>
+            <span>{{ formatDuration(item.duration) }}</span>
+          </li>
+          <li class="info">
+            <mat-icon
+              aria-hidden="false"
+              title="Lieu"
+              fontIcon="location_on"
+            ></mat-icon>
+            <span>{{ item.location }}</span>
+          </li>
+        </ul>
+      </mat-card-header>
+      <mat-card-actions>
+        <span>Tag</span>
+        <button (click)="swapFavorite(1)" class="favorite-button">
+          <mat-icon
+            aria-hidden="false"
+            aria-label="Favoris"
+            fontIcon="bookmark"
+          ></mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </a>
+} @empty {
+  <p>Vous n'avez aucune balade enregistrée dans vos favoris</p>
+}
