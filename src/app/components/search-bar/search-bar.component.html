@@ -1,7 +1,27 @@
-<mat-form-field appearance="fill" class="pill-search">
-  <input
-    matInput
-    [(ngModel)]="searchQuery"
-    placeholder="Rechercher une balade..."
-  />
-</mat-form-field>
+<div class="search-bar-wrapper" *ngIf="isMobile; else desktopSearch">
+  <div class="pill-search-mobile">
+    <button mat-icon-button (click)="onBurgerClick()" class="burger-icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <input
+      [(ngModel)]="searchQuery"
+      placeholder="Rechercher une balade..."
+      class="search-input"
+    />
+
+    <div class="avatar-icon">
+      <app-avatar></app-avatar>
+    </div>
+  </div>
+</div>
+
+<ng-template #desktopSearch>
+  <mat-form-field appearance="fill" class="pill-search">
+    <input
+      matInput
+      [(ngModel)]="searchQuery"
+      placeholder="Rechercher une balade..."
+    />
+  </mat-form-field>
+</ng-template>

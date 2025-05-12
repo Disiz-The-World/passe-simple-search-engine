@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -23,4 +23,8 @@ export class SidebarComponent {
     { name: 'Mon compte', icon: 'account_circle', route: '/account' },
     { name: 'Informations légales', icon: 'description', route: '/legal' },
   ];
+
+  @Output() closeDrawer = new EventEmitter<void>();
+
+
 }

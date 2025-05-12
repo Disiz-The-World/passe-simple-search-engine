@@ -2,7 +2,7 @@ mat-nav-rail {
   width: 6em;
   height: 100dvh;
   flex-shrink: 0;
-  overflow: hidden; // important ici
+  overflow: hidden;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -50,3 +50,81 @@ mat-nav-rail {
     }
   }
 }
+
+// Le header au-dessus du mat-nav-rail, visible seulement en mobile
+.sidebar-header {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  :host {
+    display: block;
+    width: 100%;
+    background: white;
+  }
+
+  mat-nav-rail {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    border-radius: 0 0 0 1rem;
+    background-color: #fff;
+    overflow-y: auto;
+    padding: 1rem 0 2rem;
+    box-shadow: none;
+  }
+
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .nav-items,
+  .bottom-items {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .bottom-items {
+    margin-top: auto;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 1rem;
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    font-size: 16px;
+    width: 100%;
+    color: #212121;
+  }
+
+  .icon-container {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav-item.active .icon-container {
+    background-color: #e6f1dc;
+  }
+
+  .nav-item.active {
+    font-weight: 600;
+    color: #1b5e20;
+  }
+}
+
+

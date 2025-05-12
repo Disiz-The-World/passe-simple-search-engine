@@ -1,16 +1,26 @@
-<div class="app-layout">
-  <app-sidebar></app-sidebar>
-  <div class="main-layout">
-    <div class="header">
-      <div class="search-bar-container">
-        <app-search-bar></app-search-bar>
-      </div>
-      <div class="avatar-container">
-        <app-avatar></app-avatar>
+<mat-drawer-container class="app-container">
+  <mat-drawer #drawer class="mobile-drawer" mode="over" [opened]="false">
+    <app-sidebar *ngIf="isMobile" (closeDrawer)="drawer.close()"></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div class="app-layout">
+      <app-sidebar *ngIf="!isMobile"></app-sidebar>
+      <div class="main-layout">
+        <div class="header">
+          <button class="burger-button" (click)="drawer.toggle()" *ngIf="isMobile">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <div class="search-bar-container">
+            <app-search-bar (burgerClick)="drawer.toggle()"></app-search-bar>
+          </div>
+          <div class="avatar-container">
+            <app-avatar *ngIf="!isMobile"></app-avatar>
+          </div>
+        </div>
+        <div class="main-content">
+          <router-outlet></router-outlet>
+        </div>
       </div>
     </div>
-    <div class="main-content">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-</div>
+  </mat-drawer-content>
+</mat-drawer-container>
