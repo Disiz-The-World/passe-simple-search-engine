@@ -1,0 +1,74 @@
+.top-app-bar {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center; /* Aligne tous les éléments verticalement */
+  background-color: #f7fbf2;
+  padding: 0 16px;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+.leading-icon {
+  display: flex;
+  align-items: center; /* Centre l'icône verticalement */
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.container-icon {
+  width: 24px; /* Taille de l'icône */
+  height: 24px;
+}
+
+.headline {
+  margin-left: 4px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #181d18;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1; /* Assure un alignement vertical correct */
+}
+
+.trailing-icon {
+  margin-left: auto;
+  display: flex;
+  align-items: center; /* Centre l'icône verticalement */
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.favorite {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  position: relative;
+  cursor: pointer;
+}
+
+.favorite-child {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  background-color: #d9e7cb;
+  z-index: 0;
+}
+
+.bookmark-icon {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  z-index: 1;
+  color: #181d18;
+}

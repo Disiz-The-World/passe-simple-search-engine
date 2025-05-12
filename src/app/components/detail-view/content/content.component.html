@@ -1,0 +1,36 @@
+<div class="content">
+  <p class="title">Détails</p>
+  <p>{{ content.details }}</p>
+
+  <div class="sections-table">
+    <div class="row" *ngFor="let section of content.sections">
+      <!-- Colonne gauche : Sections et contenu -->
+      <div class="cell left">
+        <h3>{{ section.title }}</h3>
+        <div *ngFor="let item of section.content">
+          <p *ngIf="item.type === 'text'">{{ item.text }}</p>
+          <div *ngIf="item.type === 'image/normal'">
+            <img
+              [src]="'http://localhost:3000' + item.path"
+              alt="Image normale"
+            />
+            <p>{{ item.legend }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Colonne droite : Images latérales -->
+      <div class="cell right">
+        <ng-container *ngFor="let item of section.content">
+          <div *ngIf="item.type === 'image/side'">
+            <img
+              [src]="'http://localhost:3000' + item.path"
+              alt="Image latérale"
+            />
+            <p>{{ item.legend }}</p>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="infos">
+  <div *ngFor="let info of infos" class="info-item">
+    <span class="icon">
+      {{ getIconChar(info.icon) }}
+    </span>
+    <span class="name">{{ info.name }} :</span>
+    <span class="description">{{ info.description }}</span>
+  </div>
+  <div class="itineraire">
+    <h2>Itinéraire</h2>
+    <img [src]="'http://localhost:3000' + map" alt="Carte de l'itinéraire" />
+  </div>
+  <div class="attributions" *ngIf="attributions">
+    <h2>Attributions</h2>
+    <p>Illustrations : {{ attributions.Illustrations }}</p>
+    <p>Textes : {{ attributions.Textes }}</p>
+    <p>Images : {{ attributions.Images }}</p>
+  </div>
+  <div class="more">
+    <h2>En savoir plus</h2>
+    <div class="more-item" *ngFor="let item of seeMore">
+      <p>{{ item }}</p>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './components/side-bar/sidebar.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
+import { DetailViewComponent } from './components/detail-view/detail-view.component';
 
 @Component({
   selector: 'app-root',
