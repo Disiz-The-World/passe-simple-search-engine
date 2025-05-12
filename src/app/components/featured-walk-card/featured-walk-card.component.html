@@ -1,6 +1,6 @@
 <mat-card class="walk-card mat-elevation-z1">
   <div class="image-wrapper">
-    <img [src]="image" [alt]="title" />
+    <img [src]="image || '/assets/images/default.jpg'" [alt]="title" />
     <div class="stars">
       <mat-icon *ngFor="let star of [1, 2, 3]; let i = index">
         {{ i < rating ? 'star' : 'star_border' }}
@@ -11,9 +11,4 @@
     <div class="title">{{ title }}</div>
     <div class="description">{{ description }}</div>
   </mat-card-content>
-  <div class="cta">
-    <button mat-icon-button>
-      <mat-icon>arrow_forward</mat-icon>
-    </button>
-  </div>
 </mat-card>

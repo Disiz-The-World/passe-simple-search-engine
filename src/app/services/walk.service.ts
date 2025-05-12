@@ -1,52 +1,40 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WalkService {
-  constructor() {}
-  getWalks() {
-    return [
-      {
-        imageUrl: 'assets/images/walk1.jpg',
-        title: 'Promenade au bord de la mer',
-        duration: '2 heures',
-        location: 'Plage de Nice',
-        isBookmarked: false,
-        rating: 4.5,
-      },
-      {
-        imageUrl: 'assets/images/walk2.jpg',
-        title: 'Randonnée en montagne',
-        duration: '5 heures',
-        location: 'Parc national des Écrins',
-        isBookmarked: true,
-        rating: 4.8,
-      },
-      {
-        imageUrl: 'assets/images/walk3.jpg',
-        title: 'Visite de la vieille ville',
-        duration: '3 heures',
-        location: 'Vieille ville de Genève',
-        isBookmarked: false,
-        rating: 4.2,
-      },
-      {
-        imageUrl: 'assets/images/walk4.jpg',
-        title: 'Découverte des vignobles',
-        duration: '4 heures',
-        location: 'Vignobles de Lavaux',
-        isBookmarked: true,
-        rating: 4.7,
-      },
-      {
-        imageUrl: 'assets/images/walk5.jpg',
-        title: 'Balade en forêt',
-        duration: '1 heure',
-        location: 'Forêt de Fontainebleau',
-        isBookmarked: false,
-        rating: 4.0,
-      },
-    ];
+  private apiUrl = 'http://localhost:3000/balades';
+  private backendBaseUrl = 'http://localhost:3000';
+
+  constructor(private http: HttpClient) {}
+
+  getWalks(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
+  }
+
+  getTransformedWalks(): Observable<any[]> {
+    return this.getWalks().pipe(
+      map((walks) =>
+        walks.map((walk) => {
+          const imagePath = walk.content?.sections[0]?.content.find(
+            (item: any) => item.type === 'image/normal'
+          )?.path;
+
+          return {
+            image: imagePath
+              ? `${this.backendBaseUrl}${imagePath}`
+              : 'assets/images/default.jpg',
+            title: walk.name,
+            description: walk.catchPhrase,
+            rating:
+              walk.ratings.reduce((a: number, b: number) => a + b, 0) /
+                walk.ratings.length || 0,
+          };
+        })
+      )
+    );
   }
 }

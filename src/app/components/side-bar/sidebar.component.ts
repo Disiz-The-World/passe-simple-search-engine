@@ -13,7 +13,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class SidebarComponent {
   navItems = [
-    { name: 'Accueil', icon: 'home', route: '/home' },
+    { name: 'Accueil', icon: 'home', route: '' },
     { name: 'Recherche', icon: 'search', route: '/about' },
     { name: 'Favoris', icon: 'bookmark', route: '/favoris' },
     { name: 'À propos', icon: 'article', route: '/about' },

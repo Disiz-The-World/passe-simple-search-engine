@@ -3,7 +3,6 @@ import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './components/side-bar/sidebar.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
-import { ThematicsComponent } from './components/thematics/thematics.component';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +14,7 @@ import { ThematicsComponent } from './components/thematics/thematics.component';
     AvatarComponent,
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'passe-simple-search-engine';
