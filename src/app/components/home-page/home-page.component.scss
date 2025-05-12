@@ -1,0 +1,46 @@
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 16px 0 8px 16px;
+}
+
+.carousel-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 0 1rem 0;
+}
+
+.carousel-scroll {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  padding: 0 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding: 1rem;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.carousel-card {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  transition: transform 0.3s ease;
+  border-radius: 1rem;
+  overflow: hidden;
+
+  width: clamp(250px, 70vw, 500px); // 3 cards on desktop, 2 on tablet, 1.5 on mobile
+
+  &:nth-child(n+3) {
+    transform: scale(0.92);
+    opacity: 0.9;
+  }
+
+  &:nth-child(n+4) {
+    transform: scale(0.85);
+    opacity: 0.8;
+  }
+}
+

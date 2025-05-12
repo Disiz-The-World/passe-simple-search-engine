@@ -3,7 +3,13 @@ import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './components/side-bar/sidebar.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
-import { DetailViewComponent } from './components/detail-view/detail-view.component';
+import {
+  MatDrawer,
+  MatDrawerContainer,
+  MatDrawerContent,
+} from '@angular/material/sidenav';
+import { MatIcon } from '@angular/material/icon';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +19,23 @@ import { DetailViewComponent } from './components/detail-view/detail-view.compon
     SidebarComponent,
     SearchBarComponent,
     AvatarComponent,
+    MatDrawer,
+    MatDrawerContainer,
+    MatDrawerContent,
+    NgIf,
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'passe-simple-search-engine';
+  isMobile = false;
+
+  ngOnInit(): void {
+    this.updateScreen();
+    window.addEventListener('resize', this.updateScreen.bind(this));
+  }
+
+  updateScreen(): void {
+    this.isMobile = window.innerWidth <= 1024;
+  }
 }
