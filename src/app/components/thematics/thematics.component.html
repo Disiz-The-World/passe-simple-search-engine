@@ -1,6 +1,10 @@
 <h2 class="section-title">Thématiques</h2>
 <div class="theme-list">
-  <div class="theme-item" *ngFor="let theme of visibleThemes" (click)="onThemeClick(theme.tagId)">
+  <div
+    class="theme-item"
+    *ngFor="let theme of visibleThemes"
+    (click)="onThemeClick(theme.tagId)"
+  >
     <mat-icon class="icon">{{ theme.icon }}</mat-icon>
     <span>{{ theme.label }}</span>
     <mat-icon class="arrow">arrow_forward</mat-icon>

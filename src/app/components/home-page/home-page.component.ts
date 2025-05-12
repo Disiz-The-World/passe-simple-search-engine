@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { ThematicsComponent } from '../thematics/thematics.component';
 import { WalkService } from '../../services/walk.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -26,11 +27,26 @@ import { WalkService } from '../../services/walk.service';
 export class HomePageComponent implements OnInit {
   balades: any[] = [];
 
-  constructor(private walkService: WalkService) {}
+  constructor(
+    private walkService: WalkService,
+    private router: Router
+  ) {}
+
+  onNavigateToDetails(id: number) {
+    this.walkService.getWalkById(id).subscribe({
+      next: () => this.router.navigate(['/balades', id]),
+      error: (err: any) => {
+        if (err.status === 404) {
+          this.router.navigate(['/page-not-found']);
+        }
+      },
+    });
+  }
 
   ngOnInit() {
     const staticWalks = [
       {
+        id: 2,
         image: 'assets/walk-card/emosson.jpg',
         title: 'Histoire au fil de l’eau - visite du barrage d’Emosson',
         description:
@@ -38,6 +54,7 @@ export class HomePageComponent implements OnInit {
         rating: 2,
       },
       {
+        id: 3,
         image: 'assets/walk-card/morat-see.jpg',
         title: 'Le lac de Morat : Entre nature et histoire…',
         description:
@@ -45,6 +62,7 @@ export class HomePageComponent implements OnInit {
         rating: 3,
       },
       {
+        id: 4,
         image: 'assets/walk-card/creux-du-van.jpg',
         title: 'Le Creux du Van : un cirque naturel à couper le souffle',
         description:
@@ -52,6 +70,7 @@ export class HomePageComponent implements OnInit {
         rating: 1,
       },
       {
+        id: 5,
         image: 'assets/walk-card/chemin-des-pionniers.jpg',
         title: 'Le chemin des Pionniers : une randonnée historique',
         description:

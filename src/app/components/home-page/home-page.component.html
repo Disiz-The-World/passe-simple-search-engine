@@ -8,7 +8,11 @@
       [title]="walk.title"
       [description]="walk.description"
       [rating]="walk.rating"
-    ></app-featured-walk-card>
+      [id]="walk.id"
+      (navigateToDetails)="onNavigateToDetails($event)"
+    >
+      ></app-featured-walk-card
+    >
   </div>
 </div>
 <app-thematics></app-thematics>

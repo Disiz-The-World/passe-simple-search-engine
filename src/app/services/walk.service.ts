@@ -32,9 +32,14 @@ export class WalkService {
             rating:
               walk.ratings.reduce((a: number, b: number) => a + b, 0) /
                 walk.ratings.length || 0,
+            id: walk.id,
           };
         })
       )
     );
+  }
+
+  getWalkById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 }
