@@ -2,19 +2,19 @@ import { RenderMode, ServerRoute } from '@angular/ssr';
 
 export const serverRoutes: ServerRoute[] = [
   {
-    path: '/balades/:id',
+    path: 'balades/:id',
     renderMode: RenderMode.Server,
   },
   {
-    path: '/500',
+    path: '500',
     renderMode: RenderMode.Prerender,
   },
   {
-    path: '/418',
+    path: '418',
     renderMode: RenderMode.Prerender,
   },
   {
-    path: '/login',
+    path: 'login',
     renderMode: RenderMode.Prerender,
   },
   {
