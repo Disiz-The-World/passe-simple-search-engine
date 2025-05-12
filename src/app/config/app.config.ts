@@ -7,11 +7,7 @@ import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
-import {
-  provideHttpClient,
-  withFetch,
-  withInterceptors,
-} from '@angular/common/http';
+import { withFetch, withInterceptors } from '@angular/common/http';
 import { AuthTokenInterceptor } from '../interceptors/auth-token.interceptor';
 import { ServerErrorInterceptor } from '../interceptors/server-error.interceptor';
 import { TeapotInterceptor } from '../interceptors/teapot.interceptor';

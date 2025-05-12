@@ -6,9 +6,9 @@ import { ServerErrorComponent } from '../components/server-error/server-error.co
 import { TeapotComponent } from '../components/teapot/teapot.component';
 
 export const routes: Routes = [
-  { 
-    path: 'balades/:id', 
-    component: DetailViewComponent 
+  {
+    path: 'balades/:id',
+    component: DetailViewComponent,
   },
   {
     path: 'login',
