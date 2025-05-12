@@ -12,12 +12,16 @@ import {
   withInterceptors,
 } from '@angular/common/http';
 import { AuthTokenInterceptor } from '../interceptors/auth-token.interceptor';
+import { ServerErrorInterceptor } from '../interceptors/server-error.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
-    provideHttpClient(withFetch(), withInterceptors([AuthTokenInterceptor])),
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([AuthTokenInterceptor, ServerErrorInterceptor])
+    ),
   ],
 };
