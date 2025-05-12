@@ -9,7 +9,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-export function ServerErrorInterceptor(
+export function TeapotInterceptor(
   request: HttpRequest<unknown>,
   next: HttpHandlerFn
 ): Observable<HttpEvent<unknown>> {
@@ -17,8 +17,8 @@ export function ServerErrorInterceptor(
 
   return next(request).pipe(
     catchError((error: HttpErrorResponse) => {
-      if (error.status === 500) {
-        router.navigate(['/500']);
+      if (error.status === 418) {
+        router.navigate(['/418']);
       }
 
       return throwError(() => error);

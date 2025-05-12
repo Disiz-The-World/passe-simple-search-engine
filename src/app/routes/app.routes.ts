@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from '../components/login/login.component';
 import { PageNotFoundComponent } from '../components/page-not-found/page-not-found.component';
 import { ServerErrorComponent } from '../components/server-error/server-error.component';
+import { TeapotComponent } from '../components/teapot/teapot.component';
 
 export const routes: Routes = [
   {
@@ -9,8 +10,12 @@ export const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'server-error',
+    path: '500',
     component: ServerErrorComponent,
+  },
+  {
+    path: '418',
+    component: TeapotComponent,
   },
   {
     path: '**',
