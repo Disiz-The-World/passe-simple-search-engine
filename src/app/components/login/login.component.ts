@@ -8,7 +8,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { Session } from 'inspector';
 
 @Component({
   selector: 'app-login',
@@ -40,16 +39,12 @@ export class LoginComponent {
     this.isLoggedIn = this.auth.isLoggedIn();
   }
 
-  onSubmit() {
+  async onSubmit() {
     let username = this.loginForm.value.username;
     let password = this.loginForm.value.password;
 
-    this.auth.login(username, password);
-
-    if (!this.auth.isLoggedIn()) {
-      this.loginForm.setErrors({
-        invalidLogin: true,
-      });
+    if (!(await this.auth.login(username, password))) {
+      this.loginForm.setErrors({ invalidLogin: true });
 
       Object.keys(this.loginForm.controls).forEach((field) => {
         const control = this.loginForm.get(field);
@@ -63,16 +58,23 @@ export class LoginComponent {
       return false;
     }
 
+    console.log('Login successful!');
+
+    this.isLoggedIn = true;
+
     this.router.navigate(['/']);
     return true;
   }
 
-  logout() {
-    this.auth.logout();
+  async logout() {
+    await this.auth.logout();
     this.isLoggedIn = false;
   }
 
   resetFormErrors() {
+    // Reset the form-level errors
+    this.loginForm.setErrors(null);
+
     Object.keys(this.loginForm.controls).forEach((field) => {
       const control = this.loginForm.get(field);
       if (control) {
