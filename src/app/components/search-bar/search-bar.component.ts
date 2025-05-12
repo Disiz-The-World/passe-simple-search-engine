@@ -1,4 +1,9 @@
-import { Component, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,7 +21,7 @@ import { AvatarComponent } from '../avatar/avatar.component';
     CommonModule,
     FormsModule,
     MatInput,
-    AvatarComponent
+    AvatarComponent,
   ],
   styleUrls: ['./search-bar.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -28,9 +33,9 @@ export class SearchBarComponent {
   isMobile = false;
 
   ngOnInit() {
-    this.isMobile = window.innerWidth < 768;
+    this.isMobile = window.innerWidth <= 1024;
     window.addEventListener('resize', () => {
-      this.isMobile = window.innerWidth < 768;
+      this.isMobile = window.innerWidth <= 1024;
     });
   }
 

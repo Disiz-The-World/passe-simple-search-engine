@@ -7,14 +7,11 @@
       <app-sidebar *ngIf="!isMobile"></app-sidebar>
       <div class="main-layout">
         <div class="header">
-          <button class="burger-button" (click)="drawer.toggle()" *ngIf="isMobile">
-            <mat-icon>menu</mat-icon>
-          </button>
           <div class="search-bar-container">
             <app-search-bar (burgerClick)="drawer.toggle()"></app-search-bar>
-          </div>
-          <div class="avatar-container">
-            <app-avatar *ngIf="!isMobile"></app-avatar>
+            <div class="avatar-container">
+              <app-avatar *ngIf="!isMobile"></app-avatar>
+            </div>
           </div>
         </div>
         <div class="main-content">

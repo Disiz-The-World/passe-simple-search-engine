@@ -3,7 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './components/side-bar/sidebar.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
-import { MatDrawer, MatDrawerContainer, MatDrawerContent } from '@angular/material/sidenav';
+import {
+  MatDrawer,
+  MatDrawerContainer,
+  MatDrawerContent,
+} from '@angular/material/sidenav';
 import { MatIcon } from '@angular/material/icon';
 import { NgIf } from '@angular/common';
 
@@ -18,7 +22,6 @@ import { NgIf } from '@angular/common';
     MatDrawer,
     MatDrawerContainer,
     MatDrawerContent,
-    MatIcon,
     NgIf,
   ],
   templateUrl: './app.component.html',
