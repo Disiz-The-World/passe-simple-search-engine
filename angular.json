@@ -29,7 +29,7 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/app/styles/_theme-colors.scss"],
+            "styles": ["src/app/styles/_theme-colors.scss", "src/styles.scss"],
             "scripts": [],
             "server": "src/main.server.ts",
             "outputMode": "server",

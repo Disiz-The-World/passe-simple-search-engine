@@ -1,0 +1,26 @@
+<div class="server-error-container">
+  <div class="server-error-content">
+    <div class="server-error-image">
+      <img [src]="imagePath" alt="500 - Erreur serveur" class="error-image" />
+    </div>
+
+    <h1 class="error-title">I'm a teapot</h1>
+
+    <div class="action-buttons">
+      <button
+        routerLink="/"
+        mat-flat-button
+        color="primary"
+        class="home-button"
+      >
+        <mat-icon>arrow_back</mat-icon>
+        Retour à l'accueil
+      </button>
+
+      <button routerLink="/explore" mat-stroked-button class="explore-button">
+        Explorer nos balades
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

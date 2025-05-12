@@ -1,4 +1,4 @@
-.not-found-container {
+.server-error-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,12 +6,12 @@
   padding: 2rem;
 }
 
-.not-found-content {
+.server-error-content {
   text-align: center;
   max-width: 600px;
 }
 
-.not-found-image {
+.server-error-image {
   margin-bottom: 1.5rem;
 
   .error-image {
@@ -51,8 +51,8 @@
     margin-right: 8px;
   }
 
-  .explore-button .mat-icon {
-    margin-left: 8px;
+  .retry-button .mat-icon {
+    margin-right: 8px;
   }
 }
 
