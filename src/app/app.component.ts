@@ -7,6 +7,7 @@ import { DetailViewComponent } from './components/detail-view/detail-view.compon
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [
     RouterOutlet,
     SidebarComponent,

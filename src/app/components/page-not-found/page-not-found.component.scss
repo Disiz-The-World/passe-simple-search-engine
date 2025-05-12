@@ -1,0 +1,76 @@
+.not-found-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  padding: 2rem;
+}
+
+.not-found-content {
+  text-align: center;
+  max-width: 600px;
+}
+
+.not-found-image {
+  margin-bottom: 1.5rem;
+
+  .error-image {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.error-title {
+  font-size: 2rem;
+  color: #555;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.error-message {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+
+  .mat-icon {
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+  }
+
+  .home-button .mat-icon {
+    margin-right: 8px;
+  }
+
+  .explore-button .mat-icon {
+    margin-left: 8px;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .error-title {
+    font-size: 1.5rem;
+  }
+
+  .error-message {
+    font-size: 1rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+  }
+}

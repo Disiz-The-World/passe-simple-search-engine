@@ -1,5 +1,12 @@
+* {
+  font-family: 'Roboto', 'sans-serif';
+}
+
 .app-layout {
   display: flex;
+  align-items: stretch;
+  height: 100dvh;
+  overflow-y: hidden;
 }
 
 .main-layout {
@@ -15,7 +22,6 @@
     align-items: center;
     justify-content: space-between;
     padding: 1em 1em;
-    width: 100%;
   }
 
   app-search-bar {
@@ -33,5 +39,4 @@
 .main-content {
   flex: 1;
   padding: 24px;
-  overflow-y: auto;
 }

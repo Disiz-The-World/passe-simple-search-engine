@@ -1,0 +1,30 @@
+<div class="server-error-container">
+  <div class="server-error-content">
+    <div class="server-error-image">
+      <img [src]="imagePath" alt="500 - Erreur serveur" class="error-image" />
+    </div>
+
+    <h1 class="error-title">Une error inattendue s'est produite</h1>
+
+    <p class="error-message">
+      Nous avons rencontré un problème lors du chargement de la page.
+    </p>
+
+    <div class="action-buttons">
+      <button
+        routerLink="/"
+        mat-flat-button
+        color="primary"
+        class="home-button"
+      >
+        <mat-icon>arrow_back</mat-icon>
+        Retour à l'accueil
+      </button>
+
+      <button routerLink="/explore" mat-stroked-button class="explore-button">
+        Explorer nos balades
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>

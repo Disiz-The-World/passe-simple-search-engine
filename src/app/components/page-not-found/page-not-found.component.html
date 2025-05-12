@@ -1,0 +1,31 @@
+<div class="not-found-container">
+  <div class="not-found-content">
+    <div class="not-found-image">
+      <img [src]="imagePath" alt="404 - Page not found" class="error-image" />
+    </div>
+
+    <h1 class="error-title">Vous êtes perdu ?</h1>
+
+    <p class="error-message">
+      Le chemin emprunté n'existe plus. Pas de panique, nous allons vous
+      remettre sur la bonne voie !
+    </p>
+
+    <div class="action-buttons">
+      <button
+        routerLink="/"
+        mat-flat-button
+        color="primary"
+        class="home-button"
+      >
+        <mat-icon>arrow_back</mat-icon>
+        Retour à l'accueil
+      </button>
+
+      <button routerLink="/explore" mat-stroked-button class="explore-button">
+        Explorer nos balades
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
