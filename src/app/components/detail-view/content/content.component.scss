@@ -1,0 +1,70 @@
+.content {
+  .sections-container {
+    display: flex;
+    gap: 16px;
+  }
+
+  .main-section {
+    flex: 2;
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    } 
+  }
+
+  .side-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .side-section .section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .sections-table {
+    display: table; /* Utilise un modèle de tableau */
+    width: 100%;
+    border-spacing: 16px; /* Espacement entre les lignes et colonnes */
+  }
+
+  .row {
+    display: table-row; /* Chaque section est une ligne */
+  }
+
+  .cell {
+    display: table-cell; /* Chaque colonne est une cellule */
+    vertical-align: top; /* Aligne le contenu en haut */
+  }
+
+  .left {
+    width: 66.66%; /* 2/3 de la largeur */
+    padding-right: 16px; /* Espacement entre les colonnes */
+  }
+
+  .right {
+    width: 33.33%; /* 1/3 de la largeur */
+  }
+
+  h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #333;
+  }
+
+  img {
+    width: 100%; /* Les images occupent toute la largeur de leur colonne */
+    height: auto;
+    border-radius: 8px;
+  }
+
+  p {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #4a4a4a;
+  }
+}

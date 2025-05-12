@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { PreviewImageComponent } from './preview-image/preview-image.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { UsefulInfoComponent } from './useful-info/useful-info.component';
+import { ContentComponent } from './content/content.component';
 
 @Component({
   selector: 'app-detail-view',
@@ -17,6 +18,7 @@ import { UsefulInfoComponent } from './useful-info/useful-info.component';
     PreviewImageComponent,
     TopBarComponent,
     UsefulInfoComponent,
+    ContentComponent
   ],
 })
 export class DetailViewComponent implements OnInit {
