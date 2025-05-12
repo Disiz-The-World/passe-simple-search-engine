@@ -10,7 +10,10 @@
         <div *ngFor="let item of section.content">
           <p *ngIf="item.type === 'text'">{{ item.text }}</p>
           <div *ngIf="item.type === 'image/normal'">
-            <img [src]="'http://localhost:3000' + item.path" alt="Image normale" />
+            <img
+              [src]="'http://localhost:3000' + item.path"
+              alt="Image normale"
+            />
             <p>{{ item.legend }}</p>
           </div>
         </div>
@@ -20,7 +23,10 @@
       <div class="cell right">
         <ng-container *ngFor="let item of section.content">
           <div *ngIf="item.type === 'image/side'">
-            <img [src]="'http://localhost:3000' + item.path" alt="Image latérale" />
+            <img
+              [src]="'http://localhost:3000' + item.path"
+              alt="Image latérale"
+            />
             <p>{{ item.legend }}</p>
           </div>
         </ng-container>

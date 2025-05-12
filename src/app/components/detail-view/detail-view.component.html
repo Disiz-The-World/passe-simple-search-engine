@@ -4,7 +4,7 @@
   </app-top-bar>
   <div class="preview-container">
     <app-preview-image
-    class="preveiw"
+      class="preveiw"
       [previewPath]="balade.previewPath"
       [title]="balade.name"
       [tags]="tags"
@@ -12,16 +12,13 @@
     ></app-preview-image>
     <div class="info-content">
       <app-useful-info
-      class="useful-info"
+        class="useful-info"
         [infos]="balade.infos"
         [map]="balade.map"
         [attributions]="balade.attributions"
         [seeMore]="balade.seeMore"
       ></app-useful-info>
-      <app-content
-      class="content"
-        [content]="balade.content"
-      ></app-content>
+      <app-content class="content" [content]="balade.content"></app-content>
     </div>
   </div>
 </div>

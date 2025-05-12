@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, SimpleChanges, OnChanges } from '@angular/core';
 
 export interface SectionContent {
   type: string;
@@ -23,10 +23,9 @@ export interface Content {
   selector: 'app-content',
   imports: [CommonModule],
   templateUrl: './content.component.html',
-  styleUrl: './content.component.scss'
+  styleUrl: './content.component.scss',
 })
-
-export class ContentComponent {
+export class ContentComponent implements OnChanges {
   @Input() content!: Content;
 
   ngOnChanges(changes: SimpleChanges): void {

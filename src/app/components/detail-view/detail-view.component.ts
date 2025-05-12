@@ -18,7 +18,7 @@ import { ContentComponent } from './content/content.component';
     PreviewImageComponent,
     TopBarComponent,
     UsefulInfoComponent,
-    ContentComponent
+    ContentComponent,
   ],
 })
 export class DetailViewComponent implements OnInit {
