@@ -1,5 +1,5 @@
 @for (item of balades; track item) {
-  <a href="/balades/id" class="balade">
+  <a href="/balades/{{ item.id }}" class="balade">
         <mat-card appearance="raised">
       <mat-card-header>
         <mat-card-title>{{ item.name }}</mat-card-title>
