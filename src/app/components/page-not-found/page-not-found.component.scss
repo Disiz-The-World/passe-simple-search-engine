@@ -41,33 +41,18 @@
   flex-wrap: wrap;
   margin-top: 2rem;
 
-  .home-button {
-    &.mat-mdc-flat-button {
-      background-color: var(--md-sys-color-primary);
-      color: var(--md-sys-color-on-primary);
-    }
-
-    ::ng-deep .mat-icon {
-      margin-right: 8px;
-    }
+  .mat-icon {
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
   }
 
-  .explore-button {
-    &.mat-mdc-stroked-button {
-      color: var(--md-sys-color-primary);
-      border-color: var(--md-sys-color-primary);
-    }
+  .home-button .mat-icon {
+    margin-right: 8px;
+  }
 
-    &:hover {
-      background-color: rgba(
-        var(--md-sys-color-primary-rgb, 68, 103, 50),
-        0.05
-      );
-    }
-
-    ::ng-deep .mat-icon {
-      margin-left: 8px;
-    }
+  .explore-button .mat-icon {
+    margin-left: 8px;
   }
 }
 
@@ -83,5 +68,9 @@
 
   .action-buttons {
     flex-direction: column;
+
+    button {
+      width: 100%;
+    }
   }
 }
