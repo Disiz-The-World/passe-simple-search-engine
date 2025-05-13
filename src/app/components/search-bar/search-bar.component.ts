@@ -19,6 +19,7 @@ import { WalkService } from '../../services/walk.service';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatIconButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-search-bar',
@@ -34,6 +35,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
     MatAutocompleteModule,
     MatOptionModule,
     RouterModule,
+    MatIconButton,
   ],
   styleUrls: ['./search-bar.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -82,6 +84,7 @@ export class SearchBarComponent {
         console.log('Résultats reçus :', results);
         this.searchMatches = results;
         this.searchResults.emit(results);
+        this.searchQuery = '';
       });
     } else {
       this.searchMatches = [];
