@@ -24,23 +24,22 @@
       <mat-icon>menu</mat-icon>
     </button>
 
-    <mat-form-field appearance="fill" class="mobile-form-field">
-      <input
-        matInput
-        [(ngModel)]="searchQuery"
-        (ngModelChange)="onSearchInputChange($event)"
-        [matAutocomplete]="auto"
-        (keydown.enter)="onEnter()"
-        placeholder="Rechercher une balade..."
-        type="text"
-      />
-    </mat-form-field>
+    <input
+      class="search-input"
+      type="text"
+      [(ngModel)]="searchQuery"
+      (ngModelChange)="onSearchInputChange($event)"
+      [matAutocomplete]="auto"
+      (keydown.enter)="onEnter()"
+      placeholder="Rechercher une balade..."
+    />
 
     <div class="avatar-icon">
       <app-avatar></app-avatar>
     </div>
   </div>
 </div>
+
 
 <ng-template #desktopSearch>
   <mat-form-field appearance="fill" class="pill-search">
