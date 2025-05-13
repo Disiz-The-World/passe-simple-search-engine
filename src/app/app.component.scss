@@ -8,24 +8,22 @@ body {
   display: flex;
   align-items: stretch;
   height: 100dvh;
+  overflow: hidden;
 }
 
 .main-layout {
   flex: 1;
   display: flex;
   flex-direction: column;
-}
-
-.header {
-  width: 100%;
-  box-sizing: border-box;
-  overflow: visible;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .header {
   display: flex;
+  width: 100%;
+  box-sizing: border-box;
   flex-shrink: 0;
+  overflow: visible;
 
   .search-bar-container {
     display: flex;
@@ -37,6 +35,12 @@ body {
   app-search-bar {
     flex: 1;
     margin-right: 16px;
+  }
+
+  .avatar-container {
+    display: flex;
+    right: 0;
+    margin-left: auto;
   }
 }
 
@@ -101,7 +105,4 @@ body {
   .header {
     padding: 0;
   }
-
-  padding: 24px;
-  overflow-y: auto;
 }
