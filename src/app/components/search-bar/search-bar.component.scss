@@ -87,3 +87,26 @@
     border-radius: 50%;
   }
 }
+
+.autocomplete-list {
+  position: absolute;
+  background: white;
+  color: black;
+  list-style: none;
+  padding: 8px;
+  margin-top: 4px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+
+  li {
+    padding: 6px 10px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+}
