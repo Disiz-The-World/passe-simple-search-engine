@@ -39,6 +39,17 @@ export class WalkService {
     );
   }
 
+  searchWalks(query: string): Observable<any[]> {
+    return this.getWalks().pipe(
+      map((walks) =>
+        walks.filter(
+          (walk) =>
+            walk.name?.toLowerCase().includes(query.toLowerCase()) ||
+            walk.catchPhrase?.toLowerCase().includes(query.toLowerCase())
+        )
+      )
+    );
+  }
   getWalkById(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
   }

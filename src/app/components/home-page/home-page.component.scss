@@ -31,16 +31,19 @@
   border-radius: 1rem;
   overflow: hidden;
 
-  width: clamp(250px, 70vw, 500px); // 3 cards on desktop, 2 on tablet, 1.5 on mobile
+  width: clamp(
+    250px,
+    70vw,
+    500px
+  ); // 3 cards on desktop, 2 on tablet, 1.5 on mobile
 
-  &:nth-child(n+3) {
+  &:nth-child(n + 3) {
     transform: scale(0.92);
     opacity: 0.9;
   }
 
-  &:nth-child(n+4) {
+  &:nth-child(n + 4) {
     transform: scale(0.85);
     opacity: 0.8;
   }
 }
-
