@@ -42,3 +42,20 @@
     margin-top: 4px;
   }
 }
+@media (max-width: 1024px) {
+  .hero-card {
+    height: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-card {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-card {
+    height: 220px;
+  }
+}

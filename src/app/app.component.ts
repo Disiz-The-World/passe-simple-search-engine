@@ -31,11 +31,15 @@ export class AppComponent {
   isMobile = false;
 
   ngOnInit(): void {
-    this.updateScreen();
-    window.addEventListener('resize', this.updateScreen.bind(this));
+    if (typeof window !== 'undefined') {
+      this.updateScreen();
+      window.addEventListener('resize', this.updateScreen.bind(this));
+    }
   }
 
   updateScreen(): void {
-    this.isMobile = window.innerWidth <= 1024;
+    if (typeof window !== 'undefined') {
+      this.isMobile = window.innerWidth <= 1024;
+    }
   }
 }

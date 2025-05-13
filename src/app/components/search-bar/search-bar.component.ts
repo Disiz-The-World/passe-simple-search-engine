@@ -33,10 +33,12 @@ export class SearchBarComponent {
   isMobile = false;
 
   ngOnInit() {
-    this.isMobile = window.innerWidth <= 1024;
-    window.addEventListener('resize', () => {
+    if (typeof window !== 'undefined') {
       this.isMobile = window.innerWidth <= 1024;
-    });
+      window.addEventListener('resize', () => {
+        this.isMobile = window.innerWidth <= 1024;
+      });
+    }
   }
 
   onBurgerClick() {
