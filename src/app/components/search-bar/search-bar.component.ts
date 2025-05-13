@@ -84,7 +84,6 @@ export class SearchBarComponent {
         console.log('Résultats reçus :', results);
         this.searchMatches = results;
         this.searchResults.emit(results);
-        this.searchQuery = '';
       });
     } else {
       this.searchMatches = [];
@@ -97,6 +96,7 @@ export class SearchBarComponent {
     const selected = (event as MatAutocompleteSelectedEvent).option.value;
     if (selected?.id) {
       this.router.navigate(['/balades', selected.id]);
+      this.searchQuery = '';
     }
   }
 
@@ -107,9 +107,13 @@ export class SearchBarComponent {
       (w) => w.name.toLowerCase() === this.searchQuery?.toLowerCase()
     );
     if (exactMatch) {
-      this.router.navigate(['/balades', exactMatch.id]);
+      this.router.navigate(['/balades', exactMatch.id]).then(() => {
+        this.searchQuery = '';
+      });
     } else if (this.searchMatches.length === 1) {
-      this.router.navigate(['/balades', this.searchMatches[0].id]);
+      this.router.navigate(['/balades', this.searchMatches[0].id]).then(() => {
+        this.searchQuery = '';
+      });
     }
   }
 
