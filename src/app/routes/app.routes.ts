@@ -5,6 +5,7 @@ import { HomePageComponent } from '../components/home-page/home-page.component';
 import { DetailViewComponent } from '../components/detail-view/detail-view.component';
 import { ServerErrorComponent } from '../components/server-error/server-error.component';
 import { TeapotComponent } from '../components/teapot/teapot.component';
+import { RechercheComponent } from '../components/recherche/recherche.component';
 
 export const routes: Routes = [
   {
@@ -14,6 +15,10 @@ export const routes: Routes = [
   {
     path: 'balades/:id',
     component: DetailViewComponent,
+  },
+  {
+    path: 'recherche',
+    component: RechercheComponent,
   },
   {
     path: 'login',
@@ -26,6 +31,11 @@ export const routes: Routes = [
   {
     path: '418',
     component: TeapotComponent,
+  },
+  {
+    path: '',
+    redirectTo: '/recherche',
+    pathMatch: 'full',
   },
   {
     path: '**',

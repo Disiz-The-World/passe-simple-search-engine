@@ -1,0 +1,172 @@
+<div class="recherche-container">
+  <h1 class="page-title">Recherche</h1>
+
+  <!-- Search Form -->
+  <div class="search-form">
+    <!-- Search Fields Row -->
+    <div class="search-row">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Titre</mat-label>
+        <input
+          matInput
+          [(ngModel)]="locationSearch"
+          placeholder="Ex: rivière, vallon, visite de..."
+          (input)="search()"
+        />
+        <mat-icon matSuffix>clear</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Lieu</mat-label>
+        <input
+          matInput
+          [(ngModel)]="placeSearch"
+          placeholder="NPA, Ville, ..."
+          (input)="search()"
+        />
+        <mat-icon matSuffix>clear</mat-icon>
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        class="search-button"
+        (click)="search()"
+      >
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+
+    <!-- Duration Slider -->
+    <div class="duration-section">
+      <label>Durée</label>
+      <div class="duration-range">
+        <span>{{ duration.min }}h</span>
+        <mat-slider
+          discrete
+          min="1"
+          max="12"
+          step="1"
+          class="duration-slider"
+          (input)="onDurationChange()"
+        >
+          <input
+            matSliderStartThumb
+            [(ngModel)]="duration.min"
+            (ngModelChange)="onDurationChange()"
+          />
+          <input
+            matSliderEndThumb
+            [(ngModel)]="duration.max"
+            (ngModelChange)="onDurationChange()"
+          />
+        </mat-slider>
+        <span>{{ duration.max }}h</span>
+      </div>
+    </div>
+
+    <!-- Filter Sections -->
+    <div class="filter-sections">
+      <!-- Type de terrain -->
+      <mat-expansion-panel class="filter-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Type de terrain
+            <mat-icon>add</mat-icon>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="filter-content">
+          <mat-checkbox
+            *ngFor="let filter of terrainTypes"
+            [(ngModel)]="filter.checked"
+            (change)="onFilterChange()"
+            class="filter-checkbox"
+          >
+            {{ filter.label }}
+          </mat-checkbox>
+        </div>
+      </mat-expansion-panel>
+
+      <!-- Période historique -->
+      <mat-expansion-panel class="filter-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Période historique
+            <mat-icon>add</mat-icon>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="filter-content">
+          <mat-checkbox
+            *ngFor="let filter of historicalPeriods"
+            [(ngModel)]="filter.checked"
+            (change)="onFilterChange()"
+            class="filter-checkbox"
+          >
+            {{ filter.label }}
+          </mat-checkbox>
+        </div>
+      </mat-expansion-panel>
+
+      <!-- Critères -->
+      <mat-expansion-panel class="filter-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Critères
+            <mat-icon>add</mat-icon>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="filter-content">
+          <mat-checkbox
+            *ngFor="let filter of criteria"
+            [(ngModel)]="filter.checked"
+            (change)="onFilterChange()"
+            class="filter-checkbox"
+          >
+            {{ filter.label }}
+          </mat-checkbox>
+        </div>
+      </mat-expansion-panel>
+    </div>
+
+    <!-- Active Filters -->
+    <div class="active-filters" *ngIf="getActiveFilters().length > 0">
+      <span class="filters-label">Filtres actifs :</span>
+      <mat-chip-set>
+        <mat-chip
+          *ngFor="let filter of getActiveFilters()"
+          [removable]="true"
+          (removed)="removeFilter(filter.type, filter.value)"
+        >
+          {{ filter.label }}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-set>
+    </div>
+  </div>
+
+  <!-- Search Results -->
+  <div class="results-section">
+    <div
+      class="result-item"
+      *ngFor="let balade of filteredBalades"
+      (click)="navigateToDetail(balade.id)"
+    >
+      <div class="result-image">
+        <img
+          [src]="'http://localhost:3000' + balade.previewPath"
+          [alt]="balade.name"
+        />
+      </div>
+      <div class="result-content">
+        <h3 class="result-title">{{ balade.name }}</h3>
+        <p class="result-description">{{ balade.catchPhrase }}</p>
+        <div class="result-meta">
+          <mat-icon class="meta-icon">schedule</mat-icon>
+          <span class="meta-text">{{ formatDuration(balade.duration) }}</span>
+          <mat-icon class="meta-icon">place</mat-icon>
+          <span class="meta-text">Étampes</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

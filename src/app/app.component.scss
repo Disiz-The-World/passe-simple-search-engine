@@ -8,20 +8,24 @@ body {
   display: flex;
   align-items: stretch;
   height: 100dvh;
-  overflow: hidden;
 }
 
 .main-layout {
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
 .header {
   width: 100%;
   box-sizing: border-box;
   overflow: visible;
+  overflow-y: auto;
+}
+
+.header {
+  display: flex;
+  flex-shrink: 0;
 
   .search-bar-container {
     display: flex;
@@ -97,4 +101,7 @@ body {
   .header {
     padding: 0;
   }
+
+  padding: 24px;
+  overflow-y: auto;
 }
