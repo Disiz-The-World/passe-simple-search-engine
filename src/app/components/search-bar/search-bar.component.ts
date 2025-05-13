@@ -84,7 +84,6 @@ export class SearchBarComponent {
         console.log('Résultats reçus :', results);
         this.searchMatches = results;
         this.searchResults.emit(results);
-        this.searchQuery = '';
       });
     } else {
       this.searchMatches = [];
