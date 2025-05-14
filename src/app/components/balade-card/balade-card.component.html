@@ -1,0 +1,17 @@
+<mat-card class="balade-card" (click)="goToDetails()">
+  <div class="image-container">
+    <img [src]="imageUrl" alt="Image de {{ title }}" />
+    <button mat-icon-button class="bookmark">
+      <mat-icon>bookmark_border</mat-icon>
+    </button>
+    <div class="rating">★☆☆☆</div>
+  </div>
+
+  <mat-card-content>
+    <h3>{{ title }}</h3>
+    <div class="infos">
+      <span><mat-icon>schedule</mat-icon> {{ duration }}</span>
+      <span><mat-icon>place</mat-icon> {{ location }}</span>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -7,7 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
 import { ThematicsComponent } from '../thematics/thematics.component';
 import { WalkService } from '../../services/walk.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { BaladeCardComponent } from '../balade-card/balade-card.component';
 
 @Component({
   selector: 'app-home-page',
@@ -20,6 +21,8 @@ import { Router } from '@angular/router';
     MatButtonModule,
     CommonModule,
     ThematicsComponent,
+    BaladeCardComponent,
+    RouterLink,
   ],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
@@ -31,7 +34,6 @@ export class HomePageComponent implements OnInit {
     private walkService: WalkService,
     private router: Router
   ) {}
-
   onNavigateToDetails(id: number) {
     this.walkService.getWalkById(id).subscribe({
       next: () => this.router.navigate(['/balades', id]),
@@ -43,7 +45,7 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     const staticWalks = [
       {
         id: 2,
@@ -52,6 +54,7 @@ export class HomePageComponent implements OnInit {
         description:
           'Perché à 1 930 mètres d’altitude, le barrage d’Emosson offre un panorama époustouflant sur le massif du Mont-Blanc.',
         rating: 2,
+        duration: 2,
       },
       {
         id: 3,

@@ -20,6 +20,7 @@ import { WalkService } from '../../services/walk.service';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatIconButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-search-bar',
@@ -35,6 +36,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
     MatAutocompleteModule,
     MatOptionModule,
     RouterModule,
+    MatIconButton,
   ],
   styleUrls: ['./search-bar.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -95,6 +97,7 @@ export class SearchBarComponent implements OnInit {
     const selected = (event as MatAutocompleteSelectedEvent).option.value;
     if (selected?.id) {
       this.router.navigate(['/balades', selected.id]);
+      this.searchQuery = '';
     }
   }
 
@@ -105,9 +108,13 @@ export class SearchBarComponent implements OnInit {
       (w) => w.name.toLowerCase() === this.searchQuery?.toLowerCase()
     );
     if (exactMatch) {
-      this.router.navigate(['/balades', exactMatch.id]);
+      this.router.navigate(['/balades', exactMatch.id]).then(() => {
+        this.searchQuery = '';
+      });
     } else if (this.searchMatches.length === 1) {
-      this.router.navigate(['/balades', this.searchMatches[0].id]);
+      this.router.navigate(['/balades', this.searchMatches[0].id]).then(() => {
+        this.searchQuery = '';
+      });
     }
   }
 

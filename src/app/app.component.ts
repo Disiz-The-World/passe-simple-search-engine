@@ -23,6 +23,7 @@ import { NgIf } from '@angular/common';
     MatDrawerContainer,
     MatDrawerContent,
     NgIf,
+    SearchBarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
@@ -30,7 +31,7 @@ import { NgIf } from '@angular/common';
 export class AppComponent implements OnInit {
   isMobile = false;
 
-  ngOnInit(): void {
+  ngOnInit() {
     if (typeof window !== 'undefined') {
       this.updateScreen();
       window.addEventListener('resize', this.updateScreen.bind(this));
