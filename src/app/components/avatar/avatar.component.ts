@@ -13,12 +13,14 @@ import { LoginComponent } from '../login/login.component';
   styleUrls: ['./avatar.component.scss'],
   imports: [MatIconModule, MatCardModule, NgOptimizedImage, MatDialogModule],
 })
-
 export class AvatarComponent implements OnInit {
   avatar: string = 'assets/avatar.jpeg';
 
-  constructor(private dialog: MatDialog, private authService: AuthService) {}
-  
+  constructor(
+    private dialog: MatDialog,
+    private authService: AuthService
+  ) {}
+
   async ngOnInit(): Promise<void> {
     const user = await this.authService.getCurrentUser();
     this.avatar = user?.profilePicture || '';

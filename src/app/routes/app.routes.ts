@@ -21,9 +21,9 @@ export const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
-  { 
-    path: 'favoris', 
-    component: FavoritesComponent 
+  {
+    path: 'favoris',
+    component: FavoritesComponent,
   },
   {
     path: 'about',

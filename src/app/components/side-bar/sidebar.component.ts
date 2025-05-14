@@ -17,7 +17,6 @@ import { MatIconButton } from '@angular/material/button';
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-
 export class SidebarComponent {
   navItems = [
     { name: 'Accueil', icon: 'home', route: '' },
