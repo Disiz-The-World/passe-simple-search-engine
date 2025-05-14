@@ -68,3 +68,67 @@
     color: #4a4a4a;
   }
 }
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacement entre l'icône et le titre */
+
+  mat-icon {
+    cursor: pointer; /* Ajoute un curseur pointeur pour indiquer que l'icône est cliquable */
+    font-size: 24px; /* Taille de l'icône */
+    color: #333; /* Couleur de l'icône */
+  }
+
+  mat-icon:hover {
+    color: #007bff; /* Change la couleur au survol */
+  }
+
+  h3 {
+    font-size: 16px;
+    margin: 0;
+    color: #333;
+  }
+}
+
+.catch {
+  display: none;
+}
+
+.mobile {
+  display: none;
+}
+
+@media (max-width: 412px) {
+  .catch {
+    display: block;
+    border-left: 5px solid var(--Primary, #386a1f);
+    display: flex;
+    width: auto;
+    padding: 4px 0px 4px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: var(--Primary, #386a1f);
+    font-family: var(--Title-Small-Font, Roboto);
+    font-size: var(--Title-Medium-Size, 16px);
+    font-style: normal;
+    font-weight: 700;
+    line-height: 22px; /* 137.5% */
+    letter-spacing: var(--Title-Large-Tracking, 0px);
+  }
+  .title {
+    display: none; /* Cache le titre si nécessaire */
+  }
+
+  .mobile {
+    display: block;
+  }
+
+  .mobile img {
+    width: 100%;
+  }
+
+  .desktop {
+    display: none;
+  }
+}
