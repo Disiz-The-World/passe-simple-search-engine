@@ -5,7 +5,6 @@ import {
   EventEmitter,
   Inject,
   PLATFORM_ID,
-  OnInit,
 } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -39,7 +38,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
   styleUrls: ['./search-bar.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class SearchBarComponent implements OnInit {
+export class SearchBarComponent {
   @Output() burgerClick = new EventEmitter<void>();
   @Output() closeDrawer = new EventEmitter<void>();
   @Output() searchResults = new EventEmitter<any[]>();
