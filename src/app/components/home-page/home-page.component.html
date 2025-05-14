@@ -1,0 +1,42 @@
+<app-hero-card></app-hero-card>
+<h2 class="section-title">Balades à la une</h2>
+<div class="carousel-container">
+  <div class="carousel-scroll">
+    <app-featured-walk-card
+      *ngFor="let walk of balades"
+      [image]="walk.image"
+      [title]="walk.title"
+      [description]="walk.description"
+      [rating]="walk.rating"
+      [id]="walk.id"
+      (navigateToDetails)="onNavigateToDetails($event)"
+    ></app-featured-walk-card>
+  </div>
+</div>
+<app-thematics></app-thematics>
+<div class="popular">
+  <h2 class="section-title" style="margin: 0 2px 0 0">Populaires</h2>
+  <a
+    mat-icon-button
+    class="icon"
+    [routerLink]="['/balades']"
+    aria-label="Voir toutes les balades"
+  >
+    <mat-icon>arrow_forward</mat-icon>
+  </a>
+</div>
+<div class="popular-balades">
+  <div class="popular-balades-grid">
+    <app-balade-card
+      *ngFor="let walk of visibleBalades"
+      [id]="walk.id"
+      [imageUrl]="walk.image"
+      [title]="walk.title"
+      [duration]="walk.duration"
+      [location]="walk.location"
+    ></app-balade-card>
+  </div>
+  <div class="balade-card plus-card" (click)="toggleShowAll()">
+    <mat-icon>{{ showAll ? 'remove' : 'add' }}</mat-icon>
+  </div>
+</div>

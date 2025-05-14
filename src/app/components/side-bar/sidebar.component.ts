@@ -1,65 +1,35 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  CUSTOM_ELEMENTS_SCHEMA,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
-import { MatListItem, MatNavList } from '@angular/material/list';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
-import { Subscription } from 'rxjs';
+import { MatIconButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  imports: [
-    CommonModule,
-    MatSidenav,
-    MatNavList,
-    MatIcon,
-    RouterLink,
-    MatSidenavContainer,
-    MatListItem,
-    RouterLinkActive,
-  ],
+  imports: [CommonModule, MatIcon, RouterLink, RouterLinkActive, MatIconButton],
   styleUrls: ['./sidebar.component.scss'],
   standalone: true,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class SidebarComponent implements OnInit, OnDestroy {
-  navItems: any[] = [];
-  bottomItems: any[] = [];
 
-  private authSubscription: Subscription = new Subscription();
+export class SidebarComponent {
+  navItems = [
+    { name: 'Accueil', icon: 'home', route: '' },
+    { name: 'Recherche', icon: 'search', route: '/search' },
+    { name: 'Favoris', icon: 'bookmark', route: '/favoris' },
+    { name: 'À propos', icon: 'article', route: '/about' },
+  ];
 
-  constructor(private authService: AuthService) {}
+  bottomItems = [
+    { name: 'Mon compte', icon: 'account_circle', route: '/account' },
+    { name: 'Informations légales', icon: 'description', route: '/legal' },
+  ];
 
-  ngOnInit() {
-    this.navItems = [
-      { name: 'Accueil', icon: 'home', route: '/home' },
-      { name: 'Recherche', icon: 'search', route: '/about' },
-      { name: 'Favoris', icon: 'bookmark', route: '/favoris' },
-      { name: 'À propos', icon: 'info', route: '/about' },
-    ];
-
-    this.updateBottomItems(this.authService.isLoggedIn());
-
-    this.authSubscription = this.authService.isLoggedIn$.subscribe(
-      (isLoggedIn) => {
-        this.updateBottomItems(isLoggedIn);
-      }
-    );
-  }
-
-  ngOnDestroy() {
-    this.authSubscription.unsubscribe();
-  }
-
-  private updateBottomItems(isLoggedIn: boolean) {
-    this.bottomItems = [
-      {
-        name: isLoggedIn ? 'Déconnexion' : 'Connexion',
-        icon: 'account_circle',
-        route: '/login',
-      },
-      { name: 'Informations légales', icon: 'event_note', route: '/legal' },
-    ];
-  }
+  @Output() closeDrawer = new EventEmitter<void>();
 }

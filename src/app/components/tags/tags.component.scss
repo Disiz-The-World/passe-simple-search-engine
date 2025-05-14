@@ -1,0 +1,71 @@
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #4a5c4a;
+  border-radius: 8px;
+  background-color: #f7fbf2;
+  color: #4a5c4a;
+  font-size: 14px;
+  font-weight: 500;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.icon {
+  font-family: 'Material Icons';
+  font-size: 16px;
+  color: #4a5c4a;
+  line-height: 1;
+}
+
+.name {
+  font-size: 14px;
+  color: #4a5c4a;
+  line-height: 1;
+}
+
+@media (max-width: 412px) {
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #4a5c4a;
+    border-radius: 8px;
+    background-color: #f7fbf2;
+    color: #4a5c4a;
+    font-size: 14px;
+    font-weight: 500;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+  }
+
+  .icon {
+    font-family: 'Material Icons';
+    font-size: 14px;
+    color: #4a5c4a;
+    line-height: 1;
+  }
+
+  .name {
+    font-size: 10px;
+    color: #4a5c4a;
+    line-height: 1;
+  }
+}

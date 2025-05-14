@@ -1,7 +1,55 @@
-<mat-form-field appearance="fill" class="pill-search">
-  <input
-    matInput
-    [(ngModel)]="searchQuery"
-    placeholder="Rechercher une balade..."
-  />
-</mat-form-field>
+<mat-autocomplete
+  #auto="matAutocomplete"
+  [displayWith]="displayWalkName"
+  (optionSelected)="onOptionSelected($event)"
+>
+  <mat-option *ngFor="let match of searchMatches" [value]="match">
+    {{ match.name }}
+  </mat-option>
+</mat-autocomplete>
+
+<mat-autocomplete
+  #autoDesktop="matAutocomplete"
+  [displayWith]="displayWalkName"
+  (optionSelected)="onOptionSelected($event)"
+>
+  <mat-option *ngFor="let match of searchMatches" [value]="match">
+    {{ match.name }}
+  </mat-option>
+</mat-autocomplete>
+
+<div class="search-bar-wrapper" *ngIf="isMobile; else desktopSearch">
+  <div class="pill-search-mobile">
+    <button mat-icon-button (click)="onBurgerClick()" class="burger-icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <input
+      class="search-input"
+      type="text"
+      [(ngModel)]="searchQuery"
+      (ngModelChange)="onSearchInputChange($event)"
+      [matAutocomplete]="auto"
+      (keydown.enter)="onEnter()"
+      placeholder="Rechercher une balade..."
+    />
+
+    <div class="avatar-icon">
+      <app-avatar></app-avatar>
+    </div>
+  </div>
+</div>
+
+<ng-template #desktopSearch>
+  <mat-form-field appearance="fill" class="pill-search">
+    <input
+      matInput
+      [(ngModel)]="searchQuery"
+      (ngModelChange)="onSearchInputChange($event)"
+      [matAutocomplete]="autoDesktop"
+      (keydown.enter)="onEnter()"
+      placeholder="Rechercher une balade..."
+      type="text"
+    />
+  </mat-form-field>
+</ng-template>

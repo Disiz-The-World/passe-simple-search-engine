@@ -1,3 +1,7 @@
-<mat-card class="avatar-card">
-  <img mat-card-image [src]="avatar" alt="Avatar" />
+<mat-card
+  class="avatar-card"
+  (click)="openLoginDialog()"
+  style="cursor: pointer"
+>
+  <img mat-card-image [ngSrc]="avatar" alt="Avatar" fill />
 </mat-card>

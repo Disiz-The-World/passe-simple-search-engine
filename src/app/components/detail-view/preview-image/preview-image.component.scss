@@ -1,0 +1,89 @@
+.preview-container img {
+  width: 216px;
+  height: 216px;
+  border-radius: 28px;
+  object-fit: cover;
+  width: auto;
+}
+
+.preview-container {
+  display: flex;
+}
+
+.informations {
+  width: auto;
+  margin-left: 16px;
+}
+
+.informations h1 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  align-self: stretch;
+  overflow: hidden;
+  color: var(--M3-sys-light-on-surface, var(--Schemes-On-Surface, #181d18));
+  text-overflow: ellipsis;
+  font-family: var(--Headline-Small-Font, Roboto);
+  font-size: var(--Headline-Small-Size, 24px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--Headline-Small-Line-Height, 32px);
+  letter-spacing: var(--Headline-Small-Tracking, 0px);
+}
+
+.rating {
+  display: flex;
+  width: 65.651px;
+  height: 32px;
+  padding: 7.641px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 955.068px;
+  background: #d9e7cb;
+}
+
+.catchPhrase {
+  flex: 1 0 0;
+  color: #386a1f;
+  color: var(--Primary, #386a1f);
+  font-family: var(--Title-Medium-Font, Roboto);
+  font-size: var(--Title-Medium-Size, 16px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 22px; /* 137.5% */
+  letter-spacing: var(--Title-Large-Tracking, 0px);
+  padding-left: 10px;
+  border-left: 5px solid var(--Primary, #386a1f);
+}
+
+@media (max-width: 412px) {
+  .preview-container img {
+    width: 118px;
+    height: 118px;
+    border-radius: 20px;
+    object-fit: cover;
+  }
+
+  .rating {
+    display: flex;
+    width: 40px;
+    height: 15px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    background: #d9e7cb;
+  }
+
+  .informations h1 {
+    color: var(--M3-sys-light-on-surface, var(--Schemes-On-Surface, #181d18));
+    font-family: var(--Title-Medium-Font, Roboto);
+    font-size: var(--Title-Medium-Size, 16px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: var(--Title-Medium-Line-Height, 24px); /* 150% */
+    letter-spacing: var(--Title-Medium-Tracking, 0.15px);
+  }
+  .catchPhrase {
+    display: none;
+  }
+}

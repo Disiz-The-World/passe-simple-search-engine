@@ -1,0 +1,27 @@
+.icon {
+  font-family: 'Material Symbols Outlined';
+  font-size: 24px;
+  line-height: 1;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.description {
+  margin-left: 8px;
+}
+.itineraire,
+.attributions {
+  color: #000;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.073px;
+}
