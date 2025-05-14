@@ -68,3 +68,24 @@
     color: #4a4a4a;
   }
 }
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacement entre l'icône et le titre */
+
+  mat-icon {
+    cursor: pointer; /* Ajoute un curseur pointeur pour indiquer que l'icône est cliquable */
+    font-size: 24px; /* Taille de l'icône */
+    color: #333; /* Couleur de l'icône */
+  }
+
+  mat-icon:hover {
+    color: #007bff; /* Change la couleur au survol */
+  }
+
+  h3 {
+    font-size: 16px;
+    margin: 0;
+    color: #333;
+  }
+}
