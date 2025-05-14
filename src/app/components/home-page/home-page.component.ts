@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { HeroCardComponent } from '../hero-card/hero-card.component';
 import { FeaturedWalkCardComponent } from '../featured-walk-card/featured-walk-card.component';
 import { MatCardModule } from '@angular/material/card';
@@ -27,20 +27,26 @@ import { BaladeCardComponent } from '../balade-card/balade-card.component';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
 })
+
 export class HomePageComponent implements OnInit {
   balades: any[] = [];
+  visibleBalades: any[] = [];
+  showAll = false;
 
+  @HostListener('window:resize')
+  onResize() {
+    this.updateVisibleBalades();
+  }
   constructor(
     private walkService: WalkService,
     private router: Router
   ) {}
+
   onNavigateToDetails(id: number) {
     this.walkService.getWalkById(id).subscribe({
       next: () => this.router.navigate(['/balades', id]),
-      error: (err: any) => {
-        if (err.status === 404) {
-          this.router.navigate(['/page-not-found']);
-        }
+      error: (err) => {
+        console.error('Navigation error:', err);
       },
     });
   }
@@ -63,6 +69,7 @@ export class HomePageComponent implements OnInit {
         description:
           'Le lac de Morat est un écrin de nature chargé d’histoire. Des vestiges de cités lacustres aux batailles médiévales…',
         rating: 3,
+        duration: 3,
       },
       {
         id: 4,
@@ -71,6 +78,7 @@ export class HomePageComponent implements OnInit {
         description:
           'Le Creux du Van est un cirque naturel impressionnant, formé par l’érosion de la roche calcaire.',
         rating: 1,
+        duration: 1,
       },
       {
         id: 5,
@@ -79,11 +87,30 @@ export class HomePageComponent implements OnInit {
         description:
           'Le chemin des Pionniers est une randonnée qui retrace l’histoire des premiers habitants de la région.',
         rating: 2,
+        duration: 2,
       },
     ];
+    const repeatedWalks = Array(8).fill(staticWalks).flat();
 
     this.walkService.getTransformedWalks().subscribe((transformedWalks) => {
       this.balades = [...transformedWalks, ...staticWalks];
+      this.updateVisibleBalades();
+      this.balades = repeatedWalks;
+      this.updateVisibleBalades();
     });
+  }
+
+  updateVisibleBalades(): void {
+    const cardsPerRow = typeof window !== 'undefined' && window.innerWidth >= 1024 ? 3 : 2;
+    const rowsToShow = 2;
+    const maxVisible = this.showAll
+      ? this.balades.length
+      : cardsPerRow * rowsToShow;
+    this.visibleBalades = this.balades.slice(0, maxVisible);
+  }
+
+  public toggleShowAll(): void {
+    this.showAll = !this.showAll;
+    this.updateVisibleBalades();
   }
 }

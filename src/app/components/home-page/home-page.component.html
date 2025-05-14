@@ -28,49 +28,15 @@
 <div class="popular-balades">
   <div class="popular-balades-grid">
     <app-balade-card
-      *ngFor="let walk of balades"
+      *ngFor="let walk of visibleBalades"
       [id]="walk.id"
       [imageUrl]="walk.image"
       [title]="walk.title"
       [duration]="walk.duration"
       [location]="walk.location"
-    >
-    </app-balade-card>
-    <app-balade-card
-      *ngFor="let walk of balades"
-      [id]="walk.id"
-      [imageUrl]="walk.image"
-      [title]="walk.title"
-      [duration]="walk.duration"
-      [location]="walk.location"
-    >
-    </app-balade-card>
-    <app-balade-card
-      *ngFor="let walk of balades"
-      [id]="walk.id"
-      [imageUrl]="walk.image"
-      [title]="walk.title"
-      [duration]="walk.duration"
-      [location]="walk.location"
-    >
-    </app-balade-card>
-    <app-balade-card
-      *ngFor="let walk of balades"
-      [id]="walk.id"
-      [imageUrl]="walk.image"
-      [title]="walk.title"
-      [duration]="walk.duration"
-      [location]="walk.location"
-    >
-    </app-balade-card>
-    <app-balade-card
-      *ngFor="let walk of balades"
-      [id]="walk.id"
-      [imageUrl]="walk.image"
-      [title]="walk.title"
-      [duration]="walk.duration"
-      [location]="walk.location"
-    >
-    </app-balade-card>
+    ></app-balade-card>
+  </div>
+  <div class="balade-card plus-card" (click)="toggleShowAll()">
+    <mat-icon>{{ showAll ? 'remove' : 'add' }}</mat-icon>
   </div>
 </div>

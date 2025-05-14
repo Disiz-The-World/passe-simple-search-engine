@@ -19,6 +19,13 @@
   cursor: pointer;
   transition: background-color 0.2s;
 
+  &:hover {
+    mat-icon {
+      transform: rotateZ(360deg) scale(1.1);
+      transition: transform 0.3s;
+    }
+  }
+
   .icon {
     margin-right: 12px;
   }
