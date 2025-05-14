@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from '../components/login/login.component';
+import { FavoritesComponent } from '../components/favorites/favorites.component';
 import { PageNotFoundComponent } from '../components/page-not-found/page-not-found.component';
 import { HomePageComponent } from '../components/home-page/home-page.component';
 import { DetailViewComponent } from '../components/detail-view/detail-view.component';
@@ -24,6 +25,10 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'favoris',
+    component: FavoritesComponent,
   },
   {
     path: 'about',
