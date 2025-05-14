@@ -25,6 +25,8 @@ export class FeaturedWalkCardComponent {
   @Input() description!: string;
   @Input() rating!: number;
   @Input() id!: number;
+  @Input() duration!: number;
+  @Input() location!: number;
 
   constructor(private router: Router) {}
   goToDetails() {
