@@ -20,7 +20,7 @@ import { MatIconButton } from '@angular/material/button';
 export class SidebarComponent {
   navItems = [
     { name: 'Accueil', icon: 'home', route: '' },
-    { name: 'Recherche', icon: 'search', route: '/about' },
+    { name: 'Recherche', icon: 'search', route: '/search' },
     { name: 'Favoris', icon: 'bookmark', route: '/favoris' },
     { name: 'À propos', icon: 'article', route: '/about' },
   ];

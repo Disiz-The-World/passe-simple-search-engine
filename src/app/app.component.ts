@@ -8,8 +8,9 @@ import {
   MatDrawerContainer,
   MatDrawerContent,
 } from '@angular/material/sidenav';
-import { MatIcon } from '@angular/material/icon';
+import { MatIcon, MatIconRegistry } from '@angular/material/icon';
 import { NgIf } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -42,5 +43,19 @@ export class AppComponent implements OnInit {
     if (typeof window !== 'undefined') {
       this.isMobile = window.innerWidth <= 1024;
     }
+  }
+
+  constructor(
+    private iconRegistry: MatIconRegistry,
+    private sanitizer: DomSanitizer
+  ) {
+    this.iconRegistry.addSvgIcon(
+      'facebook',
+      this.sanitizer.bypassSecurityTrustResourceUrl('assets/facebook.svg')
+    );
+    this.iconRegistry.addSvgIcon(
+      'twitter',
+      this.sanitizer.bypassSecurityTrustResourceUrl('assets/twitter.svg')
+    );
   }
 }

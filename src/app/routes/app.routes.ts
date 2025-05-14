@@ -5,6 +5,7 @@ import { HomePageComponent } from '../components/home-page/home-page.component';
 import { DetailViewComponent } from '../components/detail-view/detail-view.component';
 import { ServerErrorComponent } from '../components/server-error/server-error.component';
 import { TeapotComponent } from '../components/teapot/teapot.component';
+import { AboutComponent } from '../components/about/about.component';
 
 export const routes: Routes = [
   {
@@ -18,6 +19,10 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
   },
   {
     path: '500',
