@@ -6,8 +6,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSliderModule } from '@angular/material/slider';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -16,10 +14,33 @@ export interface Balade {
   id: number;
   name: string;
   catchPhrase: string;
-  duration: number;
+  duration: number; // in minutes
   location: number;
   previewPath: string;
   tagIds: number[];
+  ratings: number[];
+  // Add other properties from db.json if needed by this component or for navigation
+  map?: string;
+  infos?: any[];
+  favoriteIds?: number[];
+  content?: any;
+  attributions?: any;
+  seeMore?: string[];
+}
+
+export interface Tag {
+  id: number;
+  name: string;
+  icon: string; // Hex unicode string from backend (e.g., "f1bb")
+  category: 'terrain' | 'period' | 'criteria';
+}
+
+export interface FilterTag {
+  id: number;
+  name: string;
+  icon: string; // Hex unicode string from backend
+  category: string;
+  selected: boolean;
 }
 
 @Component({
@@ -33,49 +54,29 @@ export interface Balade {
     MatIconModule,
     MatButtonModule,
     MatChipsModule,
-    MatExpansionModule,
-    MatCheckboxModule,
     MatSliderModule,
   ],
   templateUrl: './recherche.component.html',
   styleUrls: ['./recherche.component.scss'],
 })
 export class RechercheComponent implements OnInit {
-  // Search form values
+  titleSearch: string = '';
   locationSearch: string = '';
-  placeSearch: string = '';
-  duration: { min: number; max: number } = { min: 2, max: 8 };
+  durationMin: number = 5; // hours
+  durationMax: number = 8; // hours
 
-  // Filter options
-  terrainTypes = [
-    { label: 'Moyen-âge', value: 'moyen-age', checked: true },
-    {
-      label: 'Époque contemporaine',
-      value: 'epoque-contemporaine',
-      checked: true,
-    },
-    { label: 'Renaissance', value: 'renaissance', checked: false },
-    { label: 'Époque moderne', value: 'epoque-moderne', checked: false },
-  ];
+  terrainTypes: FilterTag[] = [];
+  historicalPeriods: FilterTag[] = [];
+  criteria: FilterTag[] = [];
 
-  historicalPeriods = [
-    { label: 'Préhistoire', value: 'prehistoire', checked: false },
-    { label: 'Antiquité', value: 'antiquite', checked: false },
-    { label: 'Moyen-Âge', value: 'moyen-age', checked: false },
-    { label: 'Époque moderne', value: 'epoque-moderne', checked: false },
-  ];
-
-  criteria = [
-    { label: 'Accessible PMR', value: 'pmr', checked: false },
-    { label: 'Transport public', value: 'transport', checked: false },
-    { label: 'Restauration', value: 'restauration', checked: false },
-    { label: 'Parking gratuit', value: 'parking', checked: false },
-  ];
-
-  // Data
   balades: Balade[] = [];
   filteredBalades: Balade[] = [];
-  tags: any[] = [];
+  // allTags: Tag[] = []; // No longer needed to store allTags separately for getIconForTag
+
+  // Expansion states for filter categories - default to false (collapsed)
+  terrainExpanded: boolean = false;
+  historicalPeriodsExpanded: boolean = false;
+  criteriaExpanded: boolean = false;
 
   constructor(
     private router: Router,
@@ -87,98 +88,156 @@ export class RechercheComponent implements OnInit {
   }
 
   loadData() {
-    // Load balades
-    this.http.get<Balade[]>('http://localhost:3000/balades').subscribe({
-      next: (balades) => {
-        this.balades = balades;
-        this.filteredBalades = balades;
-      },
-      error: (err) => console.error('Error loading balades:', err),
-    });
-
-    // Load tags
-    this.http.get<any[]>('http://localhost:3000/tags').subscribe({
+    // Load tags first to populate filter options
+    this.http.get<Tag[]>('http://localhost:3000/tags').subscribe({
       next: (tags) => {
-        this.tags = tags;
+        this.initializeFilterArrays(tags);
+        // Then load balades, so initial search can use populated filters
+        this.loadBalades();
       },
       error: (err) => console.error('Error loading tags:', err),
     });
   }
 
-  search() {
-    this.filteredBalades = this.balades.filter((balade) => {
-      // Filter by search terms
-      const matchesLocation =
-        !this.locationSearch ||
-        balade.name.toLowerCase().includes(this.locationSearch.toLowerCase()) ||
-        balade.catchPhrase
-          .toLowerCase()
-          .includes(this.locationSearch.toLowerCase());
-
-      const matchesPlace =
-        !this.placeSearch ||
-        balade.location.toString().includes(this.placeSearch);
-
-      // Filter by duration
-      const durationHours = balade.duration / 60;
-      const matchesDuration =
-        durationHours >= this.duration.min &&
-        durationHours <= this.duration.max;
-
-      return matchesLocation && matchesPlace && matchesDuration;
+  loadBalades() {
+    this.http.get<Balade[]>('http://localhost:3000/balades').subscribe({
+      next: (baladesData) => {
+        this.balades = baladesData;
+        this.search(); // Perform initial search with default filters
+      },
+      error: (err) => console.error('Error loading balades:', err),
     });
   }
 
-  removeFilter(type: string, value: string) {
-    switch (type) {
-      case 'terrain':
-        const terrainFilter = this.terrainTypes.find((t) => t.value === value);
-        if (terrainFilter) terrainFilter.checked = false;
-        break;
-      case 'period':
-        const periodFilter = this.historicalPeriods.find(
-          (p) => p.value === value
-        );
-        if (periodFilter) periodFilter.checked = false;
-        break;
-      case 'criteria':
-        const criteriaFilter = this.criteria.find((c) => c.value === value);
-        if (criteriaFilter) criteriaFilter.checked = false;
-        break;
+  initializeFilterArrays(backendTags: Tag[]) {
+    this.terrainTypes = backendTags
+      .filter((tag) => tag.category === 'terrain')
+      .map((tag) => ({
+        id: tag.id,
+        name: tag.name,
+        icon: tag.icon, // Use icon directly from backend tag
+        category: tag.category,
+        selected: false,
+      }));
+
+    this.historicalPeriods = backendTags
+      .filter((tag) => tag.category === 'period')
+      .map((tag) => ({
+        id: tag.id,
+        name: tag.name,
+        icon: tag.icon, // Use icon directly from backend tag
+        category: tag.category,
+        selected: false,
+      }));
+
+    this.criteria = backendTags
+      .filter((tag) => tag.category === 'criteria')
+      .map((tag) => ({
+        id: tag.id,
+        name: tag.name,
+        icon: tag.icon, // Use icon directly from backend tag
+        category: tag.category,
+        selected: false,
+      }));
+
+    // Pre-select filters as per the original image (after arrays are populated)
+    const moyenAge = this.historicalPeriods.find(
+      (f) => f.name === 'Moyen Âge' || f.name === 'Moyen Age'
+    );
+    if (moyenAge) moyenAge.selected = true;
+
+    const epoqueContemp = this.historicalPeriods.find(
+      (f) => f.name === 'Époque contemporaine'
+    );
+    if (epoqueContemp) epoqueContemp.selected = true;
+  }
+
+  search() {
+    this.filteredBalades = this.balades.filter((balade) => {
+      const matchesTitle =
+        !this.titleSearch ||
+        balade.name.toLowerCase().includes(this.titleSearch.toLowerCase()) ||
+        balade.catchPhrase
+          .toLowerCase()
+          .includes(this.titleSearch.toLowerCase());
+
+      const matchesLocation =
+        !this.locationSearch ||
+        balade.location
+          .toString()
+          .toLowerCase()
+          .includes(this.locationSearch.toLowerCase());
+
+      const durationHours = balade.duration / 60;
+      const matchesDuration =
+        durationHours >= this.durationMin && durationHours <= this.durationMax;
+
+      const selectedTagIds = this.getSelectedTagIds();
+      const matchesTags =
+        selectedTagIds.length === 0 ||
+        (balade.tagIds &&
+          selectedTagIds.every((tagId) => balade.tagIds.includes(tagId)));
+
+      return matchesTitle && matchesLocation && matchesDuration && matchesTags;
+    });
+  }
+
+  getSelectedTagIds(): number[] {
+    return [...this.terrainTypes, ...this.historicalPeriods, ...this.criteria]
+      .filter((filter) => filter.selected)
+      .map((filter) => filter.id);
+  }
+
+  toggleFilter(filter: FilterTag) {
+    filter.selected = !filter.selected;
+    this.search();
+  }
+
+  getActiveFilters(): FilterTag[] {
+    return [
+      ...this.terrainTypes,
+      ...this.historicalPeriods,
+      ...this.criteria,
+    ].filter((filter) => filter.selected);
+  }
+
+  removeActiveFilter(filterToRemove: FilterTag) {
+    const allFilterArrays = [
+      this.terrainTypes,
+      this.historicalPeriods,
+      this.criteria,
+    ];
+    for (const filterArray of allFilterArrays) {
+      const filterInArray = filterArray.find((f) => f.id === filterToRemove.id);
+      if (filterInArray) {
+        filterInArray.selected = false;
+        break; // Found and updated, no need to check other arrays
+      }
     }
     this.search();
   }
 
-  getActiveFilters() {
-    const filters: { type: string; value: string; label: string }[] = [];
-
-    this.terrainTypes
-      .filter((t) => t.checked)
-      .forEach((t) =>
-        filters.push({ type: 'terrain', value: t.value, label: t.label })
-      );
-
-    this.historicalPeriods
-      .filter((p) => p.checked)
-      .forEach((p) =>
-        filters.push({ type: 'period', value: p.value, label: p.label })
-      );
-
-    this.criteria
-      .filter((c) => c.checked)
-      .forEach((c) =>
-        filters.push({ type: 'criteria', value: c.value, label: c.label })
-      );
-
-    return filters;
+  clearAllFilters() {
+    [...this.terrainTypes, ...this.historicalPeriods, ...this.criteria].forEach(
+      (filter) => (filter.selected = false)
+    );
+    this.search();
   }
 
-  formatDuration(duration: number): string {
-    const hours = Math.floor(duration / 60);
-    const minutes = duration % 60;
-    return minutes > 0
-      ? `${hours}h${String(minutes).padStart(2, '0')}`
-      : `${hours}h00`;
+  clearTitleSearch() {
+    this.titleSearch = '';
+    this.search();
+  }
+
+  clearLocationSearch() {
+    this.locationSearch = '';
+    this.search();
+  }
+
+  formatDuration(durationInMinutes: number): string {
+    const hours = Math.floor(durationInMinutes / 60);
+    const minutes = durationInMinutes % 60;
+    return minutes > 0 ? `${hours}h${minutes}` : `${hours}h`;
   }
 
   navigateToDetail(id: number) {
@@ -186,10 +245,43 @@ export class RechercheComponent implements OnInit {
   }
 
   onDurationChange() {
+    if (this.durationMin > this.durationMax) {
+      this.durationMax = this.durationMin;
+    }
     this.search();
   }
 
-  onFilterChange() {
+  getIconChar(unicode: string): string {
+    // Converts a hex string (e.g., "f1bb") to its character representation
+    if (!unicode) return ''; // Handle cases where icon might be missing
+    return String.fromCharCode(parseInt(unicode, 16));
+  }
+
+  onSearchInput() {
     this.search();
+  }
+
+  onLocationInput() {
+    this.search();
+  }
+
+  getAverageRating(balade: Balade): string {
+    const ratings = balade.ratings;
+    if (!ratings || ratings.length === 0) return '0.0';
+    const avg = ratings.reduce((a, b) => a + b, 0) / ratings.length;
+    return avg.toFixed(1);
+  }
+
+  // Methods to toggle expansion state
+  toggleTerrainExpansion() {
+    this.terrainExpanded = !this.terrainExpanded;
+  }
+
+  toggleHistoricalPeriodsExpansion() {
+    this.historicalPeriodsExpanded = !this.historicalPeriodsExpanded;
+  }
+
+  toggleCriteriaExpansion() {
+    this.criteriaExpanded = !this.criteriaExpanded;
   }
 }

@@ -1,36 +1,51 @@
 <div class="recherche-container">
   <h1 class="page-title">Recherche</h1>
 
-  <!-- Search Form -->
-  <div class="search-form">
+  <div class="search-form-area">
     <!-- Search Fields Row -->
-    <div class="search-row">
-      <mat-form-field appearance="outline" class="search-field">
+    <div class="search-inputs-row">
+      <mat-form-field appearance="outline" class="search-field title-field">
         <mat-label>Titre</mat-label>
         <input
           matInput
-          [(ngModel)]="locationSearch"
+          [(ngModel)]="titleSearch"
           placeholder="Ex: rivière, vallon, visite de..."
-          (input)="search()"
+          (input)="onSearchInput()"
         />
-        <mat-icon matSuffix>clear</mat-icon>
+        <button
+          *ngIf="titleSearch"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear title search"
+          (click)="clearTitleSearch()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="search-field">
+      <mat-form-field appearance="outline" class="search-field location-field">
         <mat-label>Lieu</mat-label>
         <input
           matInput
-          [(ngModel)]="placeSearch"
+          [(ngModel)]="locationSearch"
           placeholder="NPA, Ville, ..."
-          (input)="search()"
+          (input)="onLocationInput()"
         />
-        <mat-icon matSuffix>clear</mat-icon>
+        <button
+          *ngIf="locationSearch"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear location search"
+          (click)="clearLocationSearch()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
 
       <button
-        mat-raised-button
-        color="primary"
-        class="search-button"
+        mat-fab
+        class="search-action-button"
+        aria-label="Search"
         (click)="search()"
       >
         <mat-icon>search</mat-icon>
@@ -39,134 +54,229 @@
 
     <!-- Duration Slider -->
     <div class="duration-section">
-      <label>Durée</label>
-      <div class="duration-range">
-        <span>{{ duration.min }}h</span>
+      <div class="duration-header">
+        <span class="duration-label">Durée</span>
+        <span class="duration-selected-range"
+          >{{ durationMin }}h - {{ durationMax }}h</span
+        >
+      </div>
+      <div class="slider-wrapper">
         <mat-slider
-          discrete
-          min="1"
+          class="duration-slider"
+          discrete="true"
+          min="0"
           max="12"
           step="1"
-          class="duration-slider"
-          (input)="onDurationChange()"
         >
           <input
             matSliderStartThumb
-            [(ngModel)]="duration.min"
+            [(ngModel)]="durationMin"
             (ngModelChange)="onDurationChange()"
+            aria-label="Minimum duration"
           />
           <input
             matSliderEndThumb
-            [(ngModel)]="duration.max"
+            [(ngModel)]="durationMax"
             (ngModelChange)="onDurationChange()"
+            aria-label="Maximum duration"
           />
         </mat-slider>
-        <span>{{ duration.max }}h</span>
       </div>
     </div>
 
     <!-- Filter Sections -->
-    <div class="filter-sections">
+    <div class="filter-categories-wrapper">
       <!-- Type de terrain -->
-      <mat-expansion-panel class="filter-panel">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Type de terrain
-            <mat-icon>add</mat-icon>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div class="filter-content">
-          <mat-checkbox
-            *ngFor="let filter of terrainTypes"
-            [(ngModel)]="filter.checked"
-            (change)="onFilterChange()"
-            class="filter-checkbox"
-          >
-            {{ filter.label }}
-          </mat-checkbox>
+      <div class="filter-category-panel">
+        <div
+          class="filter-category-header"
+          (click)="toggleTerrainExpansion()"
+          tabindex="0"
+          (keydown.enter)="toggleTerrainExpansion()"
+          role="button"
+          [attr.aria-expanded]="terrainExpanded"
+        >
+          <span class="filter-category-title">Type de terrain</span>
+          <mat-icon class="filter-category-toggle-icon">
+            {{ terrainExpanded ? 'remove' : 'add' }}
+          </mat-icon>
         </div>
-      </mat-expansion-panel>
+        <div class="filter-chips-container" *ngIf="terrainExpanded">
+          <mat-chip-listbox
+            multiple
+            class="filter-chip-list"
+            aria-label="Type de terrain selection"
+          >
+            <mat-chip-option
+              *ngFor="let filter of terrainTypes"
+              [selected]="filter.selected"
+              (click)="toggleFilter(filter); $event.stopPropagation()"
+              class="filter-chip"
+              [class.selected-chip]="filter.selected"
+            >
+              <mat-icon matChipAvatar class="chip-icon">{{
+                getIconChar(filter.icon)
+              }}</mat-icon>
+              {{ filter.name }}
+            </mat-chip-option>
+          </mat-chip-listbox>
+        </div>
+      </div>
 
       <!-- Période historique -->
-      <mat-expansion-panel class="filter-panel">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Période historique
-            <mat-icon>add</mat-icon>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div class="filter-content">
-          <mat-checkbox
-            *ngFor="let filter of historicalPeriods"
-            [(ngModel)]="filter.checked"
-            (change)="onFilterChange()"
-            class="filter-checkbox"
-          >
-            {{ filter.label }}
-          </mat-checkbox>
+      <div class="filter-category-panel">
+        <div
+          class="filter-category-header"
+          (click)="toggleHistoricalPeriodsExpansion()"
+          tabindex="0"
+          (keydown.enter)="toggleHistoricalPeriodsExpansion()"
+          role="button"
+          [attr.aria-expanded]="historicalPeriodsExpanded"
+        >
+          <span class="filter-category-title">Période historique</span>
+          <mat-icon class="filter-category-toggle-icon">
+            {{ historicalPeriodsExpanded ? 'remove' : 'add' }}
+          </mat-icon>
         </div>
-      </mat-expansion-panel>
+        <div class="filter-chips-container" *ngIf="historicalPeriodsExpanded">
+          <mat-chip-listbox
+            multiple
+            class="filter-chip-list"
+            aria-label="Période historique selection"
+          >
+            <mat-chip-option
+              *ngFor="let filter of historicalPeriods"
+              [selected]="filter.selected"
+              (click)="toggleFilter(filter); $event.stopPropagation()"
+              class="filter-chip"
+              [class.selected-chip]="filter.selected"
+            >
+              <mat-icon matChipAvatar class="chip-icon">{{
+                getIconChar(filter.icon)
+              }}</mat-icon>
+              {{ filter.name }}
+            </mat-chip-option>
+          </mat-chip-listbox>
+        </div>
+      </div>
 
       <!-- Critères -->
-      <mat-expansion-panel class="filter-panel">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Critères
-            <mat-icon>add</mat-icon>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <div class="filter-content">
-          <mat-checkbox
-            *ngFor="let filter of criteria"
-            [(ngModel)]="filter.checked"
-            (change)="onFilterChange()"
-            class="filter-checkbox"
-          >
-            {{ filter.label }}
-          </mat-checkbox>
+      <div class="filter-category-panel">
+        <div
+          class="filter-category-header"
+          (click)="toggleCriteriaExpansion()"
+          tabindex="0"
+          (keydown.enter)="toggleCriteriaExpansion()"
+          role="button"
+          [attr.aria-expanded]="criteriaExpanded"
+        >
+          <span class="filter-category-title">Critères</span>
+          <mat-icon class="filter-category-toggle-icon">
+            {{ criteriaExpanded ? 'remove' : 'add' }}
+          </mat-icon>
         </div>
-      </mat-expansion-panel>
+        <div class="filter-chips-container" *ngIf="criteriaExpanded">
+          <mat-chip-listbox
+            multiple
+            class="filter-chip-list"
+            aria-label="Critères selection"
+          >
+            <mat-chip-option
+              *ngFor="let filter of criteria"
+              [selected]="filter.selected"
+              (click)="toggleFilter(filter); $event.stopPropagation()"
+              class="filter-chip"
+              [class.selected-chip]="filter.selected"
+            >
+              <mat-icon matChipAvatar class="chip-icon">{{
+                getIconChar(filter.icon)
+              }}</mat-icon>
+              {{ filter.name }}
+            </mat-chip-option>
+          </mat-chip-listbox>
+        </div>
+      </div>
     </div>
 
     <!-- Active Filters -->
-    <div class="active-filters" *ngIf="getActiveFilters().length > 0">
-      <span class="filters-label">Filtres actifs :</span>
-      <mat-chip-set>
+    <div class="active-filters-display" *ngIf="getActiveFilters().length > 0">
+      <span class="active-filters-label">Filtres actifs:</span>
+      <mat-chip-listbox class="active-chip-list" aria-label="Active filters">
         <mat-chip
           *ngFor="let filter of getActiveFilters()"
-          [removable]="true"
-          (removed)="removeFilter(filter.type, filter.value)"
+          class="active-filter-chip"
+          (removed)="removeActiveFilter(filter)"
+          removable
         >
-          {{ filter.label }}
-          <mat-icon matChipRemove>cancel</mat-icon>
+          <mat-icon matChipAvatar class="chip-icon">{{
+            getIconChar(filter.icon)
+          }}</mat-icon>
+          {{ filter.name }}
+          <button matChipRemove [attr.aria-label]="'remove ' + filter.name">
+            <mat-icon>cancel</mat-icon>
+          </button>
         </mat-chip>
-      </mat-chip-set>
+      </mat-chip-listbox>
     </div>
   </div>
 
   <!-- Search Results -->
   <div class="results-section">
     <div
-      class="result-item"
-      *ngFor="let balade of filteredBalades"
-      (click)="navigateToDetail(balade.id)"
+      class="results-header"
+      *ngIf="balades.length > 0 || filteredBalades.length > 0"
     >
-      <div class="result-image">
-        <img
-          [src]="'http://localhost:3000' + balade.previewPath"
-          [alt]="balade.name"
-        />
-      </div>
-      <div class="result-content">
-        <h3 class="result-title">{{ balade.name }}</h3>
-        <p class="result-description">{{ balade.catchPhrase }}</p>
-        <div class="result-meta">
-          <mat-icon class="meta-icon">schedule</mat-icon>
-          <span class="meta-text">{{ formatDuration(balade.duration) }}</span>
-          <mat-icon class="meta-icon">place</mat-icon>
-          <span class="meta-text">Étampes</span>
+      <h2>{{ filteredBalades.length }} résultat(s) trouvé(s)</h2>
+    </div>
+
+    <div *ngIf="filteredBalades.length > 0; else noResults">
+      <div
+        class="result-item"
+        *ngFor="let balade of filteredBalades"
+        (click)="navigateToDetail(balade.id)"
+        tabindex="0"
+        (keydown.enter)="navigateToDetail(balade.id)"
+        role="link"
+        [attr.aria-label]="'View details for ' + balade.name"
+      >
+        <div class="result-image">
+          <img
+            [src]="'http://localhost:3000' + balade.previewPath"
+            [alt]="balade.name"
+          />
+          <div
+            class="rating-overlay"
+            *ngIf="balade.ratings && balade.ratings.length > 0"
+          >
+            <span class="rating-text">{{ getAverageRating(balade) }}</span>
+            <mat-icon>star</mat-icon>
+          </div>
+        </div>
+        <div class="result-content">
+          <h3 class="result-title">{{ balade.name }}</h3>
+          <p class="result-description">{{ balade.catchPhrase }}</p>
+          <div class="result-meta">
+            <div class="meta-item">
+              <mat-icon class="meta-icon">schedule</mat-icon>
+              <span class="meta-text">{{
+                formatDuration(balade.duration)
+              }}</span>
+            </div>
+            <div class="meta-item">
+              <mat-icon class="meta-icon">place</mat-icon>
+              <span class="meta-text">{{ balade.location }}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+    <ng-template #noResults>
+      <div class="no-results-message">
+        <mat-icon class="no-results-icon">search_off</mat-icon>
+        <h3>Aucun résultat trouvé</h3>
+        <p>Essayez d'ajuster vos critères de recherche</p>
+      </div>
+    </ng-template>
   </div>
 </div>
