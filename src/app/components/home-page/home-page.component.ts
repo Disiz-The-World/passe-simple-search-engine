@@ -1,54 +1,70 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { HeroCardComponent } from '../hero-card/hero-card.component';
-import { FeaturedWalkCardComponent } from '../featured-walk-card/featured-walk-card.component';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  HostListener,
+  Inject,
+  OnInit,
+  PLATFORM_ID,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { CommonModule } from '@angular/common';
+import { BaladeCardComponent } from '../balade-card/balade-card.component';
+import { FeaturedWalkCardComponent } from '../featured-walk-card/featured-walk-card.component';
+import { HeroCardComponent } from '../hero-card/hero-card.component';
 import { ThematicsComponent } from '../thematics/thematics.component';
 import { WalkService } from '../../services/walk.service';
-import { Router, RouterLink } from '@angular/router';
-import { BaladeCardComponent } from '../balade-card/balade-card.component';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
   imports: [
-    HeroCardComponent,
+    BaladeCardComponent,
+    CommonModule,
     FeaturedWalkCardComponent,
+    HeroCardComponent,
+    MatButtonModule,
     MatCardModule,
     MatIconModule,
-    MatButtonModule,
-    CommonModule,
-    ThematicsComponent,
-    BaladeCardComponent,
     RouterLink,
+    ThematicsComponent,
   ],
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent implements OnInit, AfterViewInit {
   balades: any[] = [];
   visibleBalades: any[] = [];
   showAll = false;
+
+  focusedIndexes: number[] = [];
+  nearbyIndexes: number[] = [];
+  hiddenIndexes: number[] = [];
+
+  @ViewChild('carouselContainer', { static: false })
+  carouselContainer!: ElementRef<HTMLElement>;
+
+  @ViewChildren('carouselCard', { read: ElementRef })
+  carouselCards!: QueryList<ElementRef<HTMLElement>>;
 
   @HostListener('window:resize')
   onResize() {
     this.updateVisibleBalades();
   }
+
   constructor(
     private walkService: WalkService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
-
-  onNavigateToDetails(id: number) {
-    this.walkService.getWalkById(id).subscribe({
-      next: () => this.router.navigate(['/balades', id]),
-      error: (err) => {
-        console.error('Navigation error:', err);
-      },
-    });
-  }
 
   ngOnInit(): void {
     const staticWalks = [
@@ -103,6 +119,32 @@ export class HomePageComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
+    const el = this.carouselContainer?.nativeElement;
+    if (el && typeof el.getBoundingClientRect === 'function') {
+      el.addEventListener('scroll', () => this.updateCarouselFocus());
+      this.updateCarouselFocus();
+    } else {
+      console.warn('[carousel] container not ready or invalid:', el);
+    }
+  }
+
+  onNavigateToDetails(id: number) {
+    this.walkService.getWalkById(id).subscribe({
+      next: () => this.router.navigate(['/balades', id]),
+      error: (err) => {
+        console.error('Navigation error:', err);
+      },
+    });
+  }
+
+  public toggleShowAll(): void {
+    this.showAll = !this.showAll;
+    this.updateVisibleBalades();
+  }
+
   updateVisibleBalades(): void {
     const cardsPerRow =
       typeof window !== 'undefined' && window.innerWidth >= 1024 ? 3 : 2;
@@ -113,8 +155,28 @@ export class HomePageComponent implements OnInit {
     this.visibleBalades = this.balades.slice(0, maxVisible);
   }
 
-  public toggleShowAll(): void {
-    this.showAll = !this.showAll;
-    this.updateVisibleBalades();
+  onScroll(): void {
+    this.updateCarouselFocus();
+  }
+
+  updateCarouselFocus(): void {
+    if (!this.carouselContainer?.nativeElement || !this.carouselCards) return;
+
+    const containerRect =
+      this.carouselContainer.nativeElement.getBoundingClientRect();
+    const centerX = containerRect.left + containerRect.width / 2;
+
+    const distances = this.carouselCards.map((cardRef, index) => {
+      const cardRect = cardRef.nativeElement.getBoundingClientRect();
+      const cardCenter = cardRect.left + cardRect.width / 2;
+      return { index, distance: Math.abs(centerX - cardCenter) };
+    });
+
+    distances.sort((a, b) => a.distance - b.distance);
+    this.focusedIndexes = distances.slice(0, 2).map((d) => d.index);
+    this.nearbyIndexes = distances.slice(2, 6).map((d) => d.index);
+    this.hiddenIndexes = distances.slice(6).map((d) => d.index);
+
+    this.cdr.detectChanges();
   }
 }

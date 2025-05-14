@@ -1,42 +1,47 @@
 import {
   Component,
-  ViewEncapsulation,
-  Output,
   EventEmitter,
   Inject,
-  PLATFORM_ID,
   OnInit,
+  Output,
+  PLATFORM_ID,
+  ViewEncapsulation,
 } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+
+import {
+  MatAutocompleteModule,
+  MatAutocompleteSelectedEvent,
+} from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInput } from '@angular/material/input';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatOptionModule } from '@angular/material/core';
-import { Router, RouterModule } from '@angular/router';
-import { AvatarComponent } from '../avatar/avatar.component';
-import { WalkService } from '../../services/walk.service';
+import { MatIconButton } from '@angular/material/button';
+
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatIconButton } from '@angular/material/button';
+
+import { AvatarComponent } from '../avatar/avatar.component';
+import { WalkService } from '../../services/walk.service';
 
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
   standalone: true,
   imports: [
-    MatFormFieldModule,
-    MatIconModule,
+    AvatarComponent,
     CommonModule,
     FormsModule,
-    MatInput,
-    AvatarComponent,
     MatAutocompleteModule,
+    MatFormFieldModule,
+    MatIconButton,
+    MatIconModule,
+    MatInput,
     MatOptionModule,
     RouterModule,
-    MatIconButton,
   ],
   styleUrls: ['./search-bar.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -45,6 +50,7 @@ export class SearchBarComponent implements OnInit {
   @Output() burgerClick = new EventEmitter<void>();
   @Output() closeDrawer = new EventEmitter<void>();
   @Output() searchResults = new EventEmitter<any[]>();
+
   searchQuery: string | undefined;
   searchMatches: any[] = [];
   isMobile = false;
@@ -79,18 +85,6 @@ export class SearchBarComponent implements OnInit {
     this.searchChanged.next(query);
   }
 
-  performSearch(query: string) {
-    if (query && query.trim().length > 0) {
-      this.walkService.searchWalks(query).subscribe((results: any[]) => {
-        console.log('Résultats reçus :', results);
-        this.searchMatches = results;
-        this.searchResults.emit(results);
-      });
-    } else {
-      this.searchMatches = [];
-    }
-  }
-
   onOptionSelected(event: any) {
     if (!isPlatformBrowser(this.platformId)) return;
 
@@ -115,6 +109,18 @@ export class SearchBarComponent implements OnInit {
       this.router.navigate(['/balades', this.searchMatches[0].id]).then(() => {
         this.searchQuery = '';
       });
+    }
+  }
+
+  performSearch(query: string) {
+    if (query && query.trim().length > 0) {
+      this.walkService.searchWalks(query).subscribe((results: any[]) => {
+        console.log('Résultats reçus :', results);
+        this.searchMatches = results;
+        this.searchResults.emit(results);
+      });
+    } else {
+      this.searchMatches = [];
     }
   }
 

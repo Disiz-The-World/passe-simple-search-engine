@@ -1,14 +1,14 @@
 :host {
   display: block;
   height: 100%;
-  border-radius: 16px;
   overflow: hidden;
+  border-radius: 28px;
 }
 
 .walk-card {
   width: 556px;
-  border-radius: 16px;
   overflow: hidden;
+  border-radius: 28px;
   display: flex;
   flex-direction: column;
   box-shadow: none;
@@ -20,7 +20,7 @@
       width: 100%;
       height: 260px;
       object-fit: cover;
-      border-radius: 16px;
+      border-radius: 28px;
     }
 
     .stars {
@@ -88,5 +88,19 @@
         background-color: transparent;
       }
     }
+  }
+}
+
+:host(.nearby),
+:host(.hidden) {
+  mat-card-content,
+  .cta {
+    display: none;
+  }
+
+  .image-wrapper img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
   }
 }

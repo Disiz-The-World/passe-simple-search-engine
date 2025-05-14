@@ -1,9 +1,16 @@
 <app-hero-card></app-hero-card>
 <h2 class="section-title">Balades à la une</h2>
 <div class="carousel-container">
-  <div class="carousel-scroll">
+  <div class="carousel-scroll" #carouselContainer (scroll)="onScroll()">
     <app-featured-walk-card
-      *ngFor="let walk of balades"
+      #carouselCard
+      *ngFor="let walk of balades; let i = index"
+      class="carousel-card"
+      [ngClass]="{
+        focused: focusedIndexes.includes(i),
+        nearby: nearbyIndexes.includes(i),
+        hidden: hiddenIndexes.includes(i),
+      }"
       [image]="walk.image"
       [title]="walk.title"
       [description]="walk.description"
