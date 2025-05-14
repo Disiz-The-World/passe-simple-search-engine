@@ -27,7 +27,6 @@ import { BaladeCardComponent } from '../balade-card/balade-card.component';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
 })
-
 export class HomePageComponent implements OnInit {
   balades: any[] = [];
   visibleBalades: any[] = [];
@@ -90,18 +89,23 @@ export class HomePageComponent implements OnInit {
         duration: 2,
       },
     ];
-    const repeatedWalks = Array(8).fill(staticWalks).flat();
+    const repeatedWalks = Array.from({ length: 4 }).flatMap((_, i) =>
+      staticWalks.map((w) => ({
+        ...w,
+        id: w.id * 10 + i,
+        mock: true,
+      }))
+    );
 
-    this.walkService.getTransformedWalks().subscribe((transformedWalks) => {
-      this.balades = [...transformedWalks, ...staticWalks];
-      this.updateVisibleBalades();
-      this.balades = repeatedWalks;
+    this.walkService.getTransformedWalks().subscribe((realWalks) => {
+      this.balades = [...realWalks, ...repeatedWalks];
       this.updateVisibleBalades();
     });
   }
 
   updateVisibleBalades(): void {
-    const cardsPerRow = typeof window !== 'undefined' && window.innerWidth >= 1024 ? 3 : 2;
+    const cardsPerRow =
+      typeof window !== 'undefined' && window.innerWidth >= 1024 ? 3 : 2;
     const rowsToShow = 2;
     const maxVisible = this.showAll
       ? this.balades.length
