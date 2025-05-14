@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
+import { UserModel } from '../models/user.model';
+import { BaladeModel } from '../models/balade.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,26 +14,30 @@ export class DatabaseService {
 
   constructor(private http: HttpClient) {}
 
-  public getBalades(filters: {}): Observable<any> {
+  public async getBalades(filters: { [key: string]: any }) {
     let url =
       environment.apiUrl +
       this.balades +
       (Object.keys(filters).length === 0 ? '' : '?');
 
-    url += Object.keys(filters)
-      .map((filter: string, index: number) => {
-        return `${index}=${filter}`;
-      })
+    url += Object.entries(filters)
+      .map(([key, value]) => `${key}=${value}`)
       .join('&');
 
-    return this.http.get(url);
+    return await firstValueFrom(this.http.get<BaladeModel[]>(url));
   }
 
-  public findBaladeById(id: number): Observable<any> {
-    return this.http.get(`${this.balades}?id=${id}`);
+  public updateBalade(baladeId: number, data: { [key: string]: any }) {
+    const url = environment.apiUrl + '/balades/' + baladeId;
+
+    this.http.put(url, data).subscribe((response) => {
+      return response;
+    });
+
+    return true;
   }
 
-  public getUsers(filters: {}): Observable<any> {
+  public async getUsers(filters: {}) {
     let url =
       environment.apiUrl +
       this.users +
@@ -43,6 +49,6 @@ export class DatabaseService {
       })
       .join('&');
 
-    return this.http.get(url);
+    return await firstValueFrom(this.http.get<UserModel[]>(url));
   }
 }

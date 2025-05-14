@@ -1,39 +1,59 @@
-@for (item of balades; track item) {
-  <a href="/balades/{{ item.id }}" class="balade">
-        <mat-card appearance="raised">
-      <mat-card-header>
-        <mat-card-title>{{ item.name }}</mat-card-title>
-        <ul class="infos">
-          <li class="info">
-            <mat-icon
-              aria-hidden="false"
-              title="Durée"
-              fontIcon="schedule"
-            ></mat-icon>
-            <span>{{ formatDuration(item.duration) }}</span>
-          </li>
-          <li class="info">
-            <mat-icon
-              aria-hidden="false"
-              title="Lieu"
-              fontIcon="location_on"
-            ></mat-icon>
-            <span>{{ item.location }}</span>
-          </li>
-        </ul>
-      </mat-card-header>
-      <mat-card-actions>
-        <span>Tag</span>
-        <button (click)="swapFavorite(1)" class="favorite-button">
-          <mat-icon
-            aria-hidden="false"
-            aria-label="Favoris"
-            fontIcon="bookmark"
-          ></mat-icon>
-        </button>
-      </mat-card-actions>
-    </mat-card>
-  </a>
-} @empty {
-  <p>Vous n'avez aucune balade enregistrée dans vos favoris</p>
-}
+<section class="favorites">
+  <div class="top">
+    <h1>Favoris</h1>
+    <div class="sort-filter">
+      <mat-form-field appearance="outline" class="sort">
+        <mat-label>Trier par</mat-label>
+        <mat-select (selectionChange)="toggleSortOrder()">
+          <mat-option value="asc">A-Z</mat-option>
+          <mat-option value="desc">Z-A</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  @if (this.isLoading) {
+    <p>Chargement...</p>
+  } @else {
+    <div class="list">
+      @for (item of balades; track item) {
+        <a routerLink="/balades/{{ item.id }}" class="balade">
+          <mat-card appearance="raised">
+            <mat-card-header>
+              <mat-card-title>{{ item.name }}</mat-card-title>
+              <ul class="infos">
+                <li class="info">
+                  <mat-icon
+                    aria-hidden="false"
+                    title="Durée"
+                    fontIcon="schedule"
+                  ></mat-icon>
+                  <span>{{ formatDuration(item.duration) }}</span>
+                </li>
+                <li class="info">
+                  <mat-icon
+                    aria-hidden="false"
+                    title="Lieu"
+                    fontIcon="location_on"
+                  ></mat-icon>
+                  <span>{{ item.location }}</span>
+                </li>
+              </ul>
+            </mat-card-header>
+            <mat-card-actions>
+              <span>Tag</span>
+              <button (click)="swapFavorite(item.id)" class="favorite-button">
+                <mat-icon
+                  aria-hidden="false"
+                  aria-label="Favoris"
+                  fontIcon="bookmark"
+                ></mat-icon>
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </a>
+      } @empty {
+        <p>Vous n'avez aucune balade enregistrée dans vos favoris</p>
+      }
+    </div>
+  }
+</section>

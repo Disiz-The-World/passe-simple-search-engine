@@ -15,7 +15,8 @@ export class AvatarComponent implements OnInit {
 
   avatar: string = '';
 
-  ngOnInit(): void {
-    this.avatar = this.authService.getCurrentUser()?.avatar || '';
+  async ngOnInit(): Promise<void> {
+    const user = await this.authService.getCurrentUser();
+    this.avatar = user?.profilePicture || '';
   }
 }

@@ -21,6 +21,28 @@ mat-card-actions {
   min-height: 0;
 }
 
+.favorties {
+  padding: 0 1.5rem;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+
 .infos {
   list-style-type: none;
   display: flex;
@@ -54,7 +76,7 @@ mat-card-actions {
   width: 1.5rem;
   height: 1.5rem;
   display: inline-flex;
-  z-index: 500;
+  z-index: 50;
   cursor: pointer;
 
   mat-icon {

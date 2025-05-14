@@ -30,7 +30,7 @@ export class AuthService {
     return this.getCurrentUserToken() != null;
   }
 
-  public getCurrentUser(): UserModel | undefined {
+  public async getCurrentUser(): Promise<UserModel | undefined> {
     if (this.currentUser) {
       return this.currentUser;
     }
@@ -39,15 +39,19 @@ export class AuthService {
       return undefined;
     }
 
-    this.databaseService
-      .getUsers({
+    try {
+      const users = await this.databaseService.getUsers({
         id: this.getCurrentUserToken(),
-      })
-      .subscribe((users) => {
-        if (users.length > 0) {
-          this.currentUser = users[0];
-        }
       });
+
+      if (users.length > 0) {
+        this.currentUser = users[0];
+      } else {
+        this.currentUser = undefined;
+      }
+    } catch (error) {
+      return undefined;
+    }
 
     return this.currentUser;
   }
