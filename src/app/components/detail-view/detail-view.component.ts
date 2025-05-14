@@ -25,6 +25,7 @@ export class DetailViewComponent implements OnInit {
   balade: any;
   tags: any[] = [];
   id: string | null = null;
+  detail: boolean = true;
 
   constructor(
     private route: ActivatedRoute,

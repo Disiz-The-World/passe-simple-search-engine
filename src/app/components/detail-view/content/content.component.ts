@@ -26,9 +26,9 @@ export interface Content {
   templateUrl: './content.component.html',
   styleUrl: './content.component.scss',
 })
-
 export class ContentComponent implements OnChanges {
   @Input() content!: Content;
+  @Input() catchPhrase!: string;
 
   // Déclarez un tableau pour suivre la visibilité des sections
   contentVisibility: { name: string; visibility: boolean }[] = [];
