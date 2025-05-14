@@ -1,11 +1,12 @@
 .balade-card {
   width: 100%;
   max-width: 320px;
-  background: #f2f5e8;
+  background: #edefe5;
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.2s;
+  box-shadow: none !important;
 
   &:hover {
     transform: scale(1.01);
@@ -42,6 +43,7 @@
 
   mat-card-content {
     padding: 12px;
+    box-shadow: none;
 
     h3 {
       margin: 0 0 8px;
