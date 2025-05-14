@@ -54,6 +54,7 @@ export class HomePageComponent implements OnInit {
         description:
           'Perché à 1 930 mètres d’altitude, le barrage d’Emosson offre un panorama époustouflant sur le massif du Mont-Blanc.',
         rating: 2,
+        duration: 2,
       },
       {
         id: 3,
