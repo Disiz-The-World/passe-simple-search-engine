@@ -10,15 +10,31 @@
       [tags]="tags"
       [catchPhrase]="balade.catchPhrase"
     ></app-preview-image>
-    <div class="info-content">
-      <app-useful-info
-        class="useful-info"
-        [infos]="balade.infos"
-        [map]="balade.map"
-        [attributions]="balade.attributions"
-        [seeMore]="balade.seeMore"
-      ></app-useful-info>
-      <app-content class="content" [content]="balade.content"></app-content>
+    <div class="page-selector">
+      <p class="detail" [ngClass]="{ active: detail }" (click)="detail = true">
+        Details
+      </p>
+      <p class="info" [ngClass]="{ active: !detail }" (click)="detail = false">
+        Informations pratiques
+      </p>
+    </div>
+    <div *ngIf="!detail">
+      <div class="info-content">
+        <app-useful-info
+          class="useful-info"
+          [infos]="balade.infos"
+          [map]="balade.map"
+          [attributions]="balade.attributions"
+          [seeMore]="balade.seeMore"
+        ></app-useful-info>
+      </div>
+    </div>
+    <div *ngIf="detail">
+      <app-content
+        class="content"
+        [content]="balade.content"
+        [catchPhrase]="balade.catchPhrase"
+      ></app-content>
     </div>
   </div>
 </div>

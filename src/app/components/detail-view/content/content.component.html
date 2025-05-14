@@ -1,37 +1,77 @@
 <div class="content">
   <p class="title">Détails</p>
-  <p>{{ content.details }}</p>
 
-  <div class="sections-table">
-    <div class="row" *ngFor="let section of content.sections">
-      <!-- Colonne gauche : Sections et contenu -->
-      <div class="cell left">
-        <div class="section-header">
-          <mat-icon (click)="toggleVisibility(section.title)">
-            {{ getIcon(section.title) }}
-          </mat-icon>
-          <h3>{{ section.title }}</h3>
-        </div>
-        <div *ngIf="getSectionVisibility(section.title)">
-          <div *ngFor="let item of section.content">
-            <p *ngIf="item.type === 'text'">{{ item.text }}</p>
-            <div *ngIf="item.type === 'image/normal'">
-              <img [src]="'http://localhost:3000' + item.path" alt="Image normale" />
-              <p>{{ item.legend }}</p>
+  <h2 class="catch">"{{ catchPhrase }}"</h2>
+
+  <p>{{ content.details }}</p>
+  <div class="desktop">
+    <div class="sections-table">
+      <div class="row" *ngFor="let section of content.sections">
+        <!-- Colonne gauche : Sections et contenu -->
+        <div class="cell left">
+          <div class="section-header">
+            <mat-icon (click)="toggleVisibility(section.title)">
+              {{ getIcon(section.title) }}
+            </mat-icon>
+            <h3>{{ section.title }}</h3>
+          </div>
+          <div *ngIf="getSectionVisibility(section.title)">
+            <div *ngFor="let item of section.content">
+              <p *ngIf="item.type === 'text'">{{ item.text }}</p>
+              <div *ngIf="item.type === 'image/normal'">
+                <img
+                  [src]="'http://localhost:3000' + item.path"
+                  alt="Image normale"
+                />
+                <p>{{ item.legend }}</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Colonne droite : Images latérales -->
-      <div class="cell right">
-        <div *ngIf="getSectionVisibility(section.title)">
-          <ng-container *ngFor="let item of section.content">
-            <div *ngIf="item.type === 'image/side'">
-              <img [src]="'http://localhost:3000' + item.path" alt="Image latérale" />
-              <p>{{ item.legend }}</p>
-            </div>
-          </ng-container>
+        <!-- Colonne droite : Images latérales -->
+        <div class="cell right">
+          <div *ngIf="getSectionVisibility(section.title)">
+            <ng-container *ngFor="let item of section.content">
+              <div *ngIf="item.type === 'image/side'">
+                <img
+                  [src]="'http://localhost:3000' + item.path"
+                  alt="Image latérale"
+                />
+                <p>{{ item.legend }}</p>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mobile">
+  <div class="section" *ngFor="let section of content.sections">
+    <div class="section-header">
+      <mat-icon (click)="toggleVisibility(section.title)">
+        {{ getIcon(section.title) }}
+      </mat-icon>
+      <h3>{{ section.title }}</h3>
+    </div>
+    <div *ngIf="getSectionVisibility(section.title)">
+      <div *ngFor="let item of section.content">
+        <p *ngIf="item.type === 'text'">{{ item.text }}</p>
+        <div *ngIf="item.type === 'image/normal'">
+          <img
+            [src]="'http://localhost:3000' + item.path"
+            alt="Image normale"
+          />
+          <p>{{ item.legend }}</p>
+        </div>
+        <div *ngIf="item.type === 'image/side'">
+          <img
+            [src]="'http://localhost:3000' + item.path"
+            alt="Image latérale"
+          />
+          <p>{{ item.legend }}</p>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from './components/side-bar/sidebar.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
@@ -27,7 +27,7 @@ import { NgIf } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   isMobile = false;
 
   ngOnInit(): void {

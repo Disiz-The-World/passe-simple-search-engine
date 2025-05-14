@@ -16,3 +16,9 @@
 .useful-info {
   width: 380px;
 }
+
+@media (max-width: 412px) {
+  .title {
+    display: none;
+  }
+}
