@@ -48,6 +48,10 @@ export class HomePageComponent implements OnInit, AfterViewInit {
   nearbyIndexes: number[] = [];
   hiddenIndexes: number[] = [];
 
+  private isDragging = false;
+  private startX = 0;
+  private scrollLeft = 0;
+
   @ViewChild('carouselContainer', { static: false })
   carouselContainer!: ElementRef<HTMLElement>;
 
@@ -118,35 +122,70 @@ export class HomePageComponent implements OnInit, AfterViewInit {
       this.updateVisibleBalades();
     });
   }
-  private scrollStopTimeout: any;
 
+  private scrollStopTimeout: ReturnType<typeof setTimeout> | null = null;
   onScroll(): void {
-    // Mise à jour immédiate du focus en scrollant
     this.updateCarouselFocus();
-
-    // Puis centrage auto après un petit délai (scroll-stop)
-    clearTimeout(this.scrollStopTimeout);
-    this.scrollStopTimeout = setTimeout(() => {
-      this.centerFocusedCard();
-    }, 150);
   }
+
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
-    const el = this.carouselContainer?.nativeElement;
-    if (el) {
-      el.addEventListener('scroll', () => this.updateCarouselFocus());
-      setTimeout(() => this.updateCarouselFocus(), 100);
+    const el = this.carouselContainer.nativeElement;
+
+    el.addEventListener('scroll', () => this.onScroll(), { passive: true });
+    el.addEventListener('mousedown', this.onMouseDown.bind(this));
+    el.addEventListener('mouseup', this.onMouseUp.bind(this));
+    el.addEventListener('mousemove', this.onMouseMove.bind(this));
+    el.addEventListener('mouseleave', this.onMouseLeave.bind(this));
+    el.addEventListener('wheel', this.onMouseWheel.bind(this), {
+      passive: false,
+    });
+
+    this.updateCarouselFocus();
+  }
+  onMouseDown(e: MouseEvent): void {
+    e.preventDefault();
+    this.isDragging = true;
+    this.carouselContainer.nativeElement.classList.add('dragging');
+    this.startX = e.pageX - this.carouselContainer.nativeElement.offsetLeft;
+    this.scrollLeft = this.carouselContainer.nativeElement.scrollLeft;
+  }
+
+  onMouseLeave(): void {
+    this.isDragging = false;
+    this.carouselContainer.nativeElement.classList.remove('dragging');
+  }
+
+  onMouseUp(): void {
+    this.isDragging = false;
+    this.carouselContainer.nativeElement.classList.remove('dragging');
+  }
+
+  onMouseMove(e: MouseEvent): void {
+    if (!this.isDragging || e.buttons === 0) {
+      this.onMouseUp();
+      return;
     }
+
+    e.preventDefault();
+    const x = e.pageX - this.carouselContainer.nativeElement.offsetLeft;
+    const walk = (x - this.startX) * 0.01;
+    this.carouselContainer.nativeElement.scrollLeft = this.scrollLeft - walk;
+  }
+  onMouseWheel(e: WheelEvent): void {
+    if (!e.shiftKey && Math.abs(e.deltaX) < Math.abs(e.deltaY)) {
+      return;
+    }
+
+    e.preventDefault();
+
+    const scrollAmount = e.deltaY || e.deltaX;
+    this.carouselContainer.nativeElement.scrollLeft += scrollAmount * 0.9;
   }
 
   onNavigateToDetails(id: number) {
-    this.walkService.getWalkById(id).subscribe({
-      next: () => this.router.navigate(['/balades', id]),
-      error: (err) => {
-        console.error('Navigation error:', err);
-      },
-    });
+    this.router.navigate(['/balades', id]);
   }
 
   public toggleShowAll(): void {
@@ -184,32 +223,38 @@ export class HomePageComponent implements OnInit, AfterViewInit {
 
     distances.sort((a, b) => a.distance - b.distance);
 
-    this.focusedIndexes = [distances[0].index];
-    this.nearbyIndexes = distances.slice(1, 3).map((d) => d.index);
+    this.focusedIndexes = distances.slice(0, 2).map((d) => d.index);
+    this.nearbyIndexes = distances.slice(2, 3).map((d) => d.index);
     this.hiddenIndexes = distances.slice(3).map((d) => d.index);
-
-    this.lastFocusedIndex = distances[0].index;
-
+    this.lastFocusedIndex = this.focusedIndexes[0];
     this.cdr.detectChanges();
   }
 
   centerFocusedCard(): void {
     if (
-      this.lastFocusedIndex === null ||
+      this.focusedIndexes.length < 2 ||
       !this.carouselCards ||
-      !this.carouselCards.get(this.lastFocusedIndex)
+      !this.carouselCards.get(this.focusedIndexes[0]) ||
+      !this.carouselCards.get(this.focusedIndexes[1])
     ) {
       return;
     }
 
-    const cardEl = this.carouselCards.get(this.lastFocusedIndex)!.nativeElement;
+    const cardEl1 = this.carouselCards.get(
+      this.focusedIndexes[0]
+    )!.nativeElement;
+    const cardEl2 = this.carouselCards.get(
+      this.focusedIndexes[1]
+    )!.nativeElement;
     const containerEl = this.carouselContainer.nativeElement;
+
+    const center1 = cardEl1.offsetLeft + cardEl1.offsetWidth / 2;
+    const center2 = cardEl2.offsetLeft + cardEl2.offsetWidth / 2;
+    const averageCenter = (center1 + center2) / 2;
 
     const containerCenter =
       containerEl.scrollLeft + containerEl.clientWidth / 2;
-    const cardCenter = cardEl.offsetLeft + cardEl.offsetWidth / 2;
-
-    const scrollDiff = cardCenter - containerCenter;
+    const scrollDiff = averageCenter - containerCenter;
 
     containerEl.scrollTo({
       left: containerEl.scrollLeft + scrollDiff,
@@ -219,5 +264,13 @@ export class HomePageComponent implements OnInit, AfterViewInit {
 
   trackByBalade(index: number, item: any): number {
     return item.id;
+  }
+  getDurationAndLocation(walk: any): string {
+    const duration = walk.duration ? `${walk.duration}h` : '';
+    const location = walk.location ? walk.location : '';
+    if (duration && location) {
+      return `${duration} · ${location}`;
+    }
+    return duration || location || '';
   }
 }

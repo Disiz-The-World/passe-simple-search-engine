@@ -9,55 +9,100 @@
 }
 
 .carousel-container {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch; // Ajouté
-  scrollbar-width: none; // Ajouté (Firefox)
-  -ms-overflow-style: none; // Ajouté (IE/Edge)
+  display: flex;
+  scroll-padding: 0 16px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+
+  @media (max-width: 1024px) {
+    scroll-padding: 0 8px;
+    align-items: center;
+  }
 
   &::-webkit-scrollbar {
-    display: none; // Ajouté (Chrome/Safari)
+    display: none;
   }
+}
+
+.carousel-item {
+  scroll-snap-align: start;
 }
 
 .carousel-scroll {
   display: flex;
   gap: 1rem;
-  scroll-snap-type: x mandatory; // Modifié depuis "proximity"
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  overflow: hidden;
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
   scroll-behavior: smooth;
-  width: max-content; // Ajouté pour permettre le scroll horizontal
-  padding: 1rem 0; // Légère amélioration visuelle
+  scroll-snap-stop: always;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
 
-  @media (max-width: 768px) {
-    height: 300px;
+  @media (max-width: 1024px) {
+    scroll-padding: 0 8px;
+  }
+
+  &.dragging {
+    cursor: grabbing;
+    user-select: none;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 
 .carousel-card {
-  scroll-snap-align: center;
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
   flex: 0 0 auto;
+  pointer-events: auto;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  transition:
+    transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  margin: 1em;
+  overflow: hidden;
+  min-width: 0;
 
   &.focused {
     width: 556px;
     height: 100%;
+    transform: scale(1.05);
     z-index: 2;
+
+    @media (max-width: 1024px) {
+      flex: 0 0 100%;
+    }
   }
 
   &.nearby {
     width: 120px;
     height: 100%;
+    transform: scale(1);
+    opacity: 0.8;
     z-index: 1;
   }
 
   &.hidden {
     width: 56px;
     height: 100%;
-    z-index: 0;
+    transform: scale(1);
+    opacity: 0.8;
+    z-index: 1;
+  }
+
+  .drag-zone {
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+    pointer-events: auto;
+
+    &:active {
+      cursor: grabbing;
+    }
   }
 }
 

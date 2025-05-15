@@ -14,8 +14,9 @@ export class BaladeCardComponent {
   @Input() id!: number;
   @Input() imageUrl!: string;
   @Input() title!: string;
-  @Input() duration!: number;
-  @Input() location!: number;
+  @Input() durationAndLocation!: string;
+  @Input() duration!: string;
+  @Input() location!: string;
 
   constructor(private router: Router) {}
 

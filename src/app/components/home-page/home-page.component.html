@@ -16,14 +16,16 @@
         hidden: hiddenIndexes.includes(i),
       }"
     >
-      <app-featured-walk-card
-        [image]="walk.image"
-        [title]="walk.title"
-        [description]="walk.description"
-        [rating]="walk.rating"
-        [id]="walk.id"
-        (navigateToDetails)="onNavigateToDetails($event)"
-      ></app-featured-walk-card>
+      <div class="drag-zone">
+        <app-featured-walk-card
+          [image]="walk.image"
+          [title]="walk.title"
+          [description]="walk.description"
+          [rating]="walk.rating"
+          [id]="walk.id"
+          (navigateToDetails)="onNavigateToDetails($event)"
+        ></app-featured-walk-card>
+      </div>
     </div>
   </div>
 </div>
@@ -41,14 +43,14 @@
   </a>
 </div>
 <div class="popular-balades">
+  <
   <div class="popular-balades-grid">
     <app-balade-card
       *ngFor="let walk of visibleBalades"
       [id]="walk.id"
       [imageUrl]="walk.image"
       [title]="walk.title"
-      [duration]="walk.duration"
-      [location]="walk.location"
+      [durationAndLocation]="getDurationAndLocation(walk)"
     ></app-balade-card>
   </div>
   <div class="balade-card plus-card" (click)="toggleShowAll()">

@@ -1,4 +1,8 @@
-<mat-card class="hero-card mat-elevation-z1">
+<mat-card
+  class="hero-card mat-elevation-z1"
+  (click)="onCardClick()"
+  style="cursor: pointer"
+>
   <img
     mat-card-image
     [src]="imagePath"
