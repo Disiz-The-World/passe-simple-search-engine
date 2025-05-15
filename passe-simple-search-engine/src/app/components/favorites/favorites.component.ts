@@ -14,7 +14,7 @@ import { UserModel } from '../../models/user.model';
 import { RouterLink } from '@angular/router';
 import { MatOption } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TagsComponent } from '../tags/tags.component';
 
 @Component({
   selector: 'app-favorites',
@@ -29,6 +29,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     FormsModule,
     MatOption,
     MatSelectModule,
+    TagsComponent,
   ],
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss'], // Fixed typo: styleUrl -> styleUrls
@@ -54,9 +55,23 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     let balades = await this.databaseService.getBalades({});
 
     if (balades.length > 0) {
-      this.balades = balades.filter((balade: BaladeModel) => {
-        return balade.favoriteIds.includes(Number(user.id));
-      });
+      this.balades = await Promise.all(
+        balades
+          .filter((balade: BaladeModel) => {
+            return balade.favoriteIds.includes(Number(user.id));
+          })
+          .map(async (balade: BaladeModel) => {
+            const tags = await Promise.all(
+              balade.tagIds.map((tagId: number) =>
+                this.databaseService.getTags({ id: tagId })
+              )
+            );
+            return {
+              ...balade,
+              tags: tags.flat(),
+            };
+          })
+      );
 
       this.isLoading = false;
     }
@@ -91,20 +106,22 @@ export class FavoritesComponent implements OnInit, OnDestroy {
     });
   }
 
-  toggleSortOrder() {
-    this.selectedSort = this.selectedSort === 'asc' ? 'desc' : 'asc';
+  sortBalades(sort: string): void {
+    if (!this.balades) {
+      return;
+    }
 
-    /*this.balades = this.balades
+    this.balades = this.balades
       ? this.balades.sort((a, b) => {
-          if (this.selectedSort === 'asc') {
+          if (sort === 'asc') {
             return a.name.localeCompare(b.name);
           }
-          if (this.selectedSort === 'desc') {
+          if (sort === 'desc') {
             return b.name.localeCompare(a.name);
           }
           return 0;
         })
-      : null;*/
+      : null;
   }
 
   ngOnDestroy() {

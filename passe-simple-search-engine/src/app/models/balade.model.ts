@@ -4,4 +4,6 @@ export interface BaladeModel {
   location: string;
   duration: number;
   favoriteIds: number[];
+  tagIds: number[];
+  tags: { id: number; name: string; icon: string }[];
 }

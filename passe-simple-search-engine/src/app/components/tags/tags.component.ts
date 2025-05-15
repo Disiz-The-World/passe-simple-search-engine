@@ -21,6 +21,10 @@ import { MatIcon } from '@angular/material/icon';
 export class TagsComponent {
   @Input() tags: { id: number; name: string; icon: string }[] = [];
 
+  constructor() {
+    console.log('Tags', this.tags);
+  }
+
   getIconChar(unicode: string): string {
     return String.fromCharCode(parseInt(unicode, 16));
   }
