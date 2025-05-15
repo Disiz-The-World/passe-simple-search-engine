@@ -50,6 +50,6 @@ export class FeaturedWalkCardComponent {
   }
 
   goToDetails(): void {
-    this.router.navigate(['/balades']); // ou un ID si tu veux le passer
+    this.router.navigate(['/balades', this.id]);
   }
 }

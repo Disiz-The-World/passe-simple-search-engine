@@ -16,8 +16,9 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
-
 .header {
   display: flex;
   width: 100%;
@@ -35,16 +36,18 @@ body {
 
 .header {
   display: flex;
-  width: 100%;
-  box-sizing: border-box;
   flex-shrink: 0;
-  overflow: visible;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  overflow-x: hidden;
 
   .search-bar-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 1em;
+    max-width: 100vw;
+    box-sizing: border-box;
   }
 
   app-search-bar {
@@ -54,7 +57,10 @@ body {
 
   .avatar-container {
     display: flex;
-    margin-left: auto;
+    align-items: center;
+    justify-content: flex-end;
+    max-width: 64px; // ✅ ou une valeur fixe selon la taille du bouton/avatar
+    overflow: hidden; // ✅ évite dépassement
   }
 }
 

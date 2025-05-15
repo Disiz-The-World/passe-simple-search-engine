@@ -113,11 +113,6 @@ export class HomePageComponent implements OnInit {
     this.showAll = !this.showAll;
     this.updateVisibleBalades();
   }
-
-  onNavigateToDetails(id: number) {
-    this.router.navigate(['/balades', id]);
-  }
-
   trackByBalade(index: number, item: any): number {
     return item.id;
   }

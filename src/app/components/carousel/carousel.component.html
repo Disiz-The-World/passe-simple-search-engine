@@ -4,11 +4,7 @@
       *ngFor="let item of items; let i = index; trackBy: trackByIndex"
       #carouselCard
       class="carousel-card"
-      [ngClass]="{
-        focused: focusedIndexes.includes(i),
-        nearby: nearbyIndexes.includes(i),
-        hidden: hiddenIndexes.includes(i),
-      }"
+      [ngClass]="getClasses(i)"
     >
       <ng-container
         *ngTemplateOutlet="cardTemplate; context: { $implicit: item }"
