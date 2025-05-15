@@ -2,24 +2,32 @@
 <h2 class="section-title">Balades à la une</h2>
 <div class="carousel-container">
   <div class="carousel-scroll" #carouselContainer (scroll)="onScroll()">
-    <app-featured-walk-card
+    <div
+      *ngFor="
+        let walk of displayedBalades;
+        let i = index;
+        trackBy: trackByBalade
+      "
       #carouselCard
-      *ngFor="let walk of balades; let i = index"
       class="carousel-card"
       [ngClass]="{
         focused: focusedIndexes.includes(i),
         nearby: nearbyIndexes.includes(i),
         hidden: hiddenIndexes.includes(i),
       }"
-      [image]="walk.image"
-      [title]="walk.title"
-      [description]="walk.description"
-      [rating]="walk.rating"
-      [id]="walk.id"
-      (navigateToDetails)="onNavigateToDetails($event)"
-    ></app-featured-walk-card>
+    >
+      <app-featured-walk-card
+        [image]="walk.image"
+        [title]="walk.title"
+        [description]="walk.description"
+        [rating]="walk.rating"
+        [id]="walk.id"
+        (navigateToDetails)="onNavigateToDetails($event)"
+      ></app-featured-walk-card>
+    </div>
   </div>
 </div>
+
 <app-thematics></app-thematics>
 <div class="popular">
   <h2 class="section-title" style="margin: 0 2px 0 0">Populaires</h2>

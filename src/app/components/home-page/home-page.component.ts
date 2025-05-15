@@ -118,16 +118,25 @@ export class HomePageComponent implements OnInit, AfterViewInit {
       this.updateVisibleBalades();
     });
   }
+  private scrollStopTimeout: any;
 
+  onScroll(): void {
+    // Mise à jour immédiate du focus en scrollant
+    this.updateCarouselFocus();
+
+    // Puis centrage auto après un petit délai (scroll-stop)
+    clearTimeout(this.scrollStopTimeout);
+    this.scrollStopTimeout = setTimeout(() => {
+      this.centerFocusedCard();
+    }, 150);
+  }
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
 
     const el = this.carouselContainer?.nativeElement;
-    if (el && typeof el.getBoundingClientRect === 'function') {
+    if (el) {
       el.addEventListener('scroll', () => this.updateCarouselFocus());
-      this.updateCarouselFocus();
-    } else {
-      console.warn('[carousel] container not ready or invalid:', el);
+      setTimeout(() => this.updateCarouselFocus(), 100);
     }
   }
 
@@ -145,6 +154,10 @@ export class HomePageComponent implements OnInit, AfterViewInit {
     this.updateVisibleBalades();
   }
 
+  get displayedBalades(): any[] {
+    return [...this.balades, ...this.balades, ...this.balades, ...this.balades];
+  }
+
   updateVisibleBalades(): void {
     const cardsPerRow =
       typeof window !== 'undefined' && window.innerWidth >= 1024 ? 3 : 2;
@@ -155,10 +168,7 @@ export class HomePageComponent implements OnInit, AfterViewInit {
     this.visibleBalades = this.balades.slice(0, maxVisible);
   }
 
-  onScroll(): void {
-    this.updateCarouselFocus();
-  }
-
+  private lastFocusedIndex: number | null = null;
   updateCarouselFocus(): void {
     if (!this.carouselContainer?.nativeElement || !this.carouselCards) return;
 
@@ -173,10 +183,41 @@ export class HomePageComponent implements OnInit, AfterViewInit {
     });
 
     distances.sort((a, b) => a.distance - b.distance);
-    this.focusedIndexes = distances.slice(0, 2).map((d) => d.index);
-    this.nearbyIndexes = distances.slice(2, 6).map((d) => d.index);
-    this.hiddenIndexes = distances.slice(6).map((d) => d.index);
+
+    this.focusedIndexes = [distances[0].index];
+    this.nearbyIndexes = distances.slice(1, 3).map((d) => d.index);
+    this.hiddenIndexes = distances.slice(3).map((d) => d.index);
+
+    this.lastFocusedIndex = distances[0].index;
 
     this.cdr.detectChanges();
+  }
+
+  centerFocusedCard(): void {
+    if (
+      this.lastFocusedIndex === null ||
+      !this.carouselCards ||
+      !this.carouselCards.get(this.lastFocusedIndex)
+    ) {
+      return;
+    }
+
+    const cardEl = this.carouselCards.get(this.lastFocusedIndex)!.nativeElement;
+    const containerEl = this.carouselContainer.nativeElement;
+
+    const containerCenter =
+      containerEl.scrollLeft + containerEl.clientWidth / 2;
+    const cardCenter = cardEl.offsetLeft + cardEl.offsetWidth / 2;
+
+    const scrollDiff = cardCenter - containerCenter;
+
+    containerEl.scrollTo({
+      left: containerEl.scrollLeft + scrollDiff,
+      behavior: 'smooth',
+    });
+  }
+
+  trackByBalade(index: number, item: any): number {
+    return item.id;
   }
 }

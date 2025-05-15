@@ -15,12 +15,12 @@
 
   .image-wrapper {
     position: relative;
+    border-radius: 28px;
 
     img {
       width: 100%;
       height: 260px;
       object-fit: cover;
-      border-radius: 28px;
     }
 
     .stars {
@@ -66,6 +66,7 @@
   .cta {
     padding: 16px 16px 16px;
     display: flex;
+    border-radius: 28px;
     justify-content: flex-end;
 
     button {
@@ -99,8 +100,9 @@
   }
 
   .image-wrapper img {
-    height: 100%;
+    height: 100% !important;
     object-fit: cover;
     width: 100%;
+    border-radius: 28px;
   }
 }

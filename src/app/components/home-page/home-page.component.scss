@@ -10,14 +10,29 @@
 
 .carousel-container {
   overflow-x: auto;
-  padding: 1rem 0;
+  -webkit-overflow-scrolling: touch; // Ajouté
+  scrollbar-width: none; // Ajouté (Firefox)
+  -ms-overflow-style: none; // Ajouté (IE/Edge)
+
+  &::-webkit-scrollbar {
+    display: none; // Ajouté (Chrome/Safari)
+  }
 }
 
 .carousel-scroll {
   display: flex;
   gap: 1rem;
-  scroll-snap-type: x proximity;
-  padding: 1rem;
+  scroll-snap-type: x mandatory; // Modifié depuis "proximity"
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  width: max-content; // Ajouté pour permettre le scroll horizontal
+  padding: 1rem 0; // Légère amélioration visuelle
+
+  @media (max-width: 768px) {
+    height: 300px;
+  }
 }
 
 .carousel-card {
@@ -26,24 +41,39 @@
     transform 0.3s ease,
     opacity 0.3s ease;
   flex: 0 0 auto;
+
+  &.focused {
+    width: 556px;
+    height: 100%;
+    z-index: 2;
+  }
+
+  &.nearby {
+    width: 120px;
+    height: 100%;
+    z-index: 1;
+  }
+
+  &.hidden {
+    width: 56px;
+    height: 100%;
+    z-index: 0;
+  }
 }
 
-.carousel-card.focused {
-  width: 556px;
-  height: 100%;
-  z-index: 2;
+.carousel-card.nearby ::ng-deep .cta,
+.carousel-card.hidden ::ng-deep .cta,
+.carousel-card.nearby ::ng-deep mat-card-content,
+.carousel-card.hidden ::ng-deep mat-card-content {
+  display: none !important;
 }
 
-.carousel-card.nearby {
-  width: 120px;
-  height: 100%;
-  z-index: 1;
-}
-
-.carousel-card.hidden {
-  width: 56px;
-  height: 100%;
-  z-index: 0;
+.carousel-card.nearby ::ng-deep .image-wrapper img,
+.carousel-card.hidden ::ng-deep .image-wrapper img {
+  height: 100% !important;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 28px;
 }
 
 .popular {
