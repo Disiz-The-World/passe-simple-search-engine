@@ -36,7 +36,6 @@ export class DetailViewComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
-      console.log('ID récupéré (via subscribe) :', id);
       if (id) {
         this.http.get(`http://localhost:3000/balades/${id}`).subscribe({
           next: (data) => {
@@ -45,13 +44,11 @@ export class DetailViewComponent implements OnInit {
             this.http
               .get('http://localhost:3000/tags')
               .subscribe((tags: any) => {
-                console.log('Tous les tags:', tags);
                 this.tags = tags.filter(
                   (tag: any) =>
                     this.balade.tagIds &&
                     this.balade.tagIds.includes(Number(tag.id))
                 );
-                console.log('Tags associés:', this.tags);
               });
           },
           error: (err) => {
@@ -59,7 +56,6 @@ export class DetailViewComponent implements OnInit {
           },
         });
       } else {
-        console.log('Aucun ID trouvé');
       }
     });
   }

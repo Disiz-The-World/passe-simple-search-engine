@@ -14,12 +14,11 @@ export interface Balade {
   id: number;
   name: string;
   catchPhrase: string;
-  duration: number; // in minutes
+  duration: number;
   location: number;
   previewPath: string;
   tagIds: number[];
   ratings: number[];
-  // Add other properties from db.json if needed by this component or for navigation
   map?: string;
   infos?: any[];
   favoriteIds?: number[];
@@ -31,14 +30,14 @@ export interface Balade {
 export interface Tag {
   id: number;
   name: string;
-  icon: string; // Hex unicode string from backend (e.g., "f1bb")
+  icon: string;
   category: 'terrain' | 'period' | 'criteria';
 }
 
 export interface FilterTag {
   id: number;
   name: string;
-  icon: string; // Hex unicode string from backend
+  icon: string;
   category: string;
   selected: boolean;
 }
@@ -62,8 +61,8 @@ export interface FilterTag {
 export class RechercheComponent implements OnInit {
   titleSearch: string = '';
   locationSearch: string = '';
-  durationMin: number = 5; // hours
-  durationMax: number = 8; // hours
+  durationMin: number = 1;
+  durationMax: number = 12;
 
   terrainTypes: FilterTag[] = [];
   historicalPeriods: FilterTag[] = [];
@@ -71,9 +70,7 @@ export class RechercheComponent implements OnInit {
 
   balades: Balade[] = [];
   filteredBalades: Balade[] = [];
-  // allTags: Tag[] = []; // No longer needed to store allTags separately for getIconForTag
 
-  // Expansion states for filter categories - default to false (collapsed)
   terrainExpanded: boolean = false;
   historicalPeriodsExpanded: boolean = false;
   criteriaExpanded: boolean = false;
@@ -88,11 +85,9 @@ export class RechercheComponent implements OnInit {
   }
 
   loadData() {
-    // Load tags first to populate filter options
     this.http.get<Tag[]>('http://localhost:3000/tags').subscribe({
       next: (tags) => {
         this.initializeFilterArrays(tags);
-        // Then load balades, so initial search can use populated filters
         this.loadBalades();
       },
       error: (err) => console.error('Error loading tags:', err),
@@ -103,7 +98,7 @@ export class RechercheComponent implements OnInit {
     this.http.get<Balade[]>('http://localhost:3000/balades').subscribe({
       next: (baladesData) => {
         this.balades = baladesData;
-        this.search(); // Perform initial search with default filters
+        this.search();
       },
       error: (err) => console.error('Error loading balades:', err),
     });
@@ -115,7 +110,7 @@ export class RechercheComponent implements OnInit {
       .map((tag) => ({
         id: tag.id,
         name: tag.name,
-        icon: tag.icon, // Use icon directly from backend tag
+        icon: tag.icon,
         category: tag.category,
         selected: false,
       }));
@@ -125,7 +120,7 @@ export class RechercheComponent implements OnInit {
       .map((tag) => ({
         id: tag.id,
         name: tag.name,
-        icon: tag.icon, // Use icon directly from backend tag
+        icon: tag.icon,
         category: tag.category,
         selected: false,
       }));
@@ -135,21 +130,10 @@ export class RechercheComponent implements OnInit {
       .map((tag) => ({
         id: tag.id,
         name: tag.name,
-        icon: tag.icon, // Use icon directly from backend tag
+        icon: tag.icon,
         category: tag.category,
         selected: false,
       }));
-
-    // Pre-select filters as per the original image (after arrays are populated)
-    const moyenAge = this.historicalPeriods.find(
-      (f) => f.name === 'Moyen Âge' || f.name === 'Moyen Age'
-    );
-    if (moyenAge) moyenAge.selected = true;
-
-    const epoqueContemp = this.historicalPeriods.find(
-      (f) => f.name === 'Époque contemporaine'
-    );
-    if (epoqueContemp) epoqueContemp.selected = true;
   }
 
   search() {
@@ -211,7 +195,7 @@ export class RechercheComponent implements OnInit {
       const filterInArray = filterArray.find((f) => f.id === filterToRemove.id);
       if (filterInArray) {
         filterInArray.selected = false;
-        break; // Found and updated, no need to check other arrays
+        break;
       }
     }
     this.search();
@@ -251,10 +235,16 @@ export class RechercheComponent implements OnInit {
     this.search();
   }
 
-  getIconChar(unicode: string): string {
-    // Converts a hex string (e.g., "f1bb") to its character representation
-    if (!unicode) return ''; // Handle cases where icon might be missing
-    return String.fromCharCode(parseInt(unicode, 16));
+  getIconChar(iconCode: string): string {
+    if (!iconCode) return '';
+
+    try {
+      const hexValue = parseInt(iconCode, 16);
+      return String.fromCharCode(hexValue);
+    } catch (error) {
+      console.warn(`Unable to convert icon code: ${iconCode}`);
+      return '';
+    }
   }
 
   onSearchInput() {
@@ -272,7 +262,6 @@ export class RechercheComponent implements OnInit {
     return avg.toFixed(1);
   }
 
-  // Methods to toggle expansion state
   toggleTerrainExpansion() {
     this.terrainExpanded = !this.terrainExpanded;
   }
@@ -283,5 +272,9 @@ export class RechercheComponent implements OnInit {
 
   toggleCriteriaExpansion() {
     this.criteriaExpanded = !this.criteriaExpanded;
+  }
+
+  getExpansionIcon(expanded: boolean): string {
+    return expanded ? 'remove' : 'add';
   }
 }
