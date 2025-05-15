@@ -6,6 +6,16 @@
         {{ i < rating ? 'star' : 'star_border' }}
       </mat-icon>
     </div>
+    <div class="badges" *ngIf="isMobile">
+      <div class="badge">
+        <mat-icon>place</mat-icon>
+        {{ location }}
+      </div>
+      <div class="badge">
+        <mat-icon>schedule</mat-icon>
+        {{ duration }}h
+      </div>
+    </div>
   </div>
   <mat-card-content>
     <div class="title">{{ title }}</div>

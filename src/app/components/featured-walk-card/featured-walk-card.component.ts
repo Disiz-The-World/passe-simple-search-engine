@@ -1,7 +1,14 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  Inject,
+  PLATFORM_ID,
+} from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatCard, MatCardContent } from '@angular/material/card';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { MatIconButton } from '@angular/material/button';
 import { RouterModule, Router } from '@angular/router';
 
@@ -25,11 +32,24 @@ export class FeaturedWalkCardComponent {
   @Input() description!: string;
   @Input() rating!: number;
   @Input() id!: number;
-  @Input() duration!: number;
-  @Input() location!: number;
+  @Input() duration?: number;
+  @Input() location?: number;
+  @Input() durationAndLocation!: string;
 
-  constructor(private router: Router) {}
-  goToDetails() {
-    this.navigateToDetails.emit(this.id);
+  isMobile = false;
+
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isMobile = window.innerWidth < 1024;
+    }
+  }
+
+  goToDetails(): void {
+    this.router.navigate(['/balades']); // ou un ID si tu veux le passer
   }
 }
