@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WalkService {
-  private apiUrl = 'http://localhost:3000/balades';
-  private backendBaseUrl = 'http://localhost:3000';
+  private backendBaseUrl = environment.apiUrl;
+  private apiUrl = `${this.backendBaseUrl}/balades`;
 
   constructor(private http: HttpClient) {}
 

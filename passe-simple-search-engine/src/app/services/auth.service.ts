@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserModel } from '../models/user.model';
 import { environment } from '../../environments/environment';
-import { Router } from '@angular/router';
 import { DatabaseService } from './database.service';
 import { firstValueFrom } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
@@ -22,8 +21,7 @@ export class AuthService {
 
   constructor(
     private httpService: HttpClient,
-    private databaseService: DatabaseService,
-    private router: Router
+    private databaseService: DatabaseService
   ) {}
 
   private checkInitialAuthState(): boolean {
@@ -98,7 +96,7 @@ export class AuthService {
   }
 
   public logout(): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
+    return new Promise<void>((resolve, _) => {
       if (typeof sessionStorage !== 'undefined')
         sessionStorage.removeItem(this.SESSION_TOKEN_KEY);
       this.currentUser = undefined;

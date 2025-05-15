@@ -9,8 +9,7 @@ import {
 } from '@angular/platform-browser';
 import { withFetch, withInterceptors } from '@angular/common/http';
 import { AuthTokenInterceptor } from '../interceptors/auth-token.interceptor';
-import { ServerErrorInterceptor } from '../interceptors/server-error.interceptor';
-import { TeapotInterceptor } from '../interceptors/teapot.interceptor';
+import { HttpErrorInterceptor } from '../interceptors/http.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -19,11 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideHttpClient(
       withFetch(),
-      withInterceptors([
-        AuthTokenInterceptor,
-        ServerErrorInterceptor,
-        TeapotInterceptor,
-      ])
+      withInterceptors([AuthTokenInterceptor, HttpErrorInterceptor])
     ),
   ],
 };
