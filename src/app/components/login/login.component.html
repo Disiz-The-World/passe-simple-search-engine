@@ -6,7 +6,12 @@
         <div>
           <mat-form-field appearance="fill" class="field">
             <mat-label>Nom d'utilisateur</mat-label>
-            <input matInput formControlName="username" required (input)="resetFormErrors()"/>
+            <input
+              matInput
+              formControlName="username"
+              required
+              (input)="resetFormErrors()"
+            />
           </mat-form-field>
         </div>
         <div>
