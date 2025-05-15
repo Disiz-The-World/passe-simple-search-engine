@@ -31,9 +31,9 @@
         }
       ],
       "favoriteIds": [1, 2],
-      "ratings": [4, 5, 3],
+      "ratings": [1, 2, 3],
       "content": {
-        "details": "Pour se rendre à Moudon, en venant des rives du Léman, on doit tout d'abord traverser le haut plateau vallonné du Jorat. À la hauteur du village de Vucherens s'ouvre la large vallée de la Broye moyenne. Une longue descente conduit au hameau de Bressonnaz, point de départ de notre balade.",
+        "details": "Pour se rendre à Moudon, en venant des rives du Léman, on doit tout  d'abord traverser le haut plateau vallonné du Jorat. À la hauteur du  village de Vucherens s'ouvre la large vallée de la Broye moyenne. Une  longue descente conduit au hameau de Bressonnaz, point de départ de  notre balade.",
         "sections": [
           {
             "id": 1,
@@ -41,12 +41,61 @@
             "content": [
               {
                 "type": "text",
-                "text": "Le hameau de Bressonnaz se situe au confluent de trois rivières..."
+                "text": "Le hameau de Bressonnaz se situe au confluent de trois rivières: la Broye sortant du défilé de Brivaux, le Carrouge et la Bressonne. C’était aussi un important nœud routier ayant nécessité la construction de plusieurs ponts. Le plus ancien, franchissant la Bressonne, a été recouvert par la grande route actuelle dont le fort impact perturbe la compréhension du site historique. Les deux autres ont été entrepris entre 1698 et 1701 afin de favoriser l’axe de transit par la vallée de la Broye. Jusqu’alors, les gros «chars d’Allemagne» venant du Jorat devaient soit passer la Broye à gué pour rejoindre la rive droite, soit longer la rive gauche, puis traverser avec beaucoup de peine la ville haute de Moudon (notre itinéraire).\nLe grand pont sur la Broye a été transformé au niveau des parapets, tandis que le petit pont sur le Carrouge est entièrement conservé. Tous les deux portent encore leur inscription gravée par l’entrepreneur Jean Favre, de Neuchâtel. On peut s’amuser à y déchiffrer la date de construction: en additionnant les lettres plus grandes correspondant à des chiffres romains, on obtient le millésime de 1698 pour le grand pont et 1701 pour le petit.\n\nLe hameau était autrefois beaucoup plus animé, avec son péage, ses trois moulins et son auberge, dont on peut voir encore le très grand rural de 1824. Il ne subsiste qu’un restaurant et la petite gare de Bressonnaz,  désaffectée."
               },
               {
                 "type": "image/normal",
                 "path": "/1/2.jpg",
-                "legend": "Caché par la verdure, le petit pont en dos d'âne..."
+                "legend": "Caché par la verdure, le petit pont en dos d’âne qui franchit le  confluent du Carrouge et de la Bressonne a conservé à son sommet la  stèle et l’inscription en capitales romaines rappelant qu’il a été  construit par ordre du trésorier de la puissante République de Berne et  sous la protection de Dieu."
+              },
+              {
+                "type": "image/side",
+                "path": "/1/1.png",
+                "legend": "Carte: Hélène Becquelin."
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "En route pour Moudon",
+            "content": [
+              {
+                "type": "text",
+                "text": "Prendre le pont qui traverse la grande route de Berne, puis tourner 2 droite sur le chemin de Valacrér. Notre itinéraire suit la route d'ori- gine romaine, sur le coteau dominant la rive gauche de la Broye. Longer la caserne sanitaire, qui s'éléve 2 lemplacement d'un érablissement romain. Plus loin, 2 gauche, la ferme de Valacrét, typique du début du XIX¢ siécle avec son logement et son rural séparés."
+              },
+              {
+                "type": "text",
+                "text": "Des panneaux archéologiques donnent toutes les indications  nécessaires sur l’état originel des lieux ainsi que sur les aménagements urbains effectués dans les années 1990, lors d’importants travaux de  consolidation de la colline.\n\nLa rue du Château, qui descend au-dessous de l’ancienne église,  pourrait s’appeler la rue des arcades. Elle était en effet longée des  deux côtés par des portiques d’arcades surélevés reposant sur des  avant-caves. Ces dernières témoignent de l’activité marchande de ce  quartier. Certaines de ces arcades, murées au XVIe siècle, ont été  dégagées. La plus connue, rue du Château 42, a pu être datée de 1280. Au milieu de la rangée nord, la maison dite bernoise fait exception, du  fait que la terrasse est protégée non pas par des arcades de pierre mais par un profond avant-toit sur poteau. Au-devant de la grande tour du château, l’ancien fossé a été aménagé  en une place de pique-nique. N’hésitez pas à ouvrir la poterne qui vous  permettra d’avoir une vue sur la Mérine et sur les arrières de la tour,  dont l’enceinte s’est effondrée plusieurs fois depuis le XVe siècle.\nRevenir sur la place de la Poterne pour admirer la célèbre «maison des États» et sa façade du XVe siècle. A la hauteur du n° 11, à  l’endroit le plus raide de la rue, une porte barrait l’accès oriental du noyau primitif du castrum. Au-dessous, le quartier de  Rotto-Borgeau (bourg abrupt) était autrefois bâti des deux côtés mais,  la Broye ayant rongé la falaise, les maisons ont été remplacées ici par  un haut mur daté de 1665.\nArrivés sur terrain plat aux Plans-Borgeaux, vous trouverez au  pied de la fontaine de la Justice l’Office du tourisme, qui tient à  disposition la documentation utile pour une visite de la ville basse. Ce quartier est riche lui aussi en surprises et en monuments, parmi  lesquels la très belle église gothique de Saint-Étienne."
+              },
+              {
+                "type": "image/normal",
+                "path": "/1/3.png",
+                "legend": "Le long de la Broye sur le chemin du retour."
+              },
+              {
+                "type": "image/side",
+                "path": "/1/4.png",
+                "legend": "Le poteau qui soutient depuis 1646 le grand avant-toit de la «maison  bernoise» est en fait plutôt caractéristique des «dômes» genevois. Cette toiture imposante abrite en réalité trois maisons d’origine médiévale,  bien visibles au niveau des caves et à l’arrière."
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "title": "La ville haute",
+            "content": [
+              {
+                "type": "text",
+                "text": "Pour se rendre à Moudon, en venant des rives du Léman, on doit tout d’abord traverser le haut plateau vallonné du Jorat. À la hauteur du village de Vucherens s’ouvre la large vallée de la Broye moyenne. Une longue descente conduit au hameau de Bressonnaz, point de départ de notre balade."
+              },
+              {
+                "type": "image/normal",
+                "path": "/1/5.png",
+                "legend": "Vue sur le quartier du Vieux-Bourg et le château de Carrouge depuis le  chemin de Valacrêt. Les maisons du Vieux-Bourg dominant la falaise  possèdent souvent deux niveaux de caves en partie taillés dans la  molasse"
+              },
+              {
+                "type": "image/side",
+                "path": "/1/6.png",
+                "legend": ""
               }
             ]
           }
@@ -58,157 +107,23 @@
         "Images": "Jean-Claude Péclet"
       },
       "seeMore": [
-        "Monique Fontannaz: \"La ville de Moudon et ses musées\", Berne 2002"
+        "Monique Fontannaz: “La ville de Moudon et ses musées”, Berne 2002",
+        "Monique Fontannaz: Les monuments art et d'histoire du canton de Vaud, VI, La ville de Illoudon (Société d'histoire de l'art en Suisse), Berne, 2006",
+        "Wikipedia: Le vallon des Vaux"
       ],
-      "tagIds": [1, 13, 22, 23]
-    },
-    {
-      "id": 2,
-      "name": "Le vallon des Vaux, concerne de toutes les époques",
-      "catchPhrase": "La balade du vallon évoque la fête champêtre du 19e siècle. Ses richets invitent aux souces mystérieuses de la Vallonnaire, traversent l'énergétique de Parc de Vaud.",
-      "duration": 120,
-      "location": 1808,
-      "previewPath": "/2/preview.png",
-      "map": "/2/map.png",
-      "infos": [
-        {
-          "icon": "f816",
-          "name": "Départ",
-          "description": "Coppet"
-        },
-        {
-          "icon": "f81b",
-          "name": "Arrivée",
-          "description": "Coppet"
-        },
-        {
-          "icon": "f6ea",
-          "name": "Distance",
-          "description": "~3km"
-        },
-        {
-          "icon": "f873",
-          "name": "Dénivelé",
-          "description": "+50m -50m"
-        }
-      ],
-      "favoriteIds": [],
-      "ratings": [3, 4, 4],
-      "content": {
-        "details": "Le vallon des Vaux est un écrin de verdure...",
-        "sections": []
-      },
-      "attributions": {
-        "Illustrations": "Marie Dupont",
-        "Textes": "Jean Martin",
-        "Images": "Luc Bernard"
-      },
-      "seeMore": [],
-      "tagIds": [3, 11, 25, 24]
+      "tagIds": [1, 2]
     }
   ],
   "tags": [
     {
       "id": 1,
-      "name": "Forêt",
-      "icon": "f1bb",
-      "category": "terrain"
+      "name": "Transports publics",
+      "icon": "e530"
     },
     {
       "id": 2,
-      "name": "Montagne",
-      "icon": "f73e",
-      "category": "terrain"
-    },
-    {
-      "id": 3,
-      "name": "Lac",
-      "icon": "f5a9",
-      "category": "terrain"
-    },
-    {
-      "id": 4,
-      "name": "Peu de dénivelé",
-      "icon": "f6f3",
-      "category": "terrain"
-    },
-    {
-      "id": 5,
-      "name": "Routes",
-      "icon": "f0c2",
-      "category": "terrain"
-    },
-    {
-      "id": 10,
-      "name": "Paléolithique",
-      "icon": "f1ed",
-      "category": "period"
-    },
-    {
-      "id": 11,
-      "name": "Néolithique",
-      "icon": "f1ee",
-      "category": "period"
-    },
-    {
-      "id": 12,
-      "name": "Antiquité",
-      "icon": "f0e2",
-      "category": "period"
-    },
-    {
-      "id": 13,
-      "name": "Moyen Age",
-      "icon": "f0f0",
-      "category": "period"
-    },
-    {
-      "id": 14,
-      "name": "Temps modernes",
-      "icon": "f3b0",
-      "category": "period"
-    },
-    {
-      "id": 15,
-      "name": "Époque contemporaine",
-      "icon": "f554",
-      "category": "period"
-    },
-    {
-      "id": 20,
-      "name": "Parcours sportif",
-      "icon": "f44e",
-      "category": "criteria"
-    },
-    {
-      "id": 21,
-      "name": "Parcour interactif",
-      "icon": "f0e0",
-      "category": "criteria"
-    },
-    {
-      "id": 22,
-      "name": "Accessible",
-      "icon": "f193",
-      "category": "criteria"
-    },
-    {
-      "id": 23,
-      "name": "Restauration possible",
-      "icon": "f2e7",
-      "category": "criteria"
-    },
-    {
-      "id": 24,
-      "name": "Traductions",
-      "icon": "f1ab",
-      "category": "criteria"
-    },
-    {
-      "id": 25,
-      "name": "Familles",
-      "icon": "f0c0",
-      "category": "criteria"
+      "name": "Restauration",
+      "icon": "e56c"
     }
   ],
   "users": [
