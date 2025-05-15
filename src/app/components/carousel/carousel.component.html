@@ -1,0 +1,18 @@
+<div class="carousel-container">
+  <div class="carousel-scroll" #carouselContainer>
+    <div
+      *ngFor="let item of items; let i = index; trackBy: trackByIndex"
+      #carouselCard
+      class="carousel-card"
+      [ngClass]="{
+        focused: focusedIndexes.includes(i),
+        nearby: nearbyIndexes.includes(i),
+        hidden: hiddenIndexes.includes(i),
+      }"
+    >
+      <ng-container
+        *ngTemplateOutlet="cardTemplate; context: { $implicit: item }"
+      ></ng-container>
+    </div>
+  </div>
+</div>
