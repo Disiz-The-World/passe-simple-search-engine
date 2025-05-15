@@ -56,21 +56,24 @@ export class CarouselComponent implements AfterViewInit {
 
         if (this.recenterTimeout) clearTimeout(this.recenterTimeout);
 
+        // Ne recentre qu’après scroll terminé
         this.recenterTimeout = setTimeout(() => {
-          this.updateFocus(true);
-        }, 200);
+          this.updateFocus(true); // recentre ici
+        }, 250);
 
-        this.updateFocus(false);
+        // Focus visuel uniquement, ne touche pas au scroll
+        this.updateFocus(); // sans recentrage
       },
       { passive: true }
     );
 
+    // Initial focus après chargement
     setTimeout(() => {
       this.updateFocus(true);
-    }, 50);
+    }, 100);
   }
 
-  updateFocus(recenterAfter: boolean = false): void {
+  updateFocus(recenterAfter = false): void {
     if (!this.carouselContainer || !this.carouselCards?.length) return;
 
     const containerRect =
@@ -85,18 +88,21 @@ export class CarouselComponent implements AfterViewInit {
 
     distances.sort((a, b) => a.distance - b.distance);
 
+    // ✅ Sur mobile : un seul focus, pas de nearby
+    const isMobile = window.innerWidth <= 1024;
     this.focusedIndexes = distances
-      .slice(0, 2)
-      .map((d) => d.index)
-      .sort((a, b) => a - b);
-    this.nearbyIndexes = distances.slice(2, 4).map((d) => d.index);
-    this.hiddenIndexes = distances.slice(4).map((d) => d.index);
+      .slice(0, isMobile ? 1 : 2)
+      .map((d) => d.index);
+    this.nearbyIndexes = isMobile
+      ? []
+      : distances.slice(2, 4).map((d) => d.index);
+    this.hiddenIndexes = isMobile
+      ? this.carouselCards
+          .map((_, i) => i)
+          .filter((i) => !this.focusedIndexes.includes(i))
+      : distances.slice(4).map((d) => d.index);
 
     this.cdr.detectChanges();
-
-    if (recenterAfter) {
-      this.centerFocusedCards();
-    }
   }
 
   centerFocusedCards(): void {
@@ -108,28 +114,21 @@ export class CarouselComponent implements AfterViewInit {
 
     if (!card1 || !card2) return;
 
-    const center1 = card1.offsetLeft + card1.offsetWidth / 2;
-    const center2 = card2.offsetLeft + card2.offsetWidth / 2;
-    const averageCenter = (center1 + center2) / 2;
+    const card1Rect = card1.getBoundingClientRect();
+    const card2Rect = card2.getBoundingClientRect();
 
-    const idealScrollLeft = Math.round(
-      averageCenter - container.clientWidth / 2
-    );
-    const currentScrollLeft = container.scrollLeft;
+    const containerRect = container.getBoundingClientRect();
 
-    // ✅ Ne recentre que si décalage perceptible (> 10px)
-    if (Math.abs(currentScrollLeft - idealScrollLeft) > 10) {
-      this.isAutoRecentering = true;
+    const card1Center = card1.offsetLeft + card1.offsetWidth / 2;
+    const card2Center = card2.offsetLeft + card2.offsetWidth / 2;
 
-      container.scrollTo({
-        left: idealScrollLeft,
-        behavior: 'smooth',
-      });
+    const averageCardCenter = (card1Center + card2Center) / 2;
+    const desiredScrollLeft = averageCardCenter - container.clientWidth / 2;
 
-      setTimeout(() => {
-        this.isAutoRecentering = false;
-      }, 500);
-    }
+    container.scrollTo({
+      left: desiredScrollLeft,
+      behavior: 'smooth',
+    });
   }
 
   getClasses(i: number): string {
