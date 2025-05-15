@@ -56,18 +56,15 @@ export class CarouselComponent implements AfterViewInit {
 
         if (this.recenterTimeout) clearTimeout(this.recenterTimeout);
 
-        // Ne recentre qu’après scroll terminé
         this.recenterTimeout = setTimeout(() => {
           this.updateFocus(true); // recentre ici
         }, 250);
 
-        // Focus visuel uniquement, ne touche pas au scroll
         this.updateFocus(); // sans recentrage
       },
       { passive: true }
     );
 
-    // Initial focus après chargement
     setTimeout(() => {
       this.updateFocus(true);
     }, 100);
@@ -88,7 +85,6 @@ export class CarouselComponent implements AfterViewInit {
 
     distances.sort((a, b) => a.distance - b.distance);
 
-    // ✅ Sur mobile : un seul focus, pas de nearby
     const isMobile = window.innerWidth <= 1024;
     this.focusedIndexes = distances
       .slice(0, isMobile ? 1 : 2)

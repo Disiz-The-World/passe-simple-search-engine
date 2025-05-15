@@ -30,15 +30,16 @@ import { RouterModule, Router } from '@angular/router';
 export class FeaturedWalkCardComponent implements OnInit {
   @Output() navigateToDetails = new EventEmitter<number>();
   @Input() image!: string;
-  @Input() title!: string;
+  @Input() name!: string;
   @Input() description!: string;
-  @Input() rating!: number;
+  @Input() ratings!: number;
   @Input() id!: number;
   @Input() duration?: number;
-  @Input() location?: string; // ✅ correction ici
+  @Input() location?: string;
   @Input() durationAndLocation!: string;
 
   isMobile = false;
+  isGreen = true;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,

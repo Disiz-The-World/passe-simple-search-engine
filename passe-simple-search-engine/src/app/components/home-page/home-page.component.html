@@ -5,10 +5,10 @@
 
   <ng-template #walkCard let-walk>
     <app-featured-walk-card
-      [image]="walk.image"
-      [title]="walk.title"
-      [description]="walk.description"
-      [rating]="walk.rating"
+      [image]="getImageUrl(walk)"
+      [name]="walk.name"
+      [description]="walk.catchPhrase"
+      [ratings]="walk.ratings"
       [id]="walk.id"
     ></app-featured-walk-card>
   </ng-template>
@@ -35,12 +35,15 @@
   <div class="popular-balades">
     <div class="popular-balades-grid">
       <app-balade-card
-        *ngFor="let walk of visibleBalades"
-        [id]="walk.id"
-        [imageUrl]="walk.image"
-        [title]="walk.title"
-        [durationAndLocation]="getDurationAndLocation(walk)"
-      ></app-balade-card>
+        *ngFor="let balade of visibleBalades; trackBy: trackByBalade"
+        [id]="balade.id"
+        [title]="balade.name"
+        [imageUrl]="getImageUrl(balade)"
+        [duration]="balade.duration"
+        [location]="balade.location"
+        [ratings]="balade.ratings"
+      >
+      </app-balade-card>
     </div>
     <div class="balade-card plus-card" (click)="toggleShowAll()">
       <mat-icon>{{ showAll ? 'remove' : 'add' }}</mat-icon>

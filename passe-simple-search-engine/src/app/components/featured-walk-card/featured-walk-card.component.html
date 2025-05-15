@@ -1,15 +1,21 @@
 <mat-card class="walk-card mat-elevation-z1">
   <ng-container *ngIf="!isMobile; else mobileCard">
     <div class="image-wrapper">
-      <img [src]="image || '/assets/images/default.jpg'" [alt]="title" />
+      <img [src]="image || '/assets/images/default.jpg'" [alt]="name" />
       <div class="stars">
-        <mat-icon *ngFor="let star of [1, 2, 3]; let i = index">
-          {{ i < rating ? 'star' : 'star_border' }}
+        <mat-icon
+          *ngFor="let star of [1, 2, 3]; let i = index"
+          [ngClass]="{
+            'star-green': 2 - i < ratings && isGreen,
+            'star-default': !(2 - i < ratings && isGreen),
+          }"
+        >
+          {{ 2 - i < ratings ? 'star' : 'star_border' }}
         </mat-icon>
       </div>
     </div>
     <mat-card-content>
-      <div class="title">{{ title }}</div>
+      <div class="title">{{ name }}</div>
       <div class="description">{{ description }}</div>
     </mat-card-content>
     <div class="cta">
@@ -23,11 +29,11 @@
     <div class="mobile-card">
       <img
         [src]="image || '/assets/images/default.jpg'"
-        [alt]="title"
+        [alt]="name"
         class="mobile-image"
       />
       <div class="mobile-content">
-        <div class="mobile-title">{{ title }}</div>
+        <div class="mobile-title">{{ name }}</div>
         <div class="mobile-sub">
           <mat-icon>place</mat-icon>
           {{ location }} · {{ duration }}h

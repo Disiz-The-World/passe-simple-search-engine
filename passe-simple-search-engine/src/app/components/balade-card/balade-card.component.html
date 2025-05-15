@@ -4,13 +4,17 @@
     <button mat-icon-button class="bookmark">
       <mat-icon>bookmark_border</mat-icon>
     </button>
-    <div class="rating">★☆☆☆</div>
+    <div class="rating">
+      <mat-icon *ngFor="let star of [1, 2, 3]">
+        {{ star <= Math.round(rating) ? 'star' : 'star_border' }}
+      </mat-icon>
+    </div>
   </div>
 
   <mat-card-content>
     <h3>{{ title }}</h3>
     <div class="infos">
-      <span><mat-icon>schedule</mat-icon> {{ duration }}</span>
+      <span><mat-icon>schedule</mat-icon> {{ formatDuration(duration) }}</span>
       <span><mat-icon>place</mat-icon> {{ location }}</span>
     </div>
   </mat-card-content>

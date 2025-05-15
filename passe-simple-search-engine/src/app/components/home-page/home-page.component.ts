@@ -10,6 +10,7 @@ import { HeroCardComponent } from '../hero-card/hero-card.component';
 import { ThematicsComponent } from '../thematics/thematics.component';
 import { WalkService } from '../../services/walk.service';
 import { CarouselComponent } from '../carousel/carousel.component';
+import { RawBalade } from '../../models/balade.model';
 
 @Component({
   selector: 'app-home-page',
@@ -31,7 +32,7 @@ import { CarouselComponent } from '../carousel/carousel.component';
 })
 export class HomePageComponent implements OnInit {
   balades: any[] = [];
-  visibleBalades: any[] = [];
+  visibleBalades: RawBalade[] = [];
   showAll = false;
 
   @ViewChild('walkCard', { static: true }) walkCard!: TemplateRef<any>;
@@ -46,38 +47,42 @@ export class HomePageComponent implements OnInit {
       {
         id: 2,
         image: 'assets/walk-card/emosson.jpg',
-        title: 'Histoire au fil de l’eau - visite du barrage d’Emosson',
+        name: 'Histoire au fil de l’eau - visite du barrage d’Emosson',
         description:
           'Perché à 1 930 mètres d’altitude, le barrage d’Emosson offre un panorama époustouflant sur le massif du Mont-Blanc.',
-        rating: 2,
-        duration: 2,
+        ratings: [1, 2, 3],
+        duration: 75,
+        location: 1925,
       },
       {
         id: 3,
         image: 'assets/walk-card/morat-see.jpg',
-        title: 'Le lac de Morat : Entre nature et histoire…',
+        name: 'Le lac de Morat : Entre nature et histoire…',
         description:
           'Le lac de Morat est un écrin de nature chargé d’histoire. Des vestiges de cités lacustres aux batailles médiévales…',
-        rating: 3,
-        duration: 3,
+        ratings: [1, 2, 3],
+        duration: 95,
+        location: 1000,
       },
       {
         id: 4,
         image: 'assets/walk-card/creux-du-van.jpg',
-        title: 'Le Creux du Van : un cirque naturel à couper le souffle',
+        name: 'Le Creux du Van : un cirque naturel à couper le souffle',
         description:
           'Le Creux du Van est un cirque naturel impressionnant, formé par l’érosion de la roche calcaire.',
-        rating: 1,
-        duration: 1,
+        ratings: [1, 2, 3],
+        duration: 120,
+        location: 1200,
       },
       {
         id: 5,
         image: 'assets/walk-card/chemin-des-pionniers.jpg',
-        title: 'Le chemin des Pionniers : une randonnée historique',
+        name: 'Le chemin des Pionniers : une randonnée historique',
         description:
           'Le chemin des Pionniers est une randonnée qui retrace l’histoire des premiers habitants de la région.',
-        rating: 2,
-        duration: 2,
+        ratings: [1, 2, 3],
+        duration: 60,
+        location: 1800,
       },
     ];
 
@@ -94,11 +99,22 @@ export class HomePageComponent implements OnInit {
       this.updateVisibleBalades();
     });
   }
-
-  get displayedBalades(): any[] {
-    return [...this.balades, ...this.balades, ...this.balades, ...this.balades];
+  get displayedBalades(): RawBalade[] {
+    return [...this.visibleBalades, ...this.visibleBalades];
   }
 
+  getImageUrl(walk: RawBalade): string {
+    const image = walk.content?.sections?.[0]?.content?.find(
+      (item) => item.type === 'image/normal'
+    )?.path;
+
+    const fullUrl = image
+      ? `${this.walkService.backendBaseUrl}${image}`
+      : 'assets/images/default.jpg';
+
+    console.log(`[walk.id=${walk.id}] image URL =`, fullUrl);
+    return fullUrl;
+  }
   updateVisibleBalades(): void {
     const cardsPerRow =
       typeof window !== 'undefined' && window.innerWidth >= 1024 ? 3 : 2;
@@ -115,14 +131,5 @@ export class HomePageComponent implements OnInit {
   }
   trackByBalade(index: number, item: any): number {
     return item.id;
-  }
-
-  getDurationAndLocation(walk: any): string {
-    const duration = walk.duration ? `${walk.duration}h` : '';
-    const location = walk.location ? walk.location : '';
-    if (duration && location) {
-      return `${duration} · ${location}`;
-    }
-    return duration || location || '';
   }
 }
