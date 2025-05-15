@@ -1,0 +1,101 @@
+:host {
+  display: block;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.carousel-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+.carousel-scroll {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &.dragging {
+    cursor: grabbing;
+    user-select: none;
+  }
+}
+
+.carousel-card {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  transition: all 0.4s ease;
+  box-sizing: border-box;
+  overflow: hidden;
+  min-width: 0;
+  border-radius: 28px;
+  opacity: 0.5;
+  transform: scale(0.9);
+  width: 60px;
+
+  &.focused {
+    opacity: 1;
+    transform: scale(1.05);
+    z-index: 3;
+  }
+
+  &.focused-left,
+  &.focused-right {
+    width: clamp(260px, 45vw, 500px);
+    max-width: 100%;
+  }
+
+  &.nearby {
+    width: 100px;
+    opacity: 0.8;
+    transform: scale(0.95);
+    z-index: 2;
+  }
+
+  &.hidden {
+    width: 60px;
+    opacity: 0.5;
+    transform: scale(0.9);
+    z-index: 1;
+
+    ::ng-deep .cta,
+    ::ng-deep mat-card-content {
+      display: none !important;
+    }
+
+    ::ng-deep .image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 28px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    &.focused-left,
+    &.focused-right {
+      width: 90vw;
+      margin: 0 auto;
+    }
+
+    &.nearby,
+    &.hidden {
+      display: none !important;
+    }
+  }
+}

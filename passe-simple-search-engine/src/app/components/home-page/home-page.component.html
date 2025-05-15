@@ -1,59 +1,49 @@
 <app-hero-card></app-hero-card>
-<h2 class="section-title">Balades à la une</h2>
-<div class="carousel-container">
-  <div class="carousel-scroll" #carouselContainer (scroll)="onScroll()">
-    <div
-      *ngFor="
-        let walk of displayedBalades;
-        let i = index;
-        trackBy: trackByBalade
-      "
-      #carouselCard
-      class="carousel-card"
-      [ngClass]="{
-        focused: focusedIndexes.includes(i),
-        nearby: nearbyIndexes.includes(i),
-        hidden: hiddenIndexes.includes(i),
-      }"
-    >
-      <div class="drag-zone">
-        <app-featured-walk-card
-          [image]="walk.image"
-          [title]="walk.title"
-          [description]="walk.description"
-          [rating]="walk.rating"
-          [id]="walk.id"
-          (navigateToDetails)="onNavigateToDetails($event)"
-        ></app-featured-walk-card>
-      </div>
-    </div>
-  </div>
-</div>
 
-<app-thematics></app-thematics>
-<div class="popular">
-  <h2 class="section-title" style="margin: 0 2px 0 0">Populaires</h2>
-  <a
-    mat-icon-button
-    class="icon"
-    [routerLink]="['/balades']"
-    aria-label="Voir toutes les balades"
-  >
-    <mat-icon>arrow_forward</mat-icon>
-  </a>
-</div>
-<div class="popular-balades">
-  <
-  <div class="popular-balades-grid">
-    <app-balade-card
-      *ngFor="let walk of visibleBalades"
-      [id]="walk.id"
-      [imageUrl]="walk.image"
+<div class="home-container">
+  <h2 class="section-title">Balades populaires</h2>
+
+  <ng-template #walkCard let-walk>
+    <app-featured-walk-card
+      [image]="walk.image"
       [title]="walk.title"
-      [durationAndLocation]="getDurationAndLocation(walk)"
-    ></app-balade-card>
+      [description]="walk.description"
+      [rating]="walk.rating"
+      [id]="walk.id"
+    ></app-featured-walk-card>
+  </ng-template>
+
+  <app-carousel
+    [items]="displayedBalades"
+    [cardTemplate]="walkCard"
+  ></app-carousel>
+
+  <app-thematics></app-thematics>
+
+  <div class="popular">
+    <h2 class="section-title" style="margin: 0 2px 0 0">Populaires</h2>
+    <a
+      mat-icon-button
+      class="icon"
+      [routerLink]="['/balades']"
+      aria-label="Voir toutes les balades"
+    >
+      <mat-icon>arrow_forward</mat-icon>
+    </a>
   </div>
-  <div class="balade-card plus-card" (click)="toggleShowAll()">
-    <mat-icon>{{ showAll ? 'remove' : 'add' }}</mat-icon>
+
+  <div class="popular-balades">
+    <div class="popular-balades-grid">
+      <app-balade-card
+        *ngFor="let walk of visibleBalades"
+        [id]="walk.id"
+        [imageUrl]="walk.image"
+        [title]="walk.title"
+        [durationAndLocation]="getDurationAndLocation(walk)"
+      ></app-balade-card>
+    </div>
+    <div class="balade-card plus-card" (click)="toggleShowAll()">
+      <mat-icon>{{ showAll ? 'remove' : 'add' }}</mat-icon>
+    </div>
   </div>
 </div>

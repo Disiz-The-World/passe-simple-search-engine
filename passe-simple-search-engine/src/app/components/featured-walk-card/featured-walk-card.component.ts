@@ -5,6 +5,7 @@ import {
   EventEmitter,
   Inject,
   PLATFORM_ID,
+  OnInit,
 } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatCard, MatCardContent } from '@angular/material/card';
@@ -16,6 +17,7 @@ import { RouterModule, Router } from '@angular/router';
   selector: 'app-featured-walk-card',
   templateUrl: './featured-walk-card.component.html',
   styleUrls: ['./featured-walk-card.component.scss'],
+  standalone: true,
   imports: [
     MatIcon,
     MatCard,
@@ -25,7 +27,7 @@ import { RouterModule, Router } from '@angular/router';
     RouterModule,
   ],
 })
-export class FeaturedWalkCardComponent {
+export class FeaturedWalkCardComponent implements OnInit {
   @Output() navigateToDetails = new EventEmitter<number>();
   @Input() image!: string;
   @Input() title!: string;
@@ -33,7 +35,7 @@ export class FeaturedWalkCardComponent {
   @Input() rating!: number;
   @Input() id!: number;
   @Input() duration?: number;
-  @Input() location?: number;
+  @Input() location?: string; // ✅ correction ici
   @Input() durationAndLocation!: string;
 
   isMobile = false;
@@ -45,11 +47,23 @@ export class FeaturedWalkCardComponent {
 
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      this.isMobile = window.innerWidth < 1024;
+      this.checkMobile();
+
+      window.addEventListener('resize', this.checkMobile);
     }
   }
 
+  ngOnDestroy(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      window.removeEventListener('resize', this.checkMobile);
+    }
+  }
+
+  checkMobile = (): void => {
+    this.isMobile = window.innerWidth < 1024;
+  };
+
   goToDetails(): void {
-    this.router.navigate(['/balades']); // ou un ID si tu veux le passer
+    this.router.navigate(['/balades', this.id]);
   }
 }

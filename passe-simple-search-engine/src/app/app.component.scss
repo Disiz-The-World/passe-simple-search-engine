@@ -9,14 +9,16 @@ body {
   align-items: stretch;
   height: 100dvh;
   overflow: hidden;
+  width: 100%;
 }
 
 .main-layout {
   flex: 1;
   display: flex;
   flex-direction: column;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
-
 .header {
   display: flex;
   width: 100%;
@@ -26,18 +28,27 @@ body {
   overflow: hidden;
 }
 
+.main-content {
+  padding: 1rem;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 .header {
   display: flex;
-  width: 100%;
-  box-sizing: border-box;
   flex-shrink: 0;
-  overflow: visible;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  overflow-x: hidden;
 
   .search-bar-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 1em;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
   }
 
   app-search-bar {
@@ -47,14 +58,18 @@ body {
 
   .avatar-container {
     display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    max-width: 64px;
+    overflow: hidden;
     right: 0;
-    margin-left: auto;
   }
 }
 
 .main-content {
   flex: 1;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 1em;
 }
 
