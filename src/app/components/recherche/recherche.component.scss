@@ -3,6 +3,10 @@
   background: transparent;
   color: #181d18;
   font-family: 'Roboto', sans-serif;
+
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
 }
 
 .page-title {
@@ -10,6 +14,11 @@
   font-weight: 600;
   margin: 0 0 32px 0;
   color: #181d18;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+    margin: 0 0 24px 0;
+  }
 }
 
 /* Search inputs section */
@@ -18,11 +27,35 @@
   gap: 16px;
   margin-bottom: 32px;
   align-items: end;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 20px;
+    align-items: stretch;
+  }
+}
+
+.location-search-row {
+  display: flex;
+  gap: 16px;
+  align-items: end;
+
+  @media (max-width: 768px) {
+    gap: 12px;
+  }
+
+  .input-group {
+    flex: 1;
+  }
 }
 
 .input-group {
   flex: 2;
   position: relative;
+
+  @media (max-width: 768px) {
+    flex: none;
+  }
 
   label {
     display: block;
@@ -75,6 +108,12 @@
   text-align: center;
   padding: 0 8px;
 
+  @media (max-width: 768px) {
+    flex: none;
+    text-align: left;
+    padding: 0;
+  }
+
   label {
     display: block;
     margin-bottom: 8px;
@@ -88,6 +127,10 @@
     color: #424940;
     font-weight: 500;
     margin-bottom: 8px;
+
+    @media (max-width: 768px) {
+      text-align: left;
+    }
   }
 
   .duration-slider {
@@ -126,6 +169,11 @@
   justify-content: center;
   flex-shrink: 0;
 
+  @media (max-width: 768px) {
+    align-self: flex-end;
+    margin-top: 8px;
+  }
+
   mat-icon {
     font-size: 24px;
     color: white;
@@ -145,6 +193,11 @@
   @media (max-width: 1024px) {
     flex-direction: column;
     gap: 24px;
+  }
+
+  @media (max-width: 768px) {
+    gap: 20px;
+    margin-bottom: 24px;
   }
 }
 
@@ -177,6 +230,15 @@
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 12px;
   margin-top: 16px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .filter-chip {
@@ -228,6 +290,10 @@
 /* Active filters */
 .active-filters {
   margin-bottom: 32px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 24px;
+  }
 }
 
 .active-filters-label {
@@ -290,10 +356,18 @@
 /* Results section */
 .results-section {
   margin-top: 32px;
+
+  @media (max-width: 768px) {
+    margin-top: 24px;
+  }
 }
 
 .results-header {
   margin-bottom: 24px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 20px;
+  }
 
   h2 {
     font-size: 18px;
@@ -307,6 +381,10 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  @media (max-width: 768px) {
+    gap: 12px;
+  }
 }
 
 .result-card {
@@ -364,6 +442,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @media (max-width: 768px) {
+    padding: 12px;
+  }
 }
 
 .result-title {
@@ -372,6 +454,10 @@
   color: #181d18;
   margin: 0 0 8px 0;
   line-height: 1.3;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 }
 
 .result-description {
@@ -384,12 +470,21 @@
   -webkit-line-clamp: 2;
   line-clamp: 2;
   -webkit-box-orient: vertical;
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+    margin: 0 0 12px 0;
+  }
 }
 
 .result-meta {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    gap: 12px;
+  }
 }
 
 .meta-item {
@@ -400,11 +495,19 @@
   mat-icon {
     font-size: 16px;
     color: #4a9b8d;
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
   }
 
   span {
     font-size: 14px;
     color: #6b7280;
+
+    @media (max-width: 768px) {
+      font-size: 13px;
+    }
   }
 }
 
@@ -416,10 +519,19 @@
   border-radius: 12px;
   border: 1px solid #f3f4f6;
 
+  @media (max-width: 768px) {
+    padding: 48px 16px;
+  }
+
   .no-results-icon {
     font-size: 64px;
     color: #d1d5db;
     margin-bottom: 16px;
+
+    @media (max-width: 768px) {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
   }
 
   h3 {
@@ -427,11 +539,19 @@
     font-weight: 600;
     color: #181d18;
     margin: 0 0 8px 0;
+
+    @media (max-width: 768px) {
+      font-size: 18px;
+    }
   }
 
   p {
     font-size: 16px;
     color: #6b7280;
     margin: 0;
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
   }
 }

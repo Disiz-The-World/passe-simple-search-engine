@@ -45,27 +45,29 @@
       </mat-slider>
     </div>
 
-    <div class="input-group">
-      <label>Lieu</label>
-      <input
-        type="text"
-        [(ngModel)]="locationSearch"
-        placeholder="NPA, Ville, ..."
-        (input)="onLocationInput()"
-        class="search-input"
-      />
-      <button
-        *ngIf="locationSearch"
-        class="clear-btn"
-        (click)="clearLocationSearch()"
-      >
-        <mat-icon>close</mat-icon>
+    <div class="location-search-row">
+      <div class="input-group">
+        <label>Lieu</label>
+        <input
+          type="text"
+          [(ngModel)]="locationSearch"
+          placeholder="NPA, Ville, ..."
+          (input)="onLocationInput()"
+          class="search-input"
+        />
+        <button
+          *ngIf="locationSearch"
+          class="clear-btn"
+          (click)="clearLocationSearch()"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+      <button class="search-btn" (click)="search()">
+        <mat-icon>search</mat-icon>
       </button>
     </div>
-
-    <button class="search-btn" (click)="search()">
-      <mat-icon>search</mat-icon>
-    </button>
   </div>
 
   <!-- Filter sections -->
