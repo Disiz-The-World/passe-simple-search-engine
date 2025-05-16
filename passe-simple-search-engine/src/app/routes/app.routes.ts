@@ -8,6 +8,7 @@ import { ServerErrorComponent } from '../components/server-error/server-error.co
 import { TeapotComponent } from '../components/teapot/teapot.component';
 import { AboutComponent } from '../components/about/about.component';
 import { RechercheComponent } from '../components/recherche/recherche.component';
+import { IsLoggedInGuard } from '../guards/is-logged-in.guard';
 
 export const routes: Routes = [
   {
@@ -29,6 +30,7 @@ export const routes: Routes = [
   {
     path: 'favoris',
     component: FavoritesComponent,
+    canActivate: [IsLoggedInGuard],
   },
   {
     path: 'about',
@@ -43,7 +45,7 @@ export const routes: Routes = [
     component: TeapotComponent,
   },
   {
-    path: '',
+    path: 'explore',
     redirectTo: '/recherche',
     pathMatch: 'full',
   },

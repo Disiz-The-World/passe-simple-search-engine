@@ -26,7 +26,7 @@ export class SidebarComponent {
   ];
 
   bottomItems = [
-    { name: 'Mon compte', icon: 'account_circle', route: '/account' },
+    { name: 'Mon compte', icon: 'account_circle', route: '/login' },
     { name: 'Informations légales', icon: 'description', route: '/legal' },
   ];
 
