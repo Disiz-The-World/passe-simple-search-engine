@@ -2,11 +2,8 @@
   <div class="leading-icon">
     <mat-icon class="container-icon" (click)="onBack()">arrow_back</mat-icon>
   </div>
-  <div class="headline">{{ title }}</div>
+  <div class="headline">{{ balade?.name }}</div>
   <div class="trailing-icon">
-    <div class="favorite" (click)="onToggleFavourite()">
-      <div class="favorite-child"></div>
-      <mat-icon class="bookmark-icon">bookmark</mat-icon>
-    </div>
+    <app-favorites-btn [balade]="balade"></app-favorites-btn>
   </div>
 </div>

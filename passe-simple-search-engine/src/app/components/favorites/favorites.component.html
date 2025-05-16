@@ -43,13 +43,10 @@
               <div class="tags">
                 <app-tags [tags]="item.tags"></app-tags>
               </div>
-              <button (click)="swapFavorite(item.id)" class="favorite-button">
-                <mat-icon
-                  aria-hidden="false"
-                  aria-label="Favoris"
-                  fontIcon="bookmark"
-                ></mat-icon>
-              </button>
+              <app-favorites-btn
+                [balade]="item"
+                (swapEvent)="removeFromList(item)"
+              ></app-favorites-btn>
             </mat-card-actions>
           </mat-card>
         </a>
