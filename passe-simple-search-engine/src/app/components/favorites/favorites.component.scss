@@ -19,14 +19,13 @@ mat-card {
 mat-card-actions {
   padding: 0 0.5rem 0.5rem 1rem;
   min-height: 0;
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between
 }
 
 .favorties {
   padding: 0 1.5rem;
-}
-
-.tags {
-  margin-top: 0.5rem;
 }
 
 .top {

@@ -1,9 +1,7 @@
 <mat-card class="balade-card" (click)="goToDetails()">
   <div class="image-container">
     <img [src]="imageUrl" alt="Image de {{ title }}" />
-    <button mat-icon-button class="bookmark">
-      <mat-icon>bookmark_border</mat-icon>
-    </button>
+    <app-favorites-btn [balade]="balade" class="bookmark"></app-favorites-btn>
     <div class="rating">★☆☆☆</div>
   </div>
 

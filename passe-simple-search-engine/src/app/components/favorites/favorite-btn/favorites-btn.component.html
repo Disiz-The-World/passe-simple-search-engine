@@ -1,0 +1,10 @@
+@if (user && balade) {
+  <button (click)="swapFavorite($event)" class="favorite-button">
+    <mat-icon
+      aria-hidden="false"
+      aria-label="Favoris"
+      fontIcon="bookmark"
+      [class.filled]="isFavorite"
+    ></mat-icon>
+  </button>
+}

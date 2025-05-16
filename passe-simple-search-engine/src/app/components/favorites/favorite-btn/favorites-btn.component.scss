@@ -1,0 +1,32 @@
+.favorite-button {
+  margin-left: auto;
+  border-radius: 50%;
+  border: 0;
+  background-color: #d9e7cb;
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  z-index: 500;
+  cursor: pointer;
+
+  mat-icon {
+    font-size: 1.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    text-shadow:
+      -1px -1px 0 #386a1f,
+      1px -1px 0 #386a1f,
+      -1px 1px 0 #386a1f,
+      1px 1px 0 #386a1f;
+    color: #d9e7cb;
+    transform: scale(0.8);
+
+    &.filled {
+      color: #386a1f;
+      text-shadow: none;
+      transform: scale(1);
+    }
+  }
+}

@@ -1,7 +1,7 @@
 <div>
   <div class="desktop">
     <div *ngIf="balade; else loading">
-      <app-top-bar [title]="balade.name" (back)="navigateBack()">
+      <app-top-bar [balade]="balade" (back)="navigateBack()">
       </app-top-bar>
       <div class="preview-container">
         <app-preview-image

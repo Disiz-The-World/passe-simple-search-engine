@@ -43,14 +43,10 @@ export class DatabaseService {
     );
   }
 
-  public updateBalade(baladeId: number, data: { [key: string]: any }) {
-    const url = environment.apiUrl + '/balades/' + baladeId;
+  public async updateBalade(baladeId: number, data: { [key: string]: any }) {
+    const url = `${environment.apiUrl}${this.balades}/${baladeId}`; // Ensure URL is correctly constructed
 
-    this.http.put(url, data).subscribe((response) => {
-      return response;
-    });
-
-    return true;
+    return await firstValueFrom(this.http.patch<BaladeModel>(url, data));
   }
 
   public async getUsers(filters: {}) {

@@ -15,6 +15,7 @@ import { RouterLink } from '@angular/router';
 import { MatOption } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { TagsComponent } from '../tags/tags.component';
+import { FavoritesBtnComponent } from './favorite-btn/favorites-btn.component';
 
 @Component({
   selector: 'app-favorites',
@@ -30,13 +31,14 @@ import { TagsComponent } from '../tags/tags.component';
     MatOption,
     MatSelectModule,
     TagsComponent,
+    FavoritesBtnComponent,
   ],
   templateUrl: './favorites.component.html',
   styleUrls: ['./favorites.component.scss'], // Fixed typo: styleUrl -> styleUrls
 })
 export class FavoritesComponent implements OnInit, OnDestroy {
   balades: BaladeModel[] | null = [];
-  user: UserModel | null = null;
+  user: UserModel | undefined = undefined;
   selectedSort: string = 'asc';
   isLoading: boolean = true;
 
@@ -46,64 +48,39 @@ export class FavoritesComponent implements OnInit, OnDestroy {
   ) {}
 
   async ngOnInit() {
-    let user = await this.authService.getCurrentUser();
+    this.user = await this.authService.getCurrentUser();
+    this.loadBalades();
+    this.isLoading = false;
+  }
 
-    if (!user) {
+  private async loadBalades() {
+    if (!this.user) {
       return;
     }
 
     let balades = await this.databaseService.getBalades({});
 
+    this.balades = await Promise.all(
+      balades
+        .filter((balade: BaladeModel) => {
+          return this.user && balade.favoriteIds.includes(Number(this.user.id));
+        })
+        .map(async (balade: BaladeModel) => {
+          const tags = await Promise.all(
+            balade.tagIds.map((tagId: number) =>
+              this.databaseService.getTags({ id: tagId })
+            )
+          );
+          return {
+            ...balade,
+            tags: tags.flat(),
+          };
+        })
+    );
+
     if (balades.length > 0) {
-      this.balades = await Promise.all(
-        balades
-          .filter((balade: BaladeModel) => {
-            return balade.favoriteIds.includes(Number(user.id));
-          })
-          .map(async (balade: BaladeModel) => {
-            const tags = await Promise.all(
-              balade.tagIds.map((tagId: number) =>
-                this.databaseService.getTags({ id: tagId })
-              )
-            );
-            return {
-              ...balade,
-              tags: tags.flat(),
-            };
-          })
-      );
-
-      this.isLoading = false;
+      this.sortBalades('asc');
     }
-  }
-
-  swapFavorite(baladeId: number): void {
-    if (this.user == null || this.user == undefined) {
-      return;
-    }
-
-    this.databaseService.getBalades({ id: baladeId }).then(async (data) => {
-      const { favoriteIds, ...balade } = data[0];
-      const user = await this.authService.getCurrentUser();
-
-      if (!balade || !user) {
-        return;
-      }
-
-      let favorites = favoriteIds.includes(user.id)
-        ? favoriteIds.filter((id: number) => id !== user.id)
-        : [...favoriteIds, user.id];
-
-      const updatedData = {
-        ...balade,
-        favoriteIds: favorites,
-      };
-
-      console.log('updatedData', updatedData);
-      return;
-
-      this.databaseService.updateBalade(baladeId, updatedData);
-    });
   }
 
   sortBalades(sort: string): void {
@@ -130,8 +107,18 @@ export class FavoritesComponent implements OnInit, OnDestroy {
 
   formatDuration(duration: number): string {
     const hours = Math.floor(duration / 60);
-    const minutes = duration % 60;
+    const minutes = duration % 60 < 10 ? `0${duration % 60}` : duration % 60;
 
     return duration > 60 ? `${hours}h${minutes}` : `${minutes}min`;
+  }
+
+  removeFromList(balade: BaladeModel): void {
+    if (!this.balades) {
+      return;
+    }
+
+    this.balades = this.balades.filter(
+      (item: BaladeModel) => item.id !== balade.id
+    );
   }
 }
