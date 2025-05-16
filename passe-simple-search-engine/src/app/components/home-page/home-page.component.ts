@@ -49,8 +49,9 @@ export class HomePageComponent implements OnInit {
         title: 'Histoire au fil de l’eau - visite du barrage d’Emosson',
         description:
           'Perché à 1 930 mètres d’altitude, le barrage d’Emosson offre un panorama époustouflant sur le massif du Mont-Blanc.',
-        rating: 2,
-        duration: 2,
+        rating: [1],
+        duration: 90,
+        location: 1930,
       },
       {
         id: 3,
@@ -58,8 +59,9 @@ export class HomePageComponent implements OnInit {
         title: 'Le lac de Morat : Entre nature et histoire…',
         description:
           'Le lac de Morat est un écrin de nature chargé d’histoire. Des vestiges de cités lacustres aux batailles médiévales…',
-        rating: 3,
-        duration: 3,
+        rating: [1, 2, 3, 4, 5],
+        duration: 320,
+        location: 1784,
       },
       {
         id: 4,
@@ -67,8 +69,9 @@ export class HomePageComponent implements OnInit {
         title: 'Le Creux du Van : un cirque naturel à couper le souffle',
         description:
           'Le Creux du Van est un cirque naturel impressionnant, formé par l’érosion de la roche calcaire.',
-        rating: 1,
-        duration: 1,
+        rating: [1, 2],
+        duration: 205,
+        location: 1805,
       },
       {
         id: 5,
@@ -76,8 +79,9 @@ export class HomePageComponent implements OnInit {
         title: 'Le chemin des Pionniers : une randonnée historique',
         description:
           'Le chemin des Pionniers est une randonnée qui retrace l’histoire des premiers habitants de la région.',
-        rating: 2,
-        duration: 2,
+        rating: [1, 2, 3],
+        duration: 120,
+        location: 1768,
       },
     ];
 
@@ -113,16 +117,8 @@ export class HomePageComponent implements OnInit {
     this.showAll = !this.showAll;
     this.updateVisibleBalades();
   }
+
   trackByBalade(index: number, item: any): number {
     return item.id;
-  }
-
-  getDurationAndLocation(walk: any): string {
-    const duration = walk.duration ? `${walk.duration}h` : '';
-    const location = walk.location ? walk.location : '';
-    if (duration && location) {
-      return `${duration} · ${location}`;
-    }
-    return duration || location || '';
   }
 }

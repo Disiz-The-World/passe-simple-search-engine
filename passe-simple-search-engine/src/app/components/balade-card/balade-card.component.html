@@ -4,14 +4,24 @@
     <button mat-icon-button class="bookmark">
       <mat-icon>bookmark_border</mat-icon>
     </button>
-    <div class="rating">★☆☆☆</div>
+    <div class="rating">
+      <div class="stars" *ngIf="rating.length > 0">
+        <mat-icon *ngFor="let star of [1, 2, 3]; let i = index">
+          {{ i < average ? 'star' : 'star_border' }}
+        </mat-icon>
+      </div>
+    </div>
   </div>
 
   <mat-card-content>
     <h3>{{ title }}</h3>
     <div class="infos">
-      <span><mat-icon>schedule</mat-icon> {{ duration }}</span>
-      <span><mat-icon>place</mat-icon> {{ location }}</span>
+      <span class="icon-text"
+        ><mat-icon>schedule</mat-icon> <span>{{ durationInHours }}</span></span
+      >
+      <span class="icon-text"
+        ><mat-icon>place</mat-icon> <span>{{ location }}</span></span
+      >
     </div>
   </mat-card-content>
 </mat-card>

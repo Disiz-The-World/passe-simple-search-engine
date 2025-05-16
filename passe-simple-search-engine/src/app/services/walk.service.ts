@@ -30,9 +30,9 @@ export class WalkService {
               : 'assets/images/default.jpg',
             title: walk.name,
             description: walk.catchPhrase,
-            rating:
-              walk.ratings.reduce((a: number, b: number) => a + b, 0) /
-                walk.ratings.length || 0,
+            duration: walk.duration,
+            location: walk.location,
+            rating: walk.ratings ?? [],
             id: walk.id,
           };
         })
