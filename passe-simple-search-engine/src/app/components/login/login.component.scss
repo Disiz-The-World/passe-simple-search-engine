@@ -5,20 +5,12 @@
 }
 
 .login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-  height: 100vh;
 
   .login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 600px;
-    max-width: min(100%, 600px);
+    width: 100%;
+    max-width: min(calc(100% - 4rem), 600px);
+    margin: 0.5rem 2rem 1.5rem 2rem;
 
     > * {
       width: fit-content;
@@ -26,6 +18,6 @@
   }
 
   .error {
-    margin-bottom: 5rem;
+    margin-bottom: 1rem;
   }
 }
