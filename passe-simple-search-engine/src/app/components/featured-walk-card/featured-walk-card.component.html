@@ -1,38 +1,49 @@
 <mat-card class="walk-card mat-elevation-z1">
-  <ng-container *ngIf="!isMobile; else mobileCard">
-    <div class="image-wrapper">
+  <div class="mobile-view">
+    <div class="image-mobile" (click)="$event.stopPropagation()">
       <img [src]="image || '/assets/images/default.jpg'" [alt]="title" />
-      <div class="stars">
-        <mat-icon *ngFor="let star of [1, 2, 3]; let i = index">
-          {{ i < rating ? 'star' : 'star_border' }}
-        </mat-icon>
-      </div>
-    </div>
-    <mat-card-content>
-      <div class="title">{{ title }}</div>
-      <div class="description">{{ description }}</div>
-    </mat-card-content>
-    <div class="cta">
-      <button mat-icon-button (click)="goToDetails()">
-        <mat-icon>arrow_forward</mat-icon>
+      <button mat-icon-button class="bookmark" (click)="toggleFavorite($event)">
+        <mat-icon>{{ isFavorite ? 'bookmark' : 'bookmark_border' }}</mat-icon>
       </button>
-    </div>
-  </ng-container>
-
-  <ng-template #mobileCard>
-    <div class="mobile-card">
-      <img
-        [src]="image || '/assets/images/default.jpg'"
-        [alt]="title"
-        class="mobile-image"
-      />
-      <div class="mobile-content">
-        <div class="mobile-title">{{ title }}</div>
-        <div class="mobile-sub">
+      <div class="rating" *ngIf="rating.length > 0">
+        <div class="stars">
+          <mat-icon *ngFor="let star of [1, 2, 3]; let i = index">
+            {{ i < average ? 'star' : 'star_border' }}
+          </mat-icon>
+        </div>
+      </div>
+      <div class="info-overlay">
+        <div class="title">{{ title }}</div>
+        <div class="sub">
           <mat-icon>place</mat-icon>
-          {{ location }} · {{ duration }}h
+          {{ location }} · {{ duration / 60 | number: '1.0-1' }}h
         </div>
       </div>
     </div>
-  </ng-template>
+  </div>
+  <div class="desktop-view" (click)="goToDetails()">
+    <div class="image-container">
+      <img [src]="image || '/assets/images/default.jpg'" [alt]="title" />
+      <button mat-icon-button class="bookmark" (click)="toggleFavorite($event)">
+        <mat-icon>{{ isFavorite ? 'bookmark' : 'bookmark_border' }}</mat-icon>
+      </button>
+      <div class="rating" *ngIf="rating.length > 0">
+        <div class="stars">
+          <mat-icon *ngFor="let star of [1, 2, 3]; let i = index">
+            {{ i < average ? 'star' : 'star_border' }}
+          </mat-icon>
+        </div>
+      </div>
+    </div>
+
+    <mat-card-content>
+      <h3 class="title">{{ title }}</h3>
+      <p class="description">{{ description }}</p>
+      <div class="cta">
+        <button mat-icon-button class="arrow">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
+    </mat-card-content>
+  </div>
 </mat-card>

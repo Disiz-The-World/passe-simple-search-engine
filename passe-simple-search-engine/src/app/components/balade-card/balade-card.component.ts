@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { MatCard, MatCardContent } from '@angular/material/card';
@@ -18,20 +18,25 @@ export class BaladeCardComponent {
   @Input() duration!: number;
   @Input() location!: number;
   @Input() rating: number[] = [];
+  @Input() favoriteIds!: number[];
+  @Input() userId!: number;
+  @Output() favoriteToggled = new EventEmitter<{
+    id: number;
+    favoriteIds: number[];
+  }>();
 
   constructor(private router: Router) {}
 
   goToDetails() {
     this.router.navigate(['/balades', this.id]);
   }
+  get isFavorite(): boolean {
+    return this.favoriteIds.includes(this.userId);
+  }
 
-  get durationInHours(): string {
-    if (this.duration < 60) {
-      return `${this.duration} min`;
-    }
-    const hours = Math.floor(this.duration / 60);
-    const minutes = this.duration % 60;
-    return minutes === 0 ? `${hours}h` : `${hours}h${minutes}`;
+  toggleFavorite(event: Event): void {
+    event.stopPropagation();
+    this.favoriteToggled.emit();
   }
 
   get average(): number {

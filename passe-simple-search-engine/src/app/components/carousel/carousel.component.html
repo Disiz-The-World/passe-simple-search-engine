@@ -1,14 +1,21 @@
 <div class="carousel-container">
-  <div class="carousel-scroll" #carouselContainer>
-    <div
-      *ngFor="let item of items; let i = index; trackBy: trackByIndex"
-      #carouselCard
-      class="carousel-card"
-      [ngClass]="getClasses(i)"
-    >
-      <ng-container
-        *ngTemplateOutlet="cardTemplate; context: { $implicit: item }"
-      ></ng-container>
+  <div class="carousel-scroll">
+    <div class="carousel-card" *ngFor="let walk of items">
+      <app-featured-walk-card
+        *ngFor="let walk of items"
+        [image]="walk.image"
+        [title]="walk.title"
+        [description]="walk.description"
+        [location]="walk.location"
+        [duration]="walk.duration"
+        [rating]="walk.rating"
+        [id]="walk.id"
+        [favoriteIds]="walk.favoriteIds"
+        [userId]="userId || 0"
+        (favoriteToggled)="
+          favoriteToggled.emit({ id: walk.id, favoriteIds: walk.favoriteIds })
+        "
+      />
     </div>
   </div>
 </div>

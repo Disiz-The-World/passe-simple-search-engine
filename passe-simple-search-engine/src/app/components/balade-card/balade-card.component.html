@@ -1,8 +1,8 @@
 <mat-card class="balade-card" (click)="goToDetails()">
   <div class="image-container">
     <img [src]="imageUrl" alt="Image de {{ title }}" />
-    <button mat-icon-button class="bookmark">
-      <mat-icon>bookmark_border</mat-icon>
+    <button mat-icon-button class="bookmark" (click)="toggleFavorite($event)">
+      <mat-icon>{{ isFavorite ? 'bookmark' : 'bookmark_border' }}</mat-icon>
     </button>
     <div class="rating">
       <div class="stars" *ngIf="rating.length > 0">
@@ -16,9 +16,10 @@
   <mat-card-content>
     <h3>{{ title }}</h3>
     <div class="infos">
-      <span class="icon-text"
-        ><mat-icon>schedule</mat-icon> <span>{{ durationInHours }}</span></span
-      >
+      <span class="icon-text">
+        <mat-icon>schedule</mat-icon>
+        <span>{{ duration / 60 | number: '1.0-1' }}h</span>
+      </span>
       <span class="icon-text"
         ><mat-icon>place</mat-icon> <span>{{ location }}</span></span
       >

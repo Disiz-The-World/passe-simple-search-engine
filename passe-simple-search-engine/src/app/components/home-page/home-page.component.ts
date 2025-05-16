@@ -5,11 +5,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { BaladeCardComponent } from '../balade-card/balade-card.component';
-import { FeaturedWalkCardComponent } from '../featured-walk-card/featured-walk-card.component';
 import { HeroCardComponent } from '../hero-card/hero-card.component';
 import { ThematicsComponent } from '../thematics/thematics.component';
 import { WalkService } from '../../services/walk.service';
 import { CarouselComponent } from '../carousel/carousel.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home-page',
@@ -21,7 +21,6 @@ import { CarouselComponent } from '../carousel/carousel.component';
     MatCardModule,
     MatIconModule,
     BaladeCardComponent,
-    FeaturedWalkCardComponent,
     HeroCardComponent,
     ThematicsComponent,
     CarouselComponent,
@@ -33,18 +32,25 @@ export class HomePageComponent implements OnInit {
   balades: any[] = [];
   visibleBalades: any[] = [];
   showAll = false;
+  userId: number | null = null;
 
   @ViewChild('walkCard', { static: true }) walkCard!: TemplateRef<any>;
 
   constructor(
     private walkService: WalkService,
+    private authService: AuthService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.authService.getCurrentUser().then((user) => {
+      this.userId = user?.id ?? null;
+    });
+
     const staticWalks = [
       {
         id: 2,
+        favoriteIds: [2],
         image: 'assets/walk-card/emosson.jpg',
         title: 'Histoire au fil de l’eau - visite du barrage d’Emosson',
         description:
@@ -55,6 +61,7 @@ export class HomePageComponent implements OnInit {
       },
       {
         id: 3,
+        favoriteIds: [1],
         image: 'assets/walk-card/morat-see.jpg',
         title: 'Le lac de Morat : Entre nature et histoire…',
         description:
@@ -65,6 +72,7 @@ export class HomePageComponent implements OnInit {
       },
       {
         id: 4,
+        favoriteIds: [1],
         image: 'assets/walk-card/creux-du-van.jpg',
         title: 'Le Creux du Van : un cirque naturel à couper le souffle',
         description:
@@ -75,6 +83,7 @@ export class HomePageComponent implements OnInit {
       },
       {
         id: 5,
+        favoriteIds: [2],
         image: 'assets/walk-card/chemin-des-pionniers.jpg',
         title: 'Le chemin des Pionniers : une randonnée historique',
         description:
@@ -99,8 +108,22 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  get displayedBalades(): any[] {
-    return [...this.balades, ...this.balades, ...this.balades, ...this.balades];
+  onFavoriteToggled(id: number, currentFavoriteIds: number[]): void {
+    if (!this.userId) return;
+
+    const isAlreadyFav = currentFavoriteIds.includes(this.userId);
+    const updatedFavorites = isAlreadyFav
+      ? currentFavoriteIds.filter((uId) => uId !== this.userId)
+      : [...currentFavoriteIds, this.userId];
+
+    this.walkService
+      .toggleFavorite(id, this.userId, currentFavoriteIds)
+      .subscribe(() => {
+        const target = this.balades.find((b) => b.id === id);
+        if (target) {
+          target.favoriteIds = updatedFavorites;
+        }
+      });
   }
 
   updateVisibleBalades(): void {
@@ -116,9 +139,5 @@ export class HomePageComponent implements OnInit {
   public toggleShowAll(): void {
     this.showAll = !this.showAll;
     this.updateVisibleBalades();
-  }
-
-  trackByBalade(index: number, item: any): number {
-    return item.id;
   }
 }
