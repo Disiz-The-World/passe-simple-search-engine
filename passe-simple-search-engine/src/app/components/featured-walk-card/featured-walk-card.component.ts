@@ -36,7 +36,7 @@ export class FeaturedWalkCardComponent implements OnInit, OnDestroy {
   @Input() rating!: number;
   @Input() id!: number;
   @Input() duration?: number;
-  @Input() location?: string; // ✅ correction ici
+  @Input() location?: number;
   @Input() durationAndLocation!: string;
 
   isMobile = false;

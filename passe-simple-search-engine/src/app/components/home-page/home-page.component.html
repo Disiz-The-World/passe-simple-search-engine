@@ -39,7 +39,9 @@
         [id]="walk.id"
         [imageUrl]="walk.image"
         [title]="walk.title"
-        [durationAndLocation]="getDurationAndLocation(walk)"
+        [duration]="walk.duration"
+        [location]="walk.location"
+        [rating]="walk.rating"
       ></app-balade-card>
     </div>
     <div class="balade-card plus-card" (click)="toggleShowAll()">
