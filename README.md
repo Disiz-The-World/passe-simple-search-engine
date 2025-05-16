@@ -2,7 +2,7 @@
 
 ## Pré requis :
 
-- [Installer Node](https://nodejs.org/en/download)
+- Installer [Node.js](https://nodejs.org/en/download)
 - N'importe éditeur de texte (tel que [Visual Studio Code](https://code.visualstudio.com/download)) pour lire le code source
 
 ## Installation et lancement de l'application
