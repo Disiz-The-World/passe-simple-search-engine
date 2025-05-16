@@ -10,22 +10,22 @@
       "map": "/1/map.png",
       "infos": [
         {
-          "icon": "f816",
+          "icon": "line_start_circle",
           "name": "Départ",
           "description": "Gare de Moudon"
         },
         {
-          "icon": "f81b",
+          "icon": "line_end_circle",
           "name": "Arrivée",
           "description": "Gare de Bressonaz"
         },
         {
-          "icon": "f6ea",
+          "icon": "pin_drop",
           "name": "Distance",
           "description": "~5km"
         },
         {
-          "icon": "f873",
+          "icon": "altitude",
           "name": "Dénivelé",
           "description": "+180m -180m"
         }
@@ -364,13 +364,105 @@
   "tags": [
     {
       "id": 1,
-      "name": "Transports publics",
-      "icon": "e530"
+      "name": "Forêt",
+      "icon": "forest",
+      "category": "terrain"
     },
     {
       "id": 2,
-      "name": "Restauration",
-      "icon": "e56c"
+      "name": "Montagne",
+      "icon": "landscape",
+      "category": "terrain"
+    },
+    {
+      "id": 3,
+      "name": "Lac",
+      "icon": "water",
+      "category": "terrain"
+    },
+    {
+      "id": 4,
+      "name": "Peu de dénivelé",
+      "icon": "arrow_right_alt",
+      "category": "terrain"
+    },
+    {
+      "id": 5,
+      "name": "Routes",
+      "icon": "local_taxi",
+      "category": "terrain"
+    },
+    {
+      "id": 10,
+      "name": "Paléolithique",
+      "icon": "camping",
+      "category": "period"
+    },
+    {
+      "id": 11,
+      "name": "Néolithique",
+      "icon": "local_fire_department",
+      "category": "period"
+    },
+    {
+      "id": 12,
+      "name": "Antiquité",
+      "icon": "add",
+      "category": "period"
+    },
+    {
+      "id": 13,
+      "name": "Moyen Age",
+      "icon": "castle",
+      "category": "period"
+    },
+    {
+      "id": 14,
+      "name": "Temps modernes",
+      "icon": "settings_input_antenna",
+      "category": "period"
+    },
+    {
+      "id": 15,
+      "name": "Époque contemporaine",
+      "icon": "local_taxi",
+      "category": "period"
+    },
+    {
+      "id": 20,
+      "name": "Parcours sportif",
+      "icon": "directions_run",
+      "category": "criteria"
+    },
+    {
+      "id": 21,
+      "name": "Parcours interactif",
+      "icon": "touch_app",
+      "category": "criteria"
+    },
+    {
+      "id": 22,
+      "name": "Accessible",
+      "icon": "accessible",
+      "category": "criteria"
+    },
+    {
+      "id": 23,
+      "name": "Restauration possible",
+      "icon": "restaurant",
+      "category": "criteria"
+    },
+    {
+      "id": 24,
+      "name": "Traductions",
+      "icon": "language",
+      "category": "criteria"
+    },
+    {
+      "id": 25,
+      "name": "Familles",
+      "icon": "family_restroom",
+      "category": "criteria"
     }
   ],
   "users": [

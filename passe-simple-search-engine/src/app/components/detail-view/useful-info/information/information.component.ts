@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-information',
-  imports: [CommonModule],
+  imports: [CommonModule, MatIcon],
   templateUrl: './information.component.html',
   styleUrl: './information.component.scss',
   standalone: true,
 })
-export class InformationComponent implements OnChanges {
+export class InformationComponent {
   @Input() infos!: { icon: string; name: string; description: string }[];
   @Input() map!: string;
   @Input() attributions!: {
@@ -17,16 +18,4 @@ export class InformationComponent implements OnChanges {
     Images: string;
   };
   @Input() seeMore!: string[];
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['infos']) {
-      console.log('Infos reçues dans info', this.infos);
-    }
-    if (changes['attributions']) {
-      console.log('Attributions reçues :', this.attributions);
-    }
-  }
-  getIconChar(unicode: string): string {
-    return String.fromCharCode(parseInt(unicode, 16));
-  }
 }

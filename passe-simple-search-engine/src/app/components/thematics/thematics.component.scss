@@ -18,19 +18,29 @@
   justify-content: space-between;
   cursor: pointer;
   transition: background-color 0.2s;
-}
 
 .icon {
   margin-right: 12px;
 }
 
-span {
-  flex: 1;
-  font-size: 15px;
-  font-weight: 500;
-  color: #2b2b2b;
-}
+  span {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 500;
+    color: #2b2b2b;
+  }
 
-.arrow {
-  color: #4a4a4a;
+  .arrow {
+    color: #4a4a4a;
+  }
+
+  &.plus {
+    justify-content: center;
+
+    mat-icon {
+      font-size: 24px;
+      color: #2b2b2b;
+      transition: transform 0.2s ease;
+    }
+  }
 }
