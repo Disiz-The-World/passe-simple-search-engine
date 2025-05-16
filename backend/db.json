@@ -143,7 +143,7 @@
           "description": "+210m -185m"
         }
       ],
-      "favoriteIds": [3, 4],
+      "favoriteIds": [1, 2],
       "ratings": [4, 5],
       "content": {
         "details": "Cette balade vous emmène à travers les vignobles en terrasses de Lavaux, un paysage unique façonné par des siècles de travail humain. Classé au patrimoine mondial de l'UNESCO, Lavaux est un véritable joyau de la Suisse romande. En chemin, vous découvrirez des villages pittoresques, des caves à vin accueillantes et des panoramas à couper le souffle sur le lac Léman et les Alpes. Que vous soyez amateur de randonnée, passionné de vin ou simplement à la recherche d'une escapade paisible, cette balade a tout pour plaire.",
@@ -252,7 +252,7 @@
           "description": "+550m -40m"
         }
       ],
-      "favoriteIds": [5, 6],
+      "favoriteIds": [1, 2],
       "ratings": [5, 4, 5],
       "content": {
         "details": "Cette balade vous emmène à la découverte du barrage d'Émosson, un site emblématique des Alpes suisses. Situé à 1930 mètres d'altitude, ce barrage impressionnant est entouré de paysages alpins spectaculaires. En chemin, vous traverserez des sentiers bordés de fleurs sauvages, des forêts alpines et des points de vue à couper le souffle. Que vous soyez passionné d'ingénierie, amoureux de la nature ou simplement à la recherche d'une escapade paisible, cette balade est une expérience inoubliable.",
@@ -451,4 +451,3 @@
     }
   ]
 }
-
