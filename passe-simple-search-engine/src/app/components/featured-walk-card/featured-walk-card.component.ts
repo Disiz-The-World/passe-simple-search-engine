@@ -6,6 +6,7 @@ import {
   Inject,
   PLATFORM_ID,
   OnInit,
+  OnDestroy,
 } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { MatCard, MatCardContent } from '@angular/material/card';
@@ -27,7 +28,7 @@ import { RouterModule, Router } from '@angular/router';
     RouterModule,
   ],
 })
-export class FeaturedWalkCardComponent implements OnInit {
+export class FeaturedWalkCardComponent implements OnInit, OnDestroy {
   @Output() navigateToDetails = new EventEmitter<number>();
   @Input() image!: string;
   @Input() title!: string;
