@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-top-bar',
@@ -13,8 +14,10 @@ export class TopBarComponent {
   @Output() back = new EventEmitter<void>();
   @Output() toggleFavourite = new EventEmitter<void>();
 
+  constructor(private location: Location) {}
+
   onBack() {
-    this.back.emit();
+    this.location.back();
   }
 
   onToggleFavourite() {
