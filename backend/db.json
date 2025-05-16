@@ -133,22 +133,22 @@
       "map": "/2/map.png",
       "infos": [
         {
-          "icon": "f816",
+          "icon": "line_start_circle",
           "name": "Départ",
           "description": "Gare de Cully"
         },
         {
-          "icon": "f81b",
+          "icon": "line_end_circle",
           "name": "Arrivée",
           "description": "Gare de Lutry"
         },
         {
-          "icon": "f6ea",
+          "icon": "pin_drop",
           "name": "Distance",
           "description": "~20km"
         },
         {
-          "icon": "f873",
+          "icon": "altitude",
           "name": "Dénivelé",
           "description": "+210m -185m"
         }
@@ -251,22 +251,22 @@
       "map": "/3/map.png",
       "infos": [
         {
-          "icon": "f816",
+          "icon": "line_start_circle",
           "name": "Départ",
           "description": "En bas barrage"
         },
         {
-          "icon": "f81b",
+          "icon": "line_end_circle",
           "name": "Arrivée",
           "description": "En haut du barrage"
         },
         {
-          "icon": "f6ea",
+          "icon": "pin_drop",
           "name": "Distance",
           "description": "~15km"
         },
         {
-          "icon": "f873",
+          "icon": "altitude",
           "name": "Dénivelé",
           "description": "+550m -40m"
         }

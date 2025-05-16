@@ -1,8 +1,7 @@
 <div>
   <div class="desktop">
     <div *ngIf="balade; else loading">
-      <app-top-bar [title]="balade.name" (back)="navigateBack()">
-      </app-top-bar>
+      <app-top-bar [title]="balade.name" (back)="navigateBack()"> </app-top-bar>
       <div class="preview-container">
         <app-preview-image
           class="preveiw"
@@ -45,10 +44,18 @@
           [catchPhrase]="balade.catchPhrase"
         ></app-preview-image>
         <div class="page-selector">
-          <p class="detail" [ngClass]="{ active: detail }" (click)="detail = true">
+          <p
+            class="detail"
+            [ngClass]="{ active: detail }"
+            (click)="detail = true"
+          >
             Details
           </p>
-          <p class="info" [ngClass]="{ active: !detail }" (click)="detail = false">
+          <p
+            class="info"
+            [ngClass]="{ active: !detail }"
+            (click)="detail = false"
+          >
             Informations pratiques
           </p>
         </div>
