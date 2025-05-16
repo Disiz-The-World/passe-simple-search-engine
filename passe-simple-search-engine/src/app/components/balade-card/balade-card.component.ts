@@ -7,11 +7,16 @@ import { FavoritesBtnComponent } from '../favorites/favorite-btn/favorites-btn.c
 import { BaladeModel } from '../../models/balade.model';
 import { CommonModule } from '@angular/common';
 
-
 @Component({
   selector: 'app-balade-card',
   templateUrl: './balade-card.component.html',
-  imports: [MatIcon, MatCard, MatIconButton, MatCardContent, FavoritesBtnComponent, CommonModule],
+  imports: [
+    MatIcon,
+    MatCard,
+    MatCardContent,
+    FavoritesBtnComponent,
+    CommonModule,
+  ],
   styleUrls: ['./balade-card.component.scss'],
 })
 export class BaladeCardComponent {
