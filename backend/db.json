@@ -117,13 +117,105 @@
   "tags": [
     {
       "id": 1,
-      "name": "Transports publics",
-      "icon": "e530"
+      "name": "Forêt",
+      "icon": "f1bb",
+      "category": "terrain"
     },
     {
       "id": 2,
-      "name": "Restauration",
-      "icon": "e56c"
+      "name": "Montagne",
+      "icon": "f73e",
+      "category": "terrain"
+    },
+    {
+      "id": 3,
+      "name": "Lac",
+      "icon": "f5a9",
+      "category": "terrain"
+    },
+    {
+      "id": 4,
+      "name": "Peu de dénivelé",
+      "icon": "f6f3",
+      "category": "terrain"
+    },
+    {
+      "id": 5,
+      "name": "Routes",
+      "icon": "f0c2",
+      "category": "terrain"
+    },
+    {
+      "id": 10,
+      "name": "Paléolithique",
+      "icon": "f1ed",
+      "category": "period"
+    },
+    {
+      "id": 11,
+      "name": "Néolithique",
+      "icon": "f1ee",
+      "category": "period"
+    },
+    {
+      "id": 12,
+      "name": "Antiquité",
+      "icon": "f0e2",
+      "category": "period"
+    },
+    {
+      "id": 13,
+      "name": "Moyen Age",
+      "icon": "f0f0",
+      "category": "period"
+    },
+    {
+      "id": 14,
+      "name": "Temps modernes",
+      "icon": "f3b0",
+      "category": "period"
+    },
+    {
+      "id": 15,
+      "name": "Époque contemporaine",
+      "icon": "f554",
+      "category": "period"
+    },
+    {
+      "id": 20,
+      "name": "Parcours sportif",
+      "icon": "f44e",
+      "category": "criteria"
+    },
+    {
+      "id": 21,
+      "name": "Parcour interactif",
+      "icon": "f0e0",
+      "category": "criteria"
+    },
+    {
+      "id": 22,
+      "name": "Accessible",
+      "icon": "f193",
+      "category": "criteria"
+    },
+    {
+      "id": 23,
+      "name": "Restauration possible",
+      "icon": "f2e7",
+      "category": "criteria"
+    },
+    {
+      "id": 24,
+      "name": "Traductions",
+      "icon": "f1ab",
+      "category": "criteria"
+    },
+    {
+      "id": 25,
+      "name": "Familles",
+      "icon": "f0c0",
+      "category": "criteria"
     }
   ],
   "users": [
