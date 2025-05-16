@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 #!/bin/env bash
 
 (cd ./passe-simple-search-engine && npm install && ng serve) &

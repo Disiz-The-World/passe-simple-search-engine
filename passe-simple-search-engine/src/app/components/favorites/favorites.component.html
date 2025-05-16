@@ -4,7 +4,7 @@
     <div class="sort-filter">
       <mat-form-field appearance="outline" class="sort">
         <mat-label>Trier par</mat-label>
-        <mat-select (selectionChange)="toggleSortOrder()">
+        <mat-select (selectionChange)="sortBalades($event.value)" value="asc">
           <mat-option value="asc">A-Z</mat-option>
           <mat-option value="desc">Z-A</mat-option>
         </mat-select>
@@ -40,7 +40,9 @@
               </ul>
             </mat-card-header>
             <mat-card-actions>
-              <span>Tag</span>
+              <div class="tags">
+                <app-tags [tags]="item.tags"></app-tags>
+              </div>
               <button (click)="swapFavorite(item.id)" class="favorite-button">
                 <mat-icon
                   aria-hidden="false"

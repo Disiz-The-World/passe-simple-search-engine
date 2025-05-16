@@ -131,13 +131,13 @@
       "id": 1,
       "username": "admin",
       "password": "admin",
-      "profilePicture": ""
+      "profilePicture": "assets/avatars/1.jpeg"
     },
     {
       "id": 2,
       "username": "john",
       "password": "doe",
-      "profilePicture": ""
+      "profilePicture": "assets/avatars/2.png"
     }
   ]
 }

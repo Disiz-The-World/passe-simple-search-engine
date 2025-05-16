@@ -14,7 +14,7 @@ import { LoginComponent } from '../login/login.component';
   imports: [MatIconModule, MatCardModule, NgOptimizedImage, MatDialogModule],
 })
 export class AvatarComponent implements OnInit {
-  avatar: string = 'assets/avatar.jpeg';
+  avatar: string = 'assets/avatars/avatar.png';
 
   constructor(
     private dialog: MatDialog,
@@ -23,7 +23,9 @@ export class AvatarComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const user = await this.authService.getCurrentUser();
-    this.avatar = user?.profilePicture || '';
+    if (user) {
+      this.avatar = user?.profilePicture || '';
+    }
   }
 
   openLoginDialog() {

@@ -11,6 +11,7 @@ import { BaladeModel } from '../models/balade.model';
 export class DatabaseService {
   balades = '/balades';
   users = '/users';
+  tags = '/tags';
 
   constructor(private http: HttpClient) {}
 
@@ -25,6 +26,21 @@ export class DatabaseService {
       .join('&');
 
     return await firstValueFrom(this.http.get<BaladeModel[]>(url));
+  }
+
+  public async getTags(filters: { [key: string]: any }) {
+    let url =
+      environment.apiUrl +
+      this.tags +
+      (Object.keys(filters).length === 0 ? '' : '?');
+
+    url += Object.entries(filters)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
+
+    return await firstValueFrom(
+      this.http.get<{ id: number; name: string; icon: string }[]>(url)
+    );
   }
 
   public updateBalade(baladeId: number, data: { [key: string]: any }) {
