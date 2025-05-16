@@ -13,7 +13,9 @@
             <mat-icon (click)="toggleVisibility(section.title)">
               {{ getIcon(section.title) }}
             </mat-icon>
-            <h3 (click)="toggleVisibility(section.title)" >{{ section.title }}</h3>
+            <h3 (click)="toggleVisibility(section.title)">
+              {{ section.title }}
+            </h3>
           </div>
           <div *ngIf="getSectionVisibility(section.title)">
             <div *ngFor="let item of section.content">

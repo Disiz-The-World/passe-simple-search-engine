@@ -30,7 +30,7 @@ export class FeaturedWalkCardComponent implements OnInit {
   @Input() image!: string;
   @Input() title!: string;
   @Input() description!: string;
-  @Input() location!: number;
+  @Input() location!: string;
   @Input() duration!: number;
   @Input() rating: number[] = [];
   @Input() id!: number;

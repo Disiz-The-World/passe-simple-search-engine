@@ -5,19 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fa21f406-6ebe-400a-add3-2e144b810095" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/components/balade-card/balade-card.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/components/balade-card/balade-card.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/components/balade-card/balade-card.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/components/balade-card/balade-card.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/components/carousel/carousel.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/components/carousel/carousel.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/components/carousel/carousel.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/components/carousel/carousel.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/components/carousel/carousel.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/components/carousel/carousel.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/components/featured-walk-card/featured-walk-card.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/components/featured-walk-card/featured-walk-card.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/components/featured-walk-card/featured-walk-card.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/components/featured-walk-card/featured-walk-card.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/components/featured-walk-card/featured-walk-card.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/components/featured-walk-card/featured-walk-card.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/components/home-page/home-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/components/home-page/home-page.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/components/home-page/home-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/components/home-page/home-page.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/services/walk.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../passe-simple-search-engine/src/app/services/walk.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +52,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "Rebasing main",
+    "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
     "last_opened_file_path": "/Users/thomasburkhalter/Developer/passe-simple-search-engine/backend",
     "node.js.detected.package.eslint": "true",

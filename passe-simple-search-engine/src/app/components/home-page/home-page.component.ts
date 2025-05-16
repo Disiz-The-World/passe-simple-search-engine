@@ -33,9 +33,6 @@ export class HomePageComponent implements OnInit {
   visibleBalades: any[] = [];
   showAll = false;
   userId: number | null = null;
-
-  @ViewChild('walkCard', { static: true }) walkCard!: TemplateRef<any>;
-
   constructor(
     private walkService: WalkService,
     private authService: AuthService,
