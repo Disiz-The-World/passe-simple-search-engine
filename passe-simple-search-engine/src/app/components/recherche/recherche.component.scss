@@ -76,7 +76,7 @@
 
     &:focus {
       outline: none;
-      border-color: #4a9b8d;
+      border-color: #376a3e;
     }
 
     &::placeholder {
@@ -145,7 +145,7 @@
       .mdc-slider {
         .mdc-slider__track {
           .mdc-slider__track--active_fill {
-            background-color: #4a9b8d;
+            background-color: #376a3e;
           }
           .mdc-slider__track--inactive {
             background-color: #e5e7eb;
@@ -154,7 +154,7 @@
 
         .mdc-slider__thumb {
           .mdc-slider__thumb-knob {
-            background-color: #4a9b8d;
+            background-color: #376a3e;
           }
         }
 
@@ -170,7 +170,7 @@
 .search-btn {
   width: 56px;
   height: 56px;
-  background: #4a9b8d;
+  background: #376a3e;
   border: none;
   border-radius: 16px;
   cursor: pointer;
@@ -673,7 +673,7 @@
 
   mat-icon {
     font-size: 16px;
-    color: #4a9b8d;
+    color: #376a3e;
 
     @media (max-width: 768px) {
       font-size: 14px;
