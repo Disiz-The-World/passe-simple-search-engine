@@ -75,6 +75,11 @@ export class RechercheComponent implements OnInit {
   historicalPeriodsExpanded: boolean = false;
   criteriaExpanded: boolean = false;
 
+  // Loading states
+  isLoading: boolean = true;
+  isLoadingTags: boolean = true;
+  isLoadingBalades: boolean = true;
+
   constructor(
     private router: Router,
     private http: HttpClient
@@ -85,12 +90,21 @@ export class RechercheComponent implements OnInit {
   }
 
   loadData() {
+    this.isLoading = true;
+    this.isLoadingTags = true;
+    this.isLoadingBalades = true;
+
     this.http.get<Tag[]>('http://localhost:3000/tags').subscribe({
       next: (tags) => {
         this.initializeFilterArrays(tags);
+        this.isLoadingTags = false;
         this.loadBalades();
       },
-      error: (err) => console.error('Error loading tags:', err),
+      error: (err) => {
+        console.error('Error loading tags:', err);
+        this.isLoadingTags = false;
+        this.isLoading = false;
+      },
     });
   }
 
@@ -98,9 +112,15 @@ export class RechercheComponent implements OnInit {
     this.http.get<Balade[]>('http://localhost:3000/balades').subscribe({
       next: (baladesData) => {
         this.balades = baladesData;
+        this.isLoadingBalades = false;
+        this.isLoading = false;
         this.search();
       },
-      error: (err) => console.error('Error loading balades:', err),
+      error: (err) => {
+        console.error('Error loading balades:', err);
+        this.isLoadingBalades = false;
+        this.isLoading = false;
+      },
     });
   }
 
@@ -137,6 +157,8 @@ export class RechercheComponent implements OnInit {
   }
 
   search() {
+    if (this.isLoading) return;
+
     this.filteredBalades = this.balades.filter((balade) => {
       const matchesTitle =
         !this.titleSearch ||
