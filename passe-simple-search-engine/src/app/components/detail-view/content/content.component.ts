@@ -30,14 +30,12 @@ export class ContentComponent implements OnChanges {
   @Input() content!: Content;
   @Input() catchPhrase!: string;
 
-  // Déclarez un tableau pour suivre la visibilité des sections
   contentVisibility: { name: string; visibility: boolean }[] = [];
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['content']) {
       console.log('Content reçu dans ContentComponent:', this.content);
 
-      // Initialisez la visibilité des sections
       this.contentVisibility = this.content.sections.map((section) => ({
         name: section.title,
         visibility: true,
@@ -46,7 +44,6 @@ export class ContentComponent implements OnChanges {
   }
 
   toggleVisibility(sectionName: string): void {
-    // Inversez la visibilité de la section correspondante
     const section = this.contentVisibility.find((s) => s.name === sectionName);
     if (section) {
       section.visibility = !section.visibility;

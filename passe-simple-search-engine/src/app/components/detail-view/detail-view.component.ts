@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { PreviewImageComponent } from './preview-image/preview-image.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { UsefulInfoComponent } from './useful-info/useful-info.component';
 import { ContentComponent } from './content/content.component';
+import { DatabaseService } from '../../services/database.service';
 
 @Component({
   selector: 'app-detail-view',
@@ -29,36 +29,39 @@ export class DetailViewComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private databaseService: DatabaseService
   ) {}
 
-  ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
+  async fetchBaladeWithTags(id: string): Promise<void> {
+    try {
+      const balade = await this.databaseService.getBalades({ id: Number(id) });
+
+      if (balade.length > 0) {
+        this.balade = balade[0];
+
+        const tags = await Promise.all(
+          this.balade.tagIds.map((tagId: number) =>
+            this.databaseService.getTags({ id: tagId })
+          )
+        );
+
+        this.tags = tags.flat();
+      }
+    } catch (error) {
+      console.error('Erreur lors de la récupération de la balade :', error);
+    }
+  }
+
+  async ngOnInit(): Promise<void> {
+    this.route.paramMap.subscribe(async (params) => {
       const id = params.get('id');
       if (id) {
-        this.http.get(`http://localhost:3000/balades/${id}`).subscribe({
-          next: (data) => {
-            this.balade = data;
-
-            this.http
-              .get('http://localhost:3000/tags')
-              .subscribe((tags: any) => {
-                this.tags = tags.filter(
-                  (tag: any) =>
-                    this.balade.tagIds &&
-                    this.balade.tagIds.includes(Number(tag.id))
-                );
-              });
-          },
-          error: (err) => {
-            console.error('Erreur lors de la récupération des données:', err);
-          },
-        });
-      } else {
+        await this.fetchBaladeWithTags(id);
       }
     });
   }
+
   navigateBack(): void {
     this.router.navigate(['/']);
   }

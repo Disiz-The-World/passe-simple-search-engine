@@ -30,9 +30,10 @@ export class WalkService {
               : 'assets/images/default.jpg',
             title: walk.name,
             description: walk.catchPhrase,
-            rating:
-              walk.ratings.reduce((a: number, b: number) => a + b, 0) /
-                walk.ratings.length || 0,
+            duration: walk.duration,
+            location: walk.location,
+            rating: walk.ratings ?? [],
+            favoriteIds: walk.favoriteIds ?? [],
             id: walk.id,
           };
         })
@@ -51,7 +52,26 @@ export class WalkService {
       )
     );
   }
+
   getWalkById(id: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
+
+  toggleFavorite(
+    baladeId: number,
+    userId: number,
+    currentFavorites: number[]
+  ): Observable<any> {
+    const isAlreadyFav = currentFavorites.includes(userId);
+
+    const newFavorites = isAlreadyFav
+      ? currentFavorites.filter((id) => id !== userId)
+      : [...currentFavorites, userId];
+
+    const updatedData = {
+      favoriteIds: newFavorites,
+    };
+
+    return this.http.patch(`${this.apiUrl}/${baladeId}`, updatedData);
   }
 }

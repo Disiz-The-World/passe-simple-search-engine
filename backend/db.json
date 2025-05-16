@@ -5,7 +5,7 @@
       "name": "Moudon par la petite porte",
       "catchPhrase": "La ville haute de la «capitale» du pays de Vaud savoyard constitue un ensemble architectural exceptionnel du Moyen-Âge et de l'Ancien Régime. Invitation à le parcourir sous tous ses angles.",
       "duration": 75,
-      "location": 1510,
+      "location": "Moudon",
       "previewPath": "/1/preview.png",
       "map": "/1/map.png",
       "infos": [
@@ -30,15 +30,8 @@
           "description": "+180m -180m"
         }
       ],
-      "favoriteIds": [
-        1,
-        2
-      ],
-      "ratings": [
-        1,
-        2,
-        3
-      ],
+      "favoriteIds": [1, 2],
+      "ratings": [1, 2, 3],
       "content": {
         "details": "Pour se rendre à Moudon, en venant des rives du Léman, on doit tout  d'abord traverser le haut plateau vallonné du Jorat. À la hauteur du  village de Vucherens s'ouvre la large vallée de la Broye moyenne. Une  longue descente conduit au hameau de Bressonnaz, point de départ de  notre balade.",
         "sections": [
@@ -118,49 +111,40 @@
         "Monique Fontannaz: Les monuments art et d'histoire du canton de Vaud, VI, La ville de Illoudon (Société d'histoire de l'art en Suisse), Berne, 2006",
         "Wikipedia: Le vallon des Vaux"
       ],
-      "tagIds": [
-        1,
-        2
-      ]
+      "tagIds": [1, 2]
     },
     {
       "id": 2,
       "name": "Les mystères de Lavaux",
       "catchPhrase": "Explorez les vignobles en terrasses de Lavaux, classés au patrimoine mondial de l'UNESCO, et découvrez des panoramas à couper le souffle sur le lac Léman.",
       "duration": 120,
-      "location": 1096,
+      "location": "Cully",
       "previewPath": "/2/preview.png",
       "map": "/2/map.png",
       "infos": [
         {
-          "icon": "f816",
+          "icon": "line_start_circle",
           "name": "Départ",
           "description": "Gare de Cully"
         },
         {
-          "icon": "f81b",
+          "icon": "line_end_circle",
           "name": "Arrivée",
           "description": "Gare de Lutry"
         },
         {
-          "icon": "f6ea",
+          "icon": "pin_drop",
           "name": "Distance",
           "description": "~20km"
         },
         {
-          "icon": "f873",
+          "icon": "altitude",
           "name": "Dénivelé",
           "description": "+210m -185m"
         }
       ],
-      "favoriteIds": [
-        3,
-        2
-      ],
-      "ratings": [
-        4,
-        5
-      ],
+      "favoriteIds": [1, 2],
+      "ratings": [4, 5],
       "content": {
         "details": "Cette balade vous emmène à travers les vignobles en terrasses de Lavaux, un paysage unique façonné par des siècles de travail humain. Classé au patrimoine mondial de l'UNESCO, Lavaux est un véritable joyau de la Suisse romande. En chemin, vous découvrirez des villages pittoresques, des caves à vin accueillantes et des panoramas à couper le souffle sur le lac Léman et les Alpes. Que vous soyez amateur de randonnée, passionné de vin ou simplement à la recherche d'une escapade paisible, cette balade a tout pour plaire.",
         "sections": [
@@ -236,50 +220,40 @@
         "Wikipedia: Lavaux, vignobles en terrasses",
         "Guide des vins de Lavaux"
       ],
-      "tagIds": [
-        1,
-        2
-      ]
+      "tagIds": [1, 2]
     },
     {
       "id": 3,
       "name": "Au fil de l'eau : Visite du barrage d'Émosson",
       "catchPhrase": "Découvrez le majestueux barrage d'Émosson, un chef-d'œuvre d'ingénierie niché au cœur des Alpes, et laissez-vous émerveiller par des paysages à couper le souffle.",
       "duration": 180,
-      "location": 1925,
+      "location": "Finhaut",
       "previewPath": "/3/preview.jpg",
       "map": "/3/map.png",
       "infos": [
         {
-          "icon": "f816",
+          "icon": "line_start_circle",
           "name": "Départ",
           "description": "En bas barrage"
         },
         {
-          "icon": "f81b",
+          "icon": "line_end_circle",
           "name": "Arrivée",
           "description": "En haut du barrage"
         },
         {
-          "icon": "f6ea",
+          "icon": "pin_drop",
           "name": "Distance",
           "description": "~15km"
         },
         {
-          "icon": "f873",
+          "icon": "altitude",
           "name": "Dénivelé",
           "description": "+550m -40m"
         }
       ],
-      "favoriteIds": [
-        1,
-        2
-      ],
-      "ratings": [
-        5,
-        4,
-        5
-      ],
+      "favoriteIds": [1, 2],
+      "ratings": [5, 4, 5],
       "content": {
         "details": "Cette balade vous emmène à la découverte du barrage d'Émosson, un site emblématique des Alpes suisses. Situé à 1930 mètres d'altitude, ce barrage impressionnant est entouré de paysages alpins spectaculaires. En chemin, vous traverserez des sentiers bordés de fleurs sauvages, des forêts alpines et des points de vue à couper le souffle. Que vous soyez passionné d'ingénierie, amoureux de la nature ou simplement à la recherche d'une escapade paisible, cette balade est une expérience inoubliable.",
         "sections": [
@@ -355,10 +329,7 @@
         "Wikipedia: Barrage d'Émosson",
         "Guide des Alpes suisses"
       ],
-      "tagIds": [
-        2,
-        1
-      ]
+      "tagIds": [2, 1]
     }
   ],
   "tags": [
@@ -448,7 +419,7 @@
     },
     {
       "id": 23,
-      "name": "Restauration possible",
+      "name": "Restauration",
       "icon": "restaurant",
       "category": "criteria"
     },

@@ -45,10 +45,18 @@
           [catchPhrase]="balade.catchPhrase"
         ></app-preview-image>
         <div class="page-selector">
-          <p class="detail" [ngClass]="{ active: detail }" (click)="detail = true">
+          <p
+            class="detail"
+            [ngClass]="{ active: detail }"
+            (click)="detail = true"
+          >
             Details
           </p>
-          <p class="info" [ngClass]="{ active: !detail }" (click)="detail = false">
+          <p
+            class="info"
+            [ngClass]="{ active: !detail }"
+            (click)="detail = false"
+          >
             Informations pratiques
           </p>
         </div>

@@ -27,21 +27,39 @@
       position: absolute;
       top: 8px;
       left: 8px;
+      background: #d9e7cb;
+
+      mat-icon {
+        color: #55624c;
+        border-radius: 50%;
+        background: #d9e7cb;
+      }
     }
 
     .rating {
       position: absolute;
       top: 8px;
       right: 8px;
-      background: rgba(255, 255, 255, 0.9);
+      background: #d9e7cb;
+      opacity: 0.8;
       padding: 2px 6px;
-      border-radius: 12px;
+      border-radius: 20px;
       font-size: 14px;
+
+      .stars {
+        display: flex;
+        gap: 2px;
+        padding-top: 0.2em;
+        mat-icon {
+          font-size: 20px;
+          color: #55624c;
+        }
+      }
     }
   }
 
   mat-card-content {
-    padding: 12px;
+    padding: 10px;
     box-shadow: none;
 
     h3 {
@@ -56,15 +74,17 @@
       font-size: 14px;
       color: #444;
 
-      mat-icon {
-        font-size: 16px;
-        vertical-align: middle;
-        margin-right: 4px;
-      }
+      .icon-text {
+        display: inline-flex;
 
-      span {
-        display: flex;
-        align-items: center;
+        span {
+          margin-bottom: 0.5em;
+        }
+
+        mat-icon {
+          font-size: 16px;
+          vertical-align: middle;
+        }
       }
     }
   }

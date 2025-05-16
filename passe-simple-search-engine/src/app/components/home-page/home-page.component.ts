@@ -5,11 +5,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { BaladeCardComponent } from '../balade-card/balade-card.component';
-import { FeaturedWalkCardComponent } from '../featured-walk-card/featured-walk-card.component';
 import { HeroCardComponent } from '../hero-card/hero-card.component';
 import { ThematicsComponent } from '../thematics/thematics.component';
 import { WalkService } from '../../services/walk.service';
 import { CarouselComponent } from '../carousel/carousel.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home-page',
@@ -21,7 +21,6 @@ import { CarouselComponent } from '../carousel/carousel.component';
     MatCardModule,
     MatIconModule,
     BaladeCardComponent,
-    FeaturedWalkCardComponent,
     HeroCardComponent,
     ThematicsComponent,
     CarouselComponent,
@@ -33,51 +32,62 @@ export class HomePageComponent implements OnInit {
   balades: any[] = [];
   visibleBalades: any[] = [];
   showAll = false;
-
-  @ViewChild('walkCard', { static: true }) walkCard!: TemplateRef<any>;
-
+  userId: number | null = null;
   constructor(
     private walkService: WalkService,
+    private authService: AuthService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.authService.getCurrentUser().then((user) => {
+      this.userId = user?.id ?? null;
+    });
+
     const staticWalks = [
       {
         id: 2,
+        favoriteIds: [2],
         image: 'assets/walk-card/emosson.jpg',
         title: 'Histoire au fil de l’eau - visite du barrage d’Emosson',
         description:
           'Perché à 1 930 mètres d’altitude, le barrage d’Emosson offre un panorama époustouflant sur le massif du Mont-Blanc.',
-        rating: 2,
-        duration: 2,
+        rating: [1],
+        duration: 90,
+        location: 1930,
       },
       {
         id: 3,
+        favoriteIds: [1],
         image: 'assets/walk-card/morat-see.jpg',
         title: 'Le lac de Morat : Entre nature et histoire…',
         description:
           'Le lac de Morat est un écrin de nature chargé d’histoire. Des vestiges de cités lacustres aux batailles médiévales…',
-        rating: 3,
-        duration: 3,
+        rating: [1, 2, 3, 4, 5],
+        duration: 320,
+        location: 1784,
       },
       {
         id: 4,
+        favoriteIds: [1],
         image: 'assets/walk-card/creux-du-van.jpg',
         title: 'Le Creux du Van : un cirque naturel à couper le souffle',
         description:
           'Le Creux du Van est un cirque naturel impressionnant, formé par l’érosion de la roche calcaire.',
-        rating: 1,
-        duration: 1,
+        rating: [1, 2],
+        duration: 205,
+        location: 1805,
       },
       {
         id: 5,
+        favoriteIds: [2],
         image: 'assets/walk-card/chemin-des-pionniers.jpg',
         title: 'Le chemin des Pionniers : une randonnée historique',
         description:
           'Le chemin des Pionniers est une randonnée qui retrace l’histoire des premiers habitants de la région.',
-        rating: 2,
-        duration: 2,
+        rating: [1, 2, 3],
+        duration: 120,
+        location: 1768,
       },
     ];
 
@@ -95,8 +105,22 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  get displayedBalades(): any[] {
-    return [...this.balades, ...this.balades, ...this.balades, ...this.balades];
+  onFavoriteToggled(id: number, currentFavoriteIds: number[]): void {
+    if (!this.userId) return;
+
+    const isAlreadyFav = currentFavoriteIds.includes(this.userId);
+    const updatedFavorites = isAlreadyFav
+      ? currentFavoriteIds.filter((uId) => uId !== this.userId)
+      : [...currentFavoriteIds, this.userId];
+
+    this.walkService
+      .toggleFavorite(id, this.userId, currentFavoriteIds)
+      .subscribe(() => {
+        const target = this.balades.find((b) => b.id === id);
+        if (target) {
+          target.favoriteIds = updatedFavorites;
+        }
+      });
   }
 
   updateVisibleBalades(): void {
@@ -112,17 +136,5 @@ export class HomePageComponent implements OnInit {
   public toggleShowAll(): void {
     this.showAll = !this.showAll;
     this.updateVisibleBalades();
-  }
-  trackByBalade(index: number, item: any): number {
-    return item.id;
-  }
-
-  getDurationAndLocation(walk: any): string {
-    const duration = walk.duration ? `${walk.duration}h` : '';
-    const location = walk.location ? walk.location : '';
-    if (duration && location) {
-      return `${duration} · ${location}`;
-    }
-    return duration || location || '';
   }
 }

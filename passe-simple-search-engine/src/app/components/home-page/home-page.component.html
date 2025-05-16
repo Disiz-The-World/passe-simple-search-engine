@@ -3,20 +3,13 @@
 <div class="home-container">
   <h2 class="section-title">Balades populaires</h2>
 
-  <ng-template #walkCard let-walk>
-    <app-featured-walk-card
-      [image]="walk.image"
-      [title]="walk.title"
-      [description]="walk.description"
-      [rating]="walk.rating"
-      [id]="walk.id"
-    ></app-featured-walk-card>
-  </ng-template>
-
-  <app-carousel
-    [items]="displayedBalades"
-    [cardTemplate]="walkCard"
-  ></app-carousel>
+  <section class="carousel-section">
+    <app-carousel
+      [items]="balades.slice(0, 10)"
+      [userId]="userId || 0"
+      (favoriteToggled)="onFavoriteToggled($event.id, $event.favoriteIds)"
+    ></app-carousel>
+  </section>
 
   <app-thematics></app-thematics>
 
@@ -39,10 +32,16 @@
         [id]="walk.id"
         [imageUrl]="walk.image"
         [title]="walk.title"
-        [durationAndLocation]="getDurationAndLocation(walk)"
         [balade]="walk"
+        [duration]="walk.duration"
+        [location]="walk.location"
+        [rating]="walk.rating"
+        [favoriteIds]="walk.favoriteIds"
+        [userId]="userId || 0"
+        (favoriteToggled)="onFavoriteToggled(walk.id, walk.favoriteIds)"
       ></app-balade-card>
     </div>
+
     <div class="balade-card plus-card" (click)="toggleShowAll()">
       <mat-icon>{{ showAll ? 'remove' : 'add' }}</mat-icon>
     </div>

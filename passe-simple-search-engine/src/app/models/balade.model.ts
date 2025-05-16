@@ -23,6 +23,7 @@ export interface BaladeModel {
   };
   attributions: { [key: string]: string };
   seeMore: string[];
+  ratings: number[];
   tagIds: number[];
   favoriteIds: number[];
   tags: { id: number; name: string; icon: string }[];

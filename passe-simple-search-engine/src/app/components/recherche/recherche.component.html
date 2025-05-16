@@ -11,6 +11,7 @@
         placeholder="Ex: rivière, vallon, visite de..."
         (input)="onSearchInput()"
         class="search-input"
+        [disabled]="isLoading"
       />
       <button
         *ngIf="titleSearch"
@@ -31,6 +32,7 @@
         min="1"
         max="12"
         step="1"
+        [disabled]="isLoading"
       >
         <input
           matSliderStartThumb
@@ -54,6 +56,7 @@
           placeholder="NPA, Ville, ..."
           (input)="onLocationInput()"
           class="search-input"
+          [disabled]="isLoading"
         />
         <button
           *ngIf="locationSearch"
@@ -64,14 +67,24 @@
         </button>
       </div>
 
-      <button class="search-btn" (click)="search()">
+      <button class="search-btn" (click)="search()" [disabled]="isLoading">
         <mat-icon>search</mat-icon>
       </button>
     </div>
   </div>
 
+  <!-- Loading state for filters -->
+  <div *ngIf="isLoadingTags" class="loading-filters">
+    <div class="loading-filter-section" *ngFor="let i of [1, 2, 3]">
+      <div class="loading-filter-header">
+        <div class="loading-filter-title"></div>
+        <div class="loading-expand-icon"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- Filter sections -->
-  <div class="filter-sections">
+  <div class="filter-sections" *ngIf="!isLoadingTags">
     <!-- Terrain type -->
     <div class="filter-section">
       <div class="filter-header" (click)="toggleTerrainExpansion()">
@@ -153,8 +166,24 @@
     </div>
   </div>
 
+  <!-- Loading state for results -->
+  <div *ngIf="isLoadingBalades" class="loading-results">
+    <div class="loading-results-header"></div>
+    <div class="loading-result-card" *ngFor="let i of [1, 2, 3, 4]">
+      <div class="loading-result-image"></div>
+      <div class="loading-result-content">
+        <div class="loading-result-title"></div>
+        <div class="loading-result-description"></div>
+        <div class="loading-result-meta">
+          <div class="loading-meta-item"></div>
+          <div class="loading-meta-item"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Results section -->
-  <div class="results-section">
+  <div class="results-section" *ngIf="!isLoadingBalades">
     <div class="results-header" *ngIf="filteredBalades.length > 0">
       <h2>{{ filteredBalades.length }} résultat(s) trouvé(s)</h2>
     </div>
