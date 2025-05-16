@@ -30,8 +30,15 @@
           "description": "+180m -180m"
         }
       ],
-      "favoriteIds": [1, 2],
-      "ratings": [1, 2, 3],
+      "favoriteIds": [
+        1,
+        2
+      ],
+      "ratings": [
+        1,
+        2,
+        3
+      ],
       "content": {
         "details": "Pour se rendre à Moudon, en venant des rives du Léman, on doit tout  d'abord traverser le haut plateau vallonné du Jorat. À la hauteur du  village de Vucherens s'ouvre la large vallée de la Broye moyenne. Une  longue descente conduit au hameau de Bressonnaz, point de départ de  notre balade.",
         "sections": [
@@ -111,7 +118,247 @@
         "Monique Fontannaz: Les monuments art et d'histoire du canton de Vaud, VI, La ville de Illoudon (Société d'histoire de l'art en Suisse), Berne, 2006",
         "Wikipedia: Le vallon des Vaux"
       ],
-      "tagIds": [1, 2]
+      "tagIds": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Les mystères de Lavaux",
+      "catchPhrase": "Explorez les vignobles en terrasses de Lavaux, classés au patrimoine mondial de l'UNESCO, et découvrez des panoramas à couper le souffle sur le lac Léman.",
+      "duration": 120,
+      "location": 1096,
+      "previewPath": "/2/preview.png",
+      "map": "/2/map.png",
+      "infos": [
+        {
+          "icon": "f816",
+          "name": "Départ",
+          "description": "Gare de Cully"
+        },
+        {
+          "icon": "f81b",
+          "name": "Arrivée",
+          "description": "Gare de Lutry"
+        },
+        {
+          "icon": "f6ea",
+          "name": "Distance",
+          "description": "~20km"
+        },
+        {
+          "icon": "f873",
+          "name": "Dénivelé",
+          "description": "+210m -185m"
+        }
+      ],
+      "favoriteIds": [
+        3,
+        4
+      ],
+      "ratings": [
+        4,
+        5
+      ],
+      "content": {
+        "details": "Cette balade vous emmène à travers les vignobles en terrasses de Lavaux, un paysage unique façonné par des siècles de travail humain. Classé au patrimoine mondial de l'UNESCO, Lavaux est un véritable joyau de la Suisse romande. En chemin, vous découvrirez des villages pittoresques, des caves à vin accueillantes et des panoramas à couper le souffle sur le lac Léman et les Alpes. Que vous soyez amateur de randonnée, passionné de vin ou simplement à la recherche d'une escapade paisible, cette balade a tout pour plaire.",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Départ de Cully",
+            "content": [
+              {
+                "type": "text",
+                "text": "La balade commence à la gare de Cully, un village charmant et paisible entouré de vignobles. Dès votre arrivée, vous serez accueilli par l'atmosphère chaleureuse de ce lieu historique. Traversez le village en suivant les panneaux indiquant les sentiers de Lavaux. Très vite, vous serez plongé dans un paysage de terrasses verdoyantes, où chaque vigne semble raconter une histoire. Prenez le temps de vous arrêter pour admirer les premières vues sur le lac Léman, dont les eaux scintillantes contrastent magnifiquement avec le vert des vignobles."
+              },
+              {
+                "type": "image/normal",
+                "path": "/2/1.jpg",
+                "legend": "Les vignobles de Lavaux au lever du soleil, un spectacle inoubliable."
+              },
+              {
+                "type": "image/side",
+                "path": "/2/2.png",
+                "legend": "Carte des sentiers de Lavaux, pour vous guider tout au long de votre balade."
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "À travers les vignobles",
+            "content": [
+              {
+                "type": "text",
+                "text": "En suivant le sentier principal, vous traverserez les vignobles en terrasses qui font la renommée de Lavaux. Ces terrasses, construites à flanc de colline, offrent une vue imprenable sur le lac Léman et les montagnes environnantes. En chemin, vous passerez par des villages pittoresques comme Epesses et Grandvaux. Ces villages, avec leurs ruelles étroites et leurs maisons en pierre, semblent figés dans le temps. Profitez-en pour visiter une cave à vin locale et déguster les crus de Lavaux, réputés pour leur qualité exceptionnelle. Les vignerons se feront un plaisir de partager avec vous leur passion et leur savoir-faire."
+              },
+              {
+                "type": "image/normal",
+                "path": "/2/3.png",
+                "legend": "Vue sur le lac Léman depuis les vignobles, un panorama à couper le souffle."
+              },
+              {
+                "type": "image/side",
+                "path": "/2/4.png",
+                "legend": "Les terrasses de Lavaux, un chef-d'œuvre de l'ingénierie humaine et de la nature."
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "title": "Arrivée à Lutry",
+            "content": [
+              {
+                "type": "text",
+                "text": "La balade se termine à Lutry, un village historique situé au bord du lac Léman. Prenez le temps d'explorer ses ruelles pavées, ses églises anciennes et ses terrasses accueillantes. Lutry est également un excellent point de départ pour d'autres aventures, que ce soit une croisière sur le lac ou une visite des vignobles environnants. Avant de partir, n'oubliez pas de vous arrêter dans l'un des nombreux cafés ou restaurants pour savourer une spécialité locale tout en profitant de la vue sur le lac."
+              },
+              {
+                "type": "image/normal",
+                "path": "/2/5.png",
+                "legend": "Le village de Lutry, une destination parfaite pour conclure votre balade."
+              },
+              {
+                "type": "image/side",
+                "path": "/2/6.png",
+                "legend": "Carte des points d'intérêt à Lutry, pour prolonger votre visite."
+              }
+            ]
+          }
+        ]
+      },
+      "attributions": {
+        "Illustrations": "Jean Dupont",
+        "Textes": "Marie Curie",
+        "Images": "Paul Durand"
+      },
+      "seeMore": [
+        "Office du tourisme de Lavaux: www.lavaux.ch",
+        "Wikipedia: Lavaux, vignobles en terrasses",
+        "Guide des vins de Lavaux"
+      ],
+      "tagIds": [
+        1,
+        2
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Au fil de l'eau : Visite du barrage d'Émosson",
+      "catchPhrase": "Découvrez le majestueux barrage d'Émosson, un chef-d'œuvre d'ingénierie niché au cœur des Alpes, et laissez-vous émerveiller par des paysages à couper le souffle.",
+      "duration": 180,
+      "location": 1925,
+      "previewPath": "/3/preview.jpg",
+      "map": "/3/map.png",
+      "infos": [
+        {
+          "icon": "f816",
+          "name": "Départ",
+          "description": "En bas barrage"
+        },
+        {
+          "icon": "f81b",
+          "name": "Arrivée",
+          "description": "En haut du barrage"
+        },
+        {
+          "icon": "f6ea",
+          "name": "Distance",
+          "description": "~15km"
+        },
+        {
+          "icon": "f873",
+          "name": "Dénivelé",
+          "description": "+550m -40m"
+        }
+      ],
+      "favoriteIds": [
+        5,
+        6
+      ],
+      "ratings": [
+        5,
+        4,
+        5
+      ],
+      "content": {
+        "details": "Cette balade vous emmène à la découverte du barrage d'Émosson, un site emblématique des Alpes suisses. Situé à 1930 mètres d'altitude, ce barrage impressionnant est entouré de paysages alpins spectaculaires. En chemin, vous traverserez des sentiers bordés de fleurs sauvages, des forêts alpines et des points de vue à couper le souffle. Que vous soyez passionné d'ingénierie, amoureux de la nature ou simplement à la recherche d'une escapade paisible, cette balade est une expérience inoubliable.",
+        "sections": [
+          {
+            "id": 1,
+            "title": "Départ au pied du barrage",
+            "content": [
+              {
+                "type": "text",
+                "text": "La balade commence au parking du barrage d'Émosson. Dès le départ, vous serez impressionné par la grandeur de cet ouvrage d'ingénierie, construit pour retenir les eaux de fonte des glaciers environnants. Suivez le sentier qui monte doucement vers le sommet du barrage. En chemin, vous traverserez une forêt alpine où le chant des oiseaux et le murmure des ruisseaux créent une ambiance apaisante. Prenez le temps de vous arrêter aux différents points de vue pour admirer les montagnes environnantes et le lac d'Émosson qui se dévoile peu à peu."
+              },
+              {
+                "type": "image/normal",
+                "path": "/3/1.jpg",
+                "legend": "Vue depuis le pied du barrage d'Émosson, un chef-d'œuvre d'ingénierie."
+              },
+              {
+                "type": "image/side",
+                "path": "/3/2.jpg",
+                "legend": "Carte des sentiers autour du barrage d'Émosson."
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "title": "Le sommet du barrage",
+            "content": [
+              {
+                "type": "text",
+                "text": "Une fois arrivé au sommet du barrage, vous serez récompensé par une vue panoramique à 360 degrés sur les Alpes suisses et françaises. Le lac d'Émosson, avec ses eaux turquoise, contraste magnifiquement avec les sommets enneigés qui l'entourent. Prenez le temps de marcher le long du barrage pour explorer ses différentes facettes. Vous pourrez également en apprendre davantage sur son histoire et son rôle dans la production d'énergie hydroélectrique grâce aux panneaux d'information disposés tout au long du parcours."
+              },
+              {
+                "type": "image/normal",
+                "path": "/3/3.jpg",
+                "legend": "Le lac d'Émosson, entouré de montagnes majestueuses."
+              },
+              {
+                "type": "image/side",
+                "path": "/3/4.jpg",
+                "legend": "Vue aérienne du barrage d'Émosson et de son lac."
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "title": "Retour par le sentier des dinosaures",
+            "content": [
+              {
+                "type": "text",
+                "text": "Pour le retour, empruntez le célèbre sentier des dinosaures, qui vous mènera à un site unique où des empreintes de dinosaures datant de plus de 200 millions d'années ont été découvertes. Ce sentier, bien balisé, offre une expérience à la fois éducative et ludique. En chemin, vous pourrez également profiter de nouveaux points de vue sur le barrage et les montagnes environnantes. La descente se fait en douceur, vous ramenant au point de départ avec des souvenirs inoubliables."
+              },
+              {
+                "type": "image/normal",
+                "path": "/3/5.jpg",
+                "legend": "Empreintes de dinosaures sur le sentier, une fenêtre sur le passé."
+              },
+              {
+                "type": "image/side",
+                "path": "/3/6.jpg",
+                "legend": "Carte du sentier des dinosaures, un incontournable pour les curieux."
+              }
+            ]
+          }
+        ]
+      },
+      "attributions": {
+        "Illustrations": "Jean Dupont",
+        "Textes": "Marie Curie",
+        "Images": "Paul Durand"
+      },
+      "seeMore": [
+        "Office du tourisme d'Émosson: www.emosson.ch",
+        "Wikipedia: Barrage d'Émosson",
+        "Guide des Alpes suisses"
+      ],
+      "tagIds": [
+        2,
+        1
+      ]
     }
   ],
   "tags": [

@@ -21,11 +21,37 @@
   }
 }
 
+.info-content-desktop {
+  display: flex;
+  .useful-info-desktop {
+    flex: 1;
+  }
+  .content-desktop {
+    flex: auto;
+  }
+}
+
 .page-selector {
   display: none;
 }
 
+.mobile{
+  display: none;
+}
+
+.desktop {
+  display: block;
+}
+
 @media (max-width: 1024px) {
+  .mobile{
+    display: block !important;
+  }
+
+  .desktop {
+    display: none;
+  }
+
   .preview-container {
     display: flex;
     flex-direction: column;
