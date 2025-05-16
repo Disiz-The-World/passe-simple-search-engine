@@ -87,7 +87,7 @@
           [class.selected]="filter.selected"
           (click)="toggleFilter(filter)"
         >
-          <mat-icon class="chip-icon">{{ getIconChar(filter.icon) }}</mat-icon>
+          <mat-icon class="chip-icon">{{ filter.icon }}</mat-icon>
           <span class="chip-text">{{ filter.name }}</span>
           <mat-icon *ngIf="filter.selected" class="check-icon">check</mat-icon>
         </div>
@@ -109,7 +109,7 @@
           [class.selected]="filter.selected"
           (click)="toggleFilter(filter)"
         >
-          <mat-icon class="chip-icon">{{ getIconChar(filter.icon) }}</mat-icon>
+          <mat-icon class="chip-icon">{{ filter.icon }}</mat-icon>
           <span class="chip-text">{{ filter.name }}</span>
           <mat-icon *ngIf="filter.selected" class="check-icon">check</mat-icon>
         </div>
@@ -131,7 +131,7 @@
           [class.selected]="filter.selected"
           (click)="toggleFilter(filter)"
         >
-          <mat-icon class="chip-icon">{{ getIconChar(filter.icon) }}</mat-icon>
+          <mat-icon class="chip-icon">{{ filter.icon }}</mat-icon>
           <span class="chip-text">{{ filter.name }}</span>
           <mat-icon *ngIf="filter.selected" class="check-icon">check</mat-icon>
         </div>
@@ -144,9 +144,7 @@
     <span class="active-filters-label">Filtres actifs:</span>
     <div class="active-filter-list">
       <div *ngFor="let filter of getActiveFilters()" class="active-filter-chip">
-        <mat-icon class="active-chip-icon">{{
-          getIconChar(filter.icon)
-        }}</mat-icon>
+        <mat-icon class="active-chip-icon">{{ filter.icon }}</mat-icon>
         <span class="active-chip-text">{{ filter.name }}</span>
         <button class="remove-btn" (click)="removeActiveFilter(filter)">
           <mat-icon>close</mat-icon>
