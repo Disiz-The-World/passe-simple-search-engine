@@ -42,7 +42,7 @@ export class ThematicsComponent {
     this.thematicsService.getBaladesByTag(tagId).subscribe(
       (balades) => {
         console.log('Balades associées au thème:', balades);
-        this.router.navigate(['/balades'], { queryParams: { tagId } });
+        this.router.navigate(['/recherche'], { queryParams: { tagId } });
       },
       (error) => {
         console.error('Erreur lors de la récupération des balades:', error);
