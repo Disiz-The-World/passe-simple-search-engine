@@ -2,7 +2,7 @@
   width: 100%;
   height: 64px;
   display: flex;
-  align-items: center; /* Aligne tous les éléments verticalement */
+  align-items: center;
   background-color: #f7fbf2;
   padding: 0 16px;
   box-sizing: border-box;
@@ -11,7 +11,7 @@
 
 .leading-icon {
   display: flex;
-  align-items: center; /* Centre l'icône verticalement */
+  align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
@@ -19,7 +19,7 @@
 }
 
 .container-icon {
-  width: 24px; /* Taille de l'icône */
+  width: 24px;
   height: 24px;
 }
 
@@ -31,13 +31,13 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  line-height: 1; /* Assure un alignement vertical correct */
+  line-height: 1;
 }
 
 .trailing-icon {
   margin-left: auto;
   display: flex;
-  align-items: center; /* Centre l'icône verticalement */
+  align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;

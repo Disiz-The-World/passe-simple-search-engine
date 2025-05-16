@@ -35,20 +35,18 @@ export class DetailViewComponent implements OnInit {
 
   async fetchBaladeWithTags(id: string): Promise<void> {
     try {
-      // Récupérer la balade spécifique par ID
       const balade = await this.databaseService.getBalades({ id: Number(id) });
 
       if (balade.length > 0) {
-        this.balade = balade[0]; // La balade correspondante
+        this.balade = balade[0];
 
-        // Récupérer les tags associés à la balade
         const tags = await Promise.all(
           this.balade.tagIds.map((tagId: number) =>
             this.databaseService.getTags({ id: tagId })
           )
         );
 
-        this.tags = tags.flat(); // Associer les tags à la balade
+        this.tags = tags.flat();
       }
     } catch (error) {
       console.error('Erreur lors de la récupération de la balade :', error);
