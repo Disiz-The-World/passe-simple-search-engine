@@ -235,18 +235,6 @@ export class RechercheComponent implements OnInit {
     this.search();
   }
 
-  getIconChar(iconCode: string): string {
-    if (!iconCode) return '';
-
-    try {
-      const hexValue = parseInt(iconCode, 16);
-      return String.fromCharCode(hexValue);
-    } catch (error) {
-      console.warn(`Unable to convert icon code: ${iconCode}`);
-      return '';
-    }
-  }
-
   onSearchInput() {
     this.search();
   }

@@ -7,25 +7,17 @@ import { MatIcon } from '@angular/material/icon';
   template: `
     <div class="tags">
       <div *ngFor="let tag of tags" class="tag">
-        <span class="icon">
-          {{ getIconChar(tag.icon) }}
-        </span>
+        <mat-icon class="icon">{{ tag.icon }}</mat-icon>
         <span class="name">{{ tag.name }}</span>
       </div>
     </div>
   `,
   styleUrls: ['./tags.component.scss'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatIcon],
 })
 export class TagsComponent {
   @Input() tags: { id: number; name: string; icon: string }[] = [];
 
-  constructor() {
-    console.log('Tags', this.tags);
-  }
-
-  getIconChar(unicode: string): string {
-    return String.fromCharCode(parseInt(unicode, 16));
-  }
+  constructor() {}
 }

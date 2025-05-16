@@ -1,8 +1,6 @@
 <div class="infos">
   <div *ngFor="let info of infos" class="info-item">
-    <span class="icon">
-      {{ getIconChar(info.icon) }}
-    </span>
+    <mat-icon class="icon">{{ info.icon }}</mat-icon>
     <span class="name">{{ info.name }} :</span>
     <span class="description">{{ info.description }}</span>
   </div>
