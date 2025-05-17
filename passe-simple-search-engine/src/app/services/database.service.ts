@@ -44,7 +44,7 @@ export class DatabaseService {
   }
 
   public async updateBalade(baladeId: number, data: { [key: string]: any }) {
-    const url = `${environment.apiUrl}${this.balades}/${baladeId}`; // Ensure URL is correctly constructed
+    const url = `${environment.apiUrl}${this.balades}/${baladeId}`;
 
     return await firstValueFrom(this.http.patch<BaladeModel>(url, data));
   }
